@@ -18,6 +18,7 @@ class PokedexController extends Controller
                    // dd($pokemons);
         
         
-        return $pokemons->toJson() ;
+        return response()->json($pokemons) ;
     }
+
 }

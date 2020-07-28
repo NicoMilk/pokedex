@@ -58,7 +58,7 @@ class ProfileController extends Controller
     public function edit(User $user)
     {        
         
-        $this->authorize ('manage', $user);
+        $this->authorize ('manage', $user);  //to get only my user id
         return view ('profile.edit', compact ('user'));
     }
 

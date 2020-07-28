@@ -13,7 +13,7 @@ class Pokedex extends Model
         
     ];
 
-    public function type()
+    public function types()
     {
         return $this->hasOne(Types::class);
     }

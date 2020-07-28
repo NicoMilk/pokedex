@@ -11,13 +11,12 @@ class PokedexController extends Controller
     {
         
         $pokemons = Pokedex::join('Types', 'Pokedex.id_pok', '=', 'Types.id_pok')
-
                     ->select('Pokedex.*', 'Types.*')
                     ->get();
+                
 
-                   // dd($pokemons);
+        $response = (object) ["pokemons" => $pokemons];
         
-        
-        return $pokemons->toJson() ;
+        return response()->json($response);
     }
 }

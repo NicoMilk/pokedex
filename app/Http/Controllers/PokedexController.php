@@ -17,6 +17,7 @@ class PokedexController extends Controller
 
         $response = (object) ["pokemons" => $pokemons];
         
-        return response()->json($response);
+        return response()->json($pokemons) ;
     }
+
 }

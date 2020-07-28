@@ -49888,13 +49888,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 __webpack_require__(/*! /home/nico/Desktop/Projects/MVVM_Pokedex/resources/js/app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! /home/nico/Desktop/Projects/MVVM_Pokedex/resources/sass/app.scss */"./resources/sass/app.scss");
-=======
-__webpack_require__(/*! /home/ln/MVVM_Pokedex/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/ln/MVVM_Pokedex/resources/sass/app.scss */"./resources/sass/app.scss");
->>>>>>> 956f45f6651dc38245c4c70571e01cac9f9de937
 
 
 /***/ })

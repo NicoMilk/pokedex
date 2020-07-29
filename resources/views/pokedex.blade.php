@@ -16,34 +16,26 @@
 
 </head>
 <body">
-    <div class="container-fluid p-0 h-100">
+    <div class="container-fluid p-0 h-100" id="app">
         <div class="d-flex flex-column  justify-content-between h-100">
             <h3 class="text-center py-3 m-0 bg-blur">
                 <a href="{{ url('/') }}">Pokemon</a>
             </h3>
             <div class="sep">&nbsp;</div>
             
-            <div class="content bg-blur h-100 overflow-auto" id="app">
+            <div class="content bg-blur h-100 overflow-auto" >
 
-                <pokedex></pokedex>
+                <router-view></router-view>
                 
             </div>
 
             <div class="sep">&nbsp;</div>
-            <div class="nav-bottom p-4 bg-blur">
-            @if (Route::has('login'))
-                <div class="">
-                @auth
-                    <a class="m-3" href="{{ url('/home') }}"><i class="fa fa-home"></i></a>
-                @else
-                    <a class="m-3" href="{{ route('login') }}"><i class="fa fa-sign-in"></i></a>
+            <div class="tab p-4 bg-blur">
 
-                    @if (Route::has('register'))
-                        <a class="m-3" href="{{ route('register') }}"><i class="fa fa-key"></i></a>
-                    @endif
-                @endauth
-                </div>
-            @endif
+                <router-link to="/"><img src="/img/pokemon-tab.png" alt="Pokedex"/><span>Pokemon</span></router-link>
+                <router-link to="/team"><img src="/img/team-tab.png" alt="Team"/><span>Team</span></router-link>
+                <router-link to="/trade"><img src="/img/trade-tab.png" alt="Trade"/><span class="offset">Trade</span></router-link>
+
             </div>
         </div>
     </div>

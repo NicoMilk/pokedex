@@ -6,7 +6,7 @@
                     <div class="card-header">Example Component</div>
 
                     <div class="card-body">
-                     POKEMONS
+                        TRADE
                     </div>
                 </div>
             </div>
@@ -16,6 +16,8 @@
 
 <script>
     export default {
-        name:"pokedex",        
+        mounted() {
+            console.log('Component mounted.')
+        }
     }
 </script>

@@ -7,8 +7,13 @@ Vue.use(VueRouter);
 
 import Pokedex from './components/Pokedex.vue';
 import Team from './components/Team.vue';
+import Trade from './components/Trade.vue';
 
- const routes = [
+/* 
+Vue.component('Pokedex',Pokedex);
+Vue.component('Pokedex',Team); */
+
+const routes = [
     {
         path : '/',
         component: Pokedex
@@ -16,12 +21,17 @@ import Team from './components/Team.vue';
     {
         path: '/team',
         component: Team
+    },
+    {
+        path: '/trade',
+        component: Trade
     }
 ]; 
 
-const Router = new VueRouter(routes);
+const router = new VueRouter({routes});
 
 const app = new Vue({
-    Router,
+
     el: '#app',
+    router
 });

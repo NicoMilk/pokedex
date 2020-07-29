@@ -15,7 +15,7 @@ class Pokedex extends Model
 
     public function types()
     {
-        return $this->hasOne(Types::class);
+        return $this->hasOne(Types::class,'id_pok');
     }
 
     public function user()

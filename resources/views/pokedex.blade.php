@@ -22,10 +22,13 @@
                 <a href="{{ url('/') }}">Pokemon</a>
             </h3>
             <div class="sep">&nbsp;</div>
+            
             <div class="content bg-blur h-100 overflow-auto" id="app">
-                Welcome page to Pokedex App
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+                <pokedex></pokedex>
+                
             </div>
+
             <div class="sep">&nbsp;</div>
             <div class="nav-bottom p-4 bg-blur">
             @if (Route::has('login'))
@@ -44,5 +47,6 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

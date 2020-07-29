@@ -16,6 +16,9 @@
 
 <script>
     export default {
-        name:"pokedex",        
+        name:"pokedex",
+        mounted() {
+            console.log('Component mounted.')
+        }
     }
 </script>

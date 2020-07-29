@@ -23,7 +23,8 @@ class Pokedex extends JsonResource
             'id'=>$this->id_pok,
             'name'=>$this->nom_pok,
             'types'=>['type 1'=>$this->type1,'type 2'=>$this->type2],
-            'image'=>$this->id_pok.'.png',
+            //'image'=>$this->id_pok.'.png',
+            'image'=> str_pad($this->id_pok, 3,"00" ,STR_PAD_LEFT).'.png',
         ];
     }
 }

@@ -15,83 +15,47 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <!--link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"-->
     <!-- Styles -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+<div class="container-fluid p-0 h-100">
+    <div class="d-flex flex-column  justify-content-between h-100">
+    <h3 class="text-center py-3 m-0 bg-blur"><a href="{{ url('/') }}">Pokemon</a></h3>
+    
+    <div class="sep">&nbsp;</div>
+    @auth
+    <h5 class="p-3 bg-blur m-0">{{ __('Hello') }} {{ Auth::user()->name }}</h5>
+    @endauth
 
-                    </ul>
-                    <!-- @if (session('status'))
-                        <div class="text-success font-weight-bold" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    @if (session('errors'))
-                        <div class="text-danger font-weight-bold" role="alert">
-                            {{ session('errors') }}
-                        </div>
-                    @endif -->
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+    <main class="py-4 bg-blur h-100 overflow-auto">
+        @yield('content')
+    </main>
+    
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+    <div class="sep">&nbsp;</div>
+    <div class="nav-bottom p-4 bg-blur">
+    @guest
+        <a class="m-4" href="{{ route('login') }}"><i class="fa fa-sign-in"></i></a>
+        @if (Route::has('register'))
+        <a class="m-4" href="{{ route('register') }}"><i class="fa fa-key"></i></a>
+        @endif
+    @else            
+        <a class="m-4" href="{{ route('profile.edit', auth()->id()) }}"><i class="fa fa-user"></i></a>
+        <a class="m-4" href="{{ route('password.request') }}"><i class="fa fa-key"></i></a>
 
-                                    <a class="dropdown-item" href="{{ route('profile.edit', auth()->id()) }}">
-                                        {{ __('Profile') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('password.request') }}">
-                                        {{ __('Reset Password') }}
-                                    </a>
+        <a class="m-4" href="{{ route('logout') }}" 
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i></a>
 
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+    @endguest
     </div>
 </body>
 </html>

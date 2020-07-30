@@ -19,9 +19,8 @@ class Pokemon extends JsonResource
             [
                 'id'=>$this->id_pok,
                 'name'=>$this->nom_pok,
-                'types'=>   ['type 1'=>$this->type1,'
-                            type 2'=>$this->type2],
-                'image'=> str_pad($this->id_pok, 3,'00' ,STR_PAD_LEFT).'.png',
+                'types'=>   ['type1'=>$this->type1,'type2'=>$this->type2],
+                'image'=> str_pad($this->id_pok, 3,'0' ,STR_PAD_LEFT).'.png',
                 'description'=>$this->description,
                 'stats'=>   ['hp'=>$this->hp,
                             'attack'=>$this->attack,

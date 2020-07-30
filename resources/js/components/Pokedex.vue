@@ -1,24 +1,40 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
+    <div class="d-flex flex-column  justify-content-between h-100">
 
-                    <div class="card-body">
-                     POKEMONS
-                    </div>
+            <pok-header/>          
+            <div class="content bg-blur h-100 overflow-auto" >                 
+                <div v-for="(pok, index) in poksStore" :key="index">
+                    <router-link class="" :to="{ name: 'pokemon', params: { id: pok.id }}">
+                    {{ pok.name }}
+                    </router-link>
                 </div>
             </div>
+            <pok-footer/>
+
+            
         </div>
-    </div>
+    
 </template>
 
 <script>
+
+import Footer from './Footer.vue';
+import Header from './Header.vue';
+
     export default {
+        components: {
+            "pok-header" : Header,
+            "pok-footer" : Footer
+        },
         name:"pokedex",
         mounted() {
-            console.log('Component mounted.')
+            this.$store.dispatch("getPoks");
+            
+        },
+        computed : {
+            poksStore () {
+                return this.$store.getters.getPoks;
+            }
         }
     }
 </script>

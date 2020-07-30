@@ -1920,6 +1920,8 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Footer_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.vue */ "./resources/js/components/Footer.vue");
+/* harmony import */ var _Header_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Header.vue */ "./resources/js/components/Header.vue");
 //
 //
 //
@@ -1936,10 +1938,74 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    "pok-header": _Header_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    "pok-footer": _Footer_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   name: "pokedex",
   mounted: function mounted() {
-    console.log('Component mounted.');
+    this.$store.dispatch("getPoks");
+  },
+  computed: {
+    poksStore: function poksStore() {
+      return this.$store.getters.getPoks;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pokemon.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pokemon.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Footer_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.vue */ "./resources/js/components/Footer.vue");
+/* harmony import */ var _Stats_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Stats.vue */ "./resources/js/components/Stats.vue");
+/* harmony import */ var _Weak_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Weak.vue */ "./resources/js/components/Weak.vue");
+/* harmony import */ var _Evol_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Evol.vue */ "./resources/js/components/Evol.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    "stats": _Stats_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    "weak": _Weak_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    "evol": _Evol_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    "pok-footer": _Footer_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  name: "pokemon",
+  mounted: function mounted() {
+    this.$store.dispatch("getPok", this.$route.params.id);
+  },
+  computed: {
+    pokStore: function pokStore() {
+      return this.$store.getters.getPok;
+    }
   }
 });
 
@@ -38347,10 +38413,82 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pokedex.vue?vue&type=template&id=38e02443&":
-/*!**********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pokedex.vue?vue&type=template&id=38e02443& ***!
-  \**********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Evol.vue?vue&type=template&id=75cd5b8e&":
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Evol.vue?vue&type=template&id=75cd5b8e& ***!
+  \*******************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n    EVOL\n")])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Footer.vue?vue&type=template&id=61a7c374&":
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Footer.vue?vue&type=template&id=61a7c374& ***!
+  \*********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "sep" }, [_vm._v(" ")]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "tab p-4 bg-blur" },
+      [
+        _c("router-link", { attrs: { to: "/" } }, [
+          _c("img", { attrs: { src: "/img/pokemon-tab.png", alt: "Pokedex" } }),
+          _c("span", [_vm._v("Pokemon")])
+        ]),
+        _vm._v(" "),
+        _c("router-link", { attrs: { to: "/team" } }, [
+          _c("img", { attrs: { src: "/img/team-tab.png", alt: "Team" } }),
+          _c("span", [_vm._v("Team")])
+        ]),
+        _vm._v(" "),
+        _c("router-link", { attrs: { to: "/trade" } }, [
+          _c("img", { attrs: { src: "/img/trade-tab.png", alt: "Trade" } }),
+          _c("span", { staticClass: "offset" }, [_vm._v("Trade")])
+        ])
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Header.vue?vue&type=template&id=1f42fb90&":
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Header.vue?vue&type=template&id=1f42fb90& ***!
+  \*********************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -38369,23 +38507,143 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v("\n                 POKEMONS\n                ")
-            ])
-          ])
-        ])
-      ])
+    return _c("div", [
+      _c("h3", { staticClass: "text-center py-3 m-0 bg-blur" }, [
+        _c("a", { attrs: { href: "/" } }, [_vm._v("Pokemon")])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "sep" }, [_vm._v(" ")])
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pokedex.vue?vue&type=template&id=38e02443&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pokedex.vue?vue&type=template&id=38e02443& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "d-flex flex-column  justify-content-between h-100" },
+    [
+      _c("pok-header"),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "content bg-blur h-100 overflow-auto" },
+        _vm._l(_vm.poksStore, function(pok, index) {
+          return _c(
+            "div",
+            { key: index },
+            [
+              _c(
+                "router-link",
+                { attrs: { to: { name: "pokemon", params: { id: pok.id } } } },
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(pok.name) +
+                      "\n                "
+                  )
+                ]
+              )
+            ],
+            1
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("pok-footer")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pokemon.vue?vue&type=template&id=257bc4b8&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pokemon.vue?vue&type=template&id=257bc4b8& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "d-flex flex-column  justify-content-between h-100" },
+    [
+      _c("div", { staticClass: "content bg-blur h-100 overflow-auto" }, [
+        _vm._v(
+          "  \n\n        " +
+            _vm._s(_vm.pokStore.name) +
+            "\n        " +
+            _vm._s(_vm.pokStore.image) +
+            "\n        " +
+            _vm._s(_vm.pokStore.types.type1) +
+            "\n        " +
+            _vm._s(_vm.pokStore.types.type2) +
+            "\n        \n    "
+        )
+      ]),
+      _vm._v(" "),
+      _c("pok-footer")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Stats.vue?vue&type=template&id=56c7d5c4&":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Stats.vue?vue&type=template&id=56c7d5c4& ***!
+  \********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n    STATS\n")])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -38476,6 +38734,30 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Weak.vue?vue&type=template&id=77b29a63&":
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Weak.vue?vue&type=template&id=77b29a63& ***!
+  \*******************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n    WEAK\n\n")])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -54964,9 +55246,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Pokedex_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Pokedex.vue */ "./resources/js/components/Pokedex.vue");
 /* harmony import */ var _components_Team_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Team.vue */ "./resources/js/components/Team.vue");
 /* harmony import */ var _components_Trade_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Trade.vue */ "./resources/js/components/Trade.vue");
+/* harmony import */ var _components_Pokemon_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Pokemon.vue */ "./resources/js/components/Pokemon.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
 
 
 
@@ -54977,14 +55261,21 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store(_store_index__WEBPACK_IMPORTED_MODULE_2__["default"]);
 var routes = [{
+  name: 'pokedex',
   path: '/',
   component: _components_Pokedex_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
 }, {
+  name: 'team',
   path: '/team',
   component: _components_Team_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
+  name: 'trade',
   path: '/trade',
   component: _components_Trade_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+}, {
+  name: 'pokemon',
+  path: '/pokemon/:id',
+  component: _components_Pokemon_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   routes: routes
@@ -55039,6 +55330,165 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/Evol.vue":
+/*!******************************************!*\
+  !*** ./resources/js/components/Evol.vue ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Evol_vue_vue_type_template_id_75cd5b8e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Evol.vue?vue&type=template&id=75cd5b8e& */ "./resources/js/components/Evol.vue?vue&type=template&id=75cd5b8e&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _Evol_vue_vue_type_template_id_75cd5b8e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Evol_vue_vue_type_template_id_75cd5b8e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Evol.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Evol.vue?vue&type=template&id=75cd5b8e&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/Evol.vue?vue&type=template&id=75cd5b8e& ***!
+  \*************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Evol_vue_vue_type_template_id_75cd5b8e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Evol.vue?vue&type=template&id=75cd5b8e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Evol.vue?vue&type=template&id=75cd5b8e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Evol_vue_vue_type_template_id_75cd5b8e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Evol_vue_vue_type_template_id_75cd5b8e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Footer.vue":
+/*!********************************************!*\
+  !*** ./resources/js/components/Footer.vue ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Footer_vue_vue_type_template_id_61a7c374___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.vue?vue&type=template&id=61a7c374& */ "./resources/js/components/Footer.vue?vue&type=template&id=61a7c374&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _Footer_vue_vue_type_template_id_61a7c374___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Footer_vue_vue_type_template_id_61a7c374___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Footer.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Footer.vue?vue&type=template&id=61a7c374&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/Footer.vue?vue&type=template&id=61a7c374& ***!
+  \***************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_61a7c374___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Footer.vue?vue&type=template&id=61a7c374& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Footer.vue?vue&type=template&id=61a7c374&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_61a7c374___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Footer_vue_vue_type_template_id_61a7c374___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Header.vue":
+/*!********************************************!*\
+  !*** ./resources/js/components/Header.vue ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Header_vue_vue_type_template_id_1f42fb90___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Header.vue?vue&type=template&id=1f42fb90& */ "./resources/js/components/Header.vue?vue&type=template&id=1f42fb90&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _Header_vue_vue_type_template_id_1f42fb90___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Header_vue_vue_type_template_id_1f42fb90___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Header.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Header.vue?vue&type=template&id=1f42fb90&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/Header.vue?vue&type=template&id=1f42fb90& ***!
+  \***************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_template_id_1f42fb90___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Header.vue?vue&type=template&id=1f42fb90& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Header.vue?vue&type=template&id=1f42fb90&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_template_id_1f42fb90___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_template_id_1f42fb90___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
@@ -55106,6 +55556,128 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pokedex_vue_vue_type_template_id_38e02443___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pokedex_vue_vue_type_template_id_38e02443___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Pokemon.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Pokemon.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Pokemon_vue_vue_type_template_id_257bc4b8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Pokemon.vue?vue&type=template&id=257bc4b8& */ "./resources/js/components/Pokemon.vue?vue&type=template&id=257bc4b8&");
+/* harmony import */ var _Pokemon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Pokemon.vue?vue&type=script&lang=js& */ "./resources/js/components/Pokemon.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Pokemon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Pokemon_vue_vue_type_template_id_257bc4b8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Pokemon_vue_vue_type_template_id_257bc4b8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Pokemon.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Pokemon.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/Pokemon.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Pokemon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Pokemon.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pokemon.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Pokemon_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Pokemon.vue?vue&type=template&id=257bc4b8&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Pokemon.vue?vue&type=template&id=257bc4b8& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pokemon_vue_vue_type_template_id_257bc4b8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Pokemon.vue?vue&type=template&id=257bc4b8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pokemon.vue?vue&type=template&id=257bc4b8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pokemon_vue_vue_type_template_id_257bc4b8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Pokemon_vue_vue_type_template_id_257bc4b8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Stats.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/components/Stats.vue ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Stats_vue_vue_type_template_id_56c7d5c4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Stats.vue?vue&type=template&id=56c7d5c4& */ "./resources/js/components/Stats.vue?vue&type=template&id=56c7d5c4&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _Stats_vue_vue_type_template_id_56c7d5c4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Stats_vue_vue_type_template_id_56c7d5c4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Stats.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Stats.vue?vue&type=template&id=56c7d5c4&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/Stats.vue?vue&type=template&id=56c7d5c4& ***!
+  \**************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Stats_vue_vue_type_template_id_56c7d5c4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Stats.vue?vue&type=template&id=56c7d5c4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Stats.vue?vue&type=template&id=56c7d5c4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Stats_vue_vue_type_template_id_56c7d5c4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Stats_vue_vue_type_template_id_56c7d5c4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -55249,6 +55821,59 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Weak.vue":
+/*!******************************************!*\
+  !*** ./resources/js/components/Weak.vue ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Weak_vue_vue_type_template_id_77b29a63___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Weak.vue?vue&type=template&id=77b29a63& */ "./resources/js/components/Weak.vue?vue&type=template&id=77b29a63&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _Weak_vue_vue_type_template_id_77b29a63___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Weak_vue_vue_type_template_id_77b29a63___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Weak.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Weak.vue?vue&type=template&id=77b29a63&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/Weak.vue?vue&type=template&id=77b29a63& ***!
+  \*************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Weak_vue_vue_type_template_id_77b29a63___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Weak.vue?vue&type=template&id=77b29a63& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Weak.vue?vue&type=template&id=77b29a63&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Weak_vue_vue_type_template_id_77b29a63___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Weak_vue_vue_type_template_id_77b29a63___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/store/index.js":
 /*!*************************************!*\
   !*** ./resources/js/store/index.js ***!
@@ -55270,7 +55895,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var url = "http://localhost:8000/api/";
 var headers = new Headers();
-headers.append("Content-Type", "application/json"); //console.log(headers.get)
+headers.append("Content-Type", "application/json");
 
 var status = function status(response) {
   return response.status >= 200 && response.status < 300 ? Promise.resolve(response) : Promise.reject(response.statusText);
@@ -55278,111 +55903,47 @@ var status = function status(response) {
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: {
-    teams: [],
-    currentTeamIndex: 0,
-    currentChannelIndex: 0,
-    channels: [],
-    messages: [],
-    currentMessageId: '',
-    replies: [],
-    accessToken: undefined,
-    isAuth: false
+    poks: [],
+    pok: {}
   },
   mutations: {
-    setTeams: function setTeams(state, teams) {
-      state.teams = teams;
+    setPoks: function setPoks(state, poks) {
+      state.poks = poks;
     },
-    setCurrentTeamIndex: function setCurrentTeamIndex(state, team_idx) {
-      state.currentTeamIndex = team_idx;
-    },
-    setCurrentChannelIndex: function setCurrentChannelIndex(state, channel_idx) {
-      state.currentChannelIndex = channel_idx;
-    },
-    setChannels: function setChannels(state, channels) {
-      var general = channels.find(function (el) {
-        return el.displayName == "General";
-      });
-      var generalIdx = channels.findIndex(function (el) {
-        return el.displayName == "General";
-      });
-      channels.splice(generalIdx, 1);
-      channels.sort(function (a, b) {
-        return a.displayName > b.displayName ? 1 : -1;
-      });
-      channels.unshift(general);
-      state.channels = channels;
-    },
-    setMessages: function setMessages(state, messages) {
-      state.messages = messages.reverse();
-    },
-    setReplies: function setReplies(state, payload) {
-      console.log(payload);
-      var messageIndex = state.messages.findIndex(function (item) {
-        return item.id == payload.message_id;
-      });
-      console.log(messageIndex);
-      state.messages[messageIndex].replies = payload.replies.reverse();
-    },
-    setCurrentMessageId: function setCurrentMessageId(state, message_id) {
-      state.currentMessageId = message_id;
-    },
-    setAccessToken: function setAccessToken(state, accessToken) {
-      state.accessToken = accessToken;
-      this.dispatch("getTeams");
-    },
-    setIsAuth: function setIsAuth(state, isAuth) {
-      state.isAuth = isAuth;
-    },
-    doReplies: function doReplies(state, payload) {
-      var message = payload.message;
-      message.replies = payload.replies;
-      state.messages.push(payload.message);
+    setPok: function setPok(state, pok) {
+      state.pok = pok;
     }
   },
   actions: {
-    getPokedex: function getPokedex(state) {
-      var _this = this;
-
+    getPoks: function getPoks(state) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var poksRaw, validTeams, teams;
+        var poksRaw, validPoks, poks;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return fetch(url + "/me/memberOf", {
+                return fetch(url + "pokemons", {
                   headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer " + _this.getters.getAccessToken
+                    "Content-Type": "application/json"
                   }
                 });
 
               case 2:
                 poksRaw = _context.sent;
                 _context.next = 5;
-                return status(teamsRaw)["catch"](function (err) {
-                  console.log(err);
-                  if (err == "Unauthorized") state.commit("setIsAuth", false);
-                  return false;
-                });
+                return status(poksRaw);
 
               case 5:
-                validTeams = _context.sent;
+                validPoks = _context.sent;
+                _context.next = 8;
+                return validPoks.json();
 
-                if (!validTeams) {
-                  _context.next = 12;
-                  break;
-                }
-
-                state.commit("setIsAuth", true);
-                _context.next = 10;
-                return validTeams.json();
+              case 8:
+                poks = _context.sent;
+                state.commit("setPoks", poks.data);
 
               case 10:
-                teams = _context.sent;
-                state.commit("setTeams", teams.value);
-
-              case 12:
               case "end":
                 return _context.stop();
             }
@@ -55390,148 +55951,50 @@ var status = function status(response) {
         }, _callee);
       }))();
     },
-    setReplies: function setReplies(state, message) {
-      var _this2 = this;
-
+    getPok: function getPok(state, id) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var repliesRaw, validReplies, replies;
+        var pokRaw, validPok, pok;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return fetch(url + "/teams/" + _this2.getters.getCurrentTeam.id + "/channels/" + _this2.getters.getCurrentChannel.id + "/messages/" + message.id + "/replies", {
+                return fetch(url + "pokemons/" + id, {
                   headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer " + _this2.getters.getAccessToken
+                    "Content-Type": "application/json"
                   }
                 });
 
               case 2:
-                repliesRaw = _context2.sent;
+                pokRaw = _context2.sent;
                 _context2.next = 5;
-                return status(repliesRaw)["catch"](function (err) {
-                  console.log(err);
-                  if (err == "Unauthorized") state.commit("setIsAuth", false);
-                  return false;
-                });
+                return status(pokRaw);
 
               case 5:
-                validReplies = _context2.sent;
+                validPok = _context2.sent;
+                _context2.next = 8;
+                return validPok.json();
 
-                if (!validReplies) {
-                  _context2.next = 12;
-                  break;
-                }
-
-                state.commit("setIsAuth", true);
-                _context2.next = 10;
-                return validReplies.json();
+              case 8:
+                pok = _context2.sent;
+                state.commit("setPok", pok.data[0].Pokemon);
 
               case 10:
-                replies = _context2.sent;
-                state.commit("doReplies", {
-                  message: message,
-                  replies: replies.value.reverse()
-                });
-
-              case 12:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2);
       }))();
-    },
-    getReplies: function getReplies(state, message) {
-      var _this3 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var repliesRaw, validReplies, replies;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.next = 2;
-                return fetch(url + "/teams/" + _this3.getters.getCurrentTeam.id + "/channels/" + _this3.getters.getCurrentChannel.id + "/messages/" + message.id + "/replies", {
-                  headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer " + _this3.getters.getAccessToken
-                  }
-                });
-
-              case 2:
-                repliesRaw = _context3.sent;
-                _context3.next = 5;
-                return status(repliesRaw)["catch"](function (err) {
-                  console.log(err);
-                  if (err == "Unauthorized") state.commit("setIsAuth", false);
-                  return false;
-                });
-
-              case 5:
-                validReplies = _context3.sent;
-
-                if (!validReplies) {
-                  _context3.next = 12;
-                  break;
-                }
-
-                state.commit("setIsAuth", true);
-                _context3.next = 10;
-                return validReplies.json();
-
-              case 10:
-                replies = _context3.sent;
-                state.commit("setReplies", {
-                  message_id: message_id,
-                  replies: replies.value
-                });
-
-              case 12:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
     }
   },
   modules: {},
   getters: {
-    getTeams: function getTeams(state) {
-      return state.teams;
+    getPoks: function getPoks(state) {
+      return state.poks;
     },
-    getCurrentTeamIndex: function getCurrentTeamIndex(state) {
-      return state.currentTeamIndex;
-    },
-    getCurrentChannelIndex: function getCurrentChannelIndex(state) {
-      return state.currentChannelIndex;
-    },
-    getCurrentTeam: function getCurrentTeam(state) {
-      return state.teams.length ? state.teams[state.currentTeamIndex] : '';
-    },
-    getCurrentChannel: function getCurrentChannel(state) {
-      return state.channels.length ? state.channels[state.currentChannelIndex] : '';
-    },
-    getChannels: function getChannels(state) {
-      return state.channels;
-    },
-    getMessages: function getMessages(state) {
-      return state.messages;
-    },
-    getReplies: function getReplies(state) {
-      var messageIndex = state.messages.findIndex(function (item) {
-        return item.id == state.currentMessageId;
-      });
-      console.log(messageIndex);
-      return messageIndex != -1 ? state.messages[messageIndex].replies : [];
-    },
-    getAccessToken: function getAccessToken(state) {
-      return state.accessToken;
-    },
-    isAuth: function isAuth(state) {
-      return state.isAuth;
+    getPok: function getPok(state) {
+      return state.pok;
     }
   },
   plugins: [Object(vuex_persistedstate__WEBPACK_IMPORTED_MODULE_1__["default"])()]

@@ -8,6 +8,7 @@ import storeData from "./store/index"
 import Pokedex from './components/Pokedex.vue';
 import Team from './components/Team.vue';
 import Trade from './components/Trade.vue';
+import Pokemon from './components/Pokemon.vue';
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
@@ -19,16 +20,24 @@ const store = new Vuex.Store(
 
 const routes = [
     {
+        name:'pokedex',
         path : '/',
         component: Pokedex
     },
     {
+        name: 'team',
         path: '/team',
         component: Team
     },
     {
+        name: 'trade',
         path: '/trade',
         component: Trade
+    },
+    {
+        name: 'pokemon',
+        path: '/pokemon/:id',
+        component: Pokemon
     }
 ]; 
 

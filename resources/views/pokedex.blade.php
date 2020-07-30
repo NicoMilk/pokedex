@@ -21,10 +21,8 @@
             <h3 class="text-center py-3 m-0 bg-blur">
                 <a href="{{ url('/') }}">Pokemon</a>
             </h3>
-            <div class="sep">&nbsp;</div>
-            
+            <div class="sep">&nbsp;</div>           
             <div class="content bg-blur h-100 overflow-auto" >
-
                 <router-view></router-view>
                 
             </div>
@@ -40,5 +38,11 @@
         </div>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+    window.Laravel = {!! json_encode([
+        'csrfToken' => csrf_token(),
+        'apiToken' => Auth::user()->api_token ?? null
+    ]) !!};
+    </script>
     </body>
 </html>

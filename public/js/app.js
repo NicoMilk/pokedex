@@ -55268,7 +55268,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
-var url = "https://graph.microsoft.com/beta";
+var url = "http://localhost:8000/api/";
 var headers = new Headers();
 headers.append("Content-Type", "application/json"); //console.log(headers.get)
 
@@ -55340,11 +55340,11 @@ var status = function status(response) {
     }
   },
   actions: {
-    getTeams: function getTeams(state) {
+    getPokedex: function getPokedex(state) {
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var teamsRaw, validTeams, teams;
+        var poksRaw, validTeams, teams;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -55358,7 +55358,7 @@ var status = function status(response) {
                 });
 
               case 2:
-                teamsRaw = _context.sent;
+                poksRaw = _context.sent;
                 _context.next = 5;
                 return status(teamsRaw)["catch"](function (err) {
                   console.log(err);
@@ -55390,141 +55390,26 @@ var status = function status(response) {
         }, _callee);
       }))();
     },
-
-    /* async getTeam(state, team_idx) {
-       headers.append('Authorization', 'Bearer ' + state.accessToken)
-      const teamRaw = await fetch(url+"/teams/" + team_idx, { headers: { 
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + this.getters.getAccessToken
-      }  });
-      const team = await teamRaw.json();
-      state.commit("setCurrentTeamIndex", team_idx );
-    }, */
-    getChannels: function getChannels(state, team_idx) {
+    setReplies: function setReplies(state, message) {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var channelsRaw, validChannels, channels;
+        var repliesRaw, validReplies, replies;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                state.commit("setCurrentTeamIndex", team_idx);
-                _context2.next = 3;
-                return fetch(url + "/teams/" + _this2.getters.getCurrentTeam.id + "/channels", {
+                _context2.next = 2;
+                return fetch(url + "/teams/" + _this2.getters.getCurrentTeam.id + "/channels/" + _this2.getters.getCurrentChannel.id + "/messages/" + message.id + "/replies", {
                   headers: {
                     "Content-Type": "application/json",
                     "Authorization": "Bearer " + _this2.getters.getAccessToken
                   }
                 });
 
-              case 3:
-                channelsRaw = _context2.sent;
-                _context2.next = 6;
-                return status(channelsRaw)["catch"](function (err) {
-                  console.log(err);
-                  if (err == "Unauthorized") state.commit("setIsAuth", false);
-                  return false;
-                });
-
-              case 6:
-                validChannels = _context2.sent;
-
-                if (!validChannels) {
-                  _context2.next = 13;
-                  break;
-                }
-
-                state.commit("setIsAuth", true);
-                _context2.next = 11;
-                return validChannels.json();
-
-              case 11:
-                channels = _context2.sent;
-                state.commit("setChannels", channels.value);
-
-              case 13:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
-    getMessages: function getMessages(state, channel_idx) {
-      var _this3 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var messagesRaw, validMessages, messages;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                state.commit("setCurrentChannelIndex", channel_idx);
-                _context3.next = 3;
-                return fetch(url + "/teams/" + _this3.getters.getCurrentTeam.id + "/channels/" + _this3.getters.getCurrentChannel.id + "/messages", {
-                  headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer " + _this3.getters.getAccessToken
-                  }
-                });
-
-              case 3:
-                messagesRaw = _context3.sent;
-                _context3.next = 6;
-                return status(messagesRaw)["catch"](function (err) {
-                  console.log(err);
-                  if (err == "Unauthorized") state.commit("setIsAuth", false);
-                  return false;
-                });
-
-              case 6:
-                validMessages = _context3.sent;
-
-                if (!validMessages) {
-                  _context3.next = 14;
-                  break;
-                }
-
-                state.commit("setIsAuth", true);
-                _context3.next = 11;
-                return validMessages.json();
-
-              case 11:
-                messages = _context3.sent;
-                state.commit("setMessages", []);
-                messages.value.reverse().forEach(function (message) {
-                  state.dispatch("setReplies", message);
-                }); //state.commit("setMessages", messages.value );
-
-              case 14:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
-    },
-    setReplies: function setReplies(state, message) {
-      var _this4 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var repliesRaw, validReplies, replies;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                _context4.next = 2;
-                return fetch(url + "/teams/" + _this4.getters.getCurrentTeam.id + "/channels/" + _this4.getters.getCurrentChannel.id + "/messages/" + message.id + "/replies", {
-                  headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer " + _this4.getters.getAccessToken
-                  }
-                });
-
               case 2:
-                repliesRaw = _context4.sent;
-                _context4.next = 5;
+                repliesRaw = _context2.sent;
+                _context2.next = 5;
                 return status(repliesRaw)["catch"](function (err) {
                   console.log(err);
                   if (err == "Unauthorized") state.commit("setIsAuth", false);
@@ -55532,19 +55417,19 @@ var status = function status(response) {
                 });
 
               case 5:
-                validReplies = _context4.sent;
+                validReplies = _context2.sent;
 
                 if (!validReplies) {
-                  _context4.next = 12;
+                  _context2.next = 12;
                   break;
                 }
 
                 state.commit("setIsAuth", true);
-                _context4.next = 10;
+                _context2.next = 10;
                 return validReplies.json();
 
               case 10:
-                replies = _context4.sent;
+                replies = _context2.sent;
                 state.commit("doReplies", {
                   message: message,
                   replies: replies.value.reverse()
@@ -55552,32 +55437,32 @@ var status = function status(response) {
 
               case 12:
               case "end":
-                return _context4.stop();
+                return _context2.stop();
             }
           }
-        }, _callee4);
+        }, _callee2);
       }))();
     },
     getReplies: function getReplies(state, message) {
-      var _this5 = this;
+      var _this3 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
         var repliesRaw, validReplies, replies;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _context5.next = 2;
-                return fetch(url + "/teams/" + _this5.getters.getCurrentTeam.id + "/channels/" + _this5.getters.getCurrentChannel.id + "/messages/" + message.id + "/replies", {
+                _context3.next = 2;
+                return fetch(url + "/teams/" + _this3.getters.getCurrentTeam.id + "/channels/" + _this3.getters.getCurrentChannel.id + "/messages/" + message.id + "/replies", {
                   headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer " + _this5.getters.getAccessToken
+                    "Authorization": "Bearer " + _this3.getters.getAccessToken
                   }
                 });
 
               case 2:
-                repliesRaw = _context5.sent;
-                _context5.next = 5;
+                repliesRaw = _context3.sent;
+                _context3.next = 5;
                 return status(repliesRaw)["catch"](function (err) {
                   console.log(err);
                   if (err == "Unauthorized") state.commit("setIsAuth", false);
@@ -55585,19 +55470,19 @@ var status = function status(response) {
                 });
 
               case 5:
-                validReplies = _context5.sent;
+                validReplies = _context3.sent;
 
                 if (!validReplies) {
-                  _context5.next = 12;
+                  _context3.next = 12;
                   break;
                 }
 
                 state.commit("setIsAuth", true);
-                _context5.next = 10;
+                _context3.next = 10;
                 return validReplies.json();
 
               case 10:
-                replies = _context5.sent;
+                replies = _context3.sent;
                 state.commit("setReplies", {
                   message_id: message_id,
                   replies: replies.value
@@ -55605,10 +55490,10 @@ var status = function status(response) {
 
               case 12:
               case "end":
-                return _context5.stop();
+                return _context3.stop();
             }
           }
-        }, _callee5);
+        }, _callee3);
       }))();
     }
   },

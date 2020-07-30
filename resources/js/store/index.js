@@ -1,7 +1,7 @@
 
 import createPersistedState from "vuex-persistedstate";
 
-const url = "https://graph.microsoft.com/beta";
+const url = "http://localhost:8000/api/";
 
 var headers = new Headers();
 headers.append("Content-Type","application/json");
@@ -71,9 +71,9 @@ export default {
 
   actions: {    
 
-    async getTeams(state) {
+    async getPokedex(state) {
 
-      const teamsRaw = await fetch(url+"/me/memberOf", { headers: { 
+      const poksRaw = await fetch(url+"/me/memberOf", { headers: { 
         "Content-Type": "application/json",
         "Authorization": "Bearer " + this.getters.getAccessToken
       }  
@@ -90,71 +90,6 @@ export default {
         state.commit("setIsAuth", true);
         const teams = await validTeams.json();
         state.commit("setTeams", teams.value );
-      }
-    },
-
-    /* async getTeam(state, team_idx) {
-
-      headers.append('Authorization', 'Bearer ' + state.accessToken)
-      const teamRaw = await fetch(url+"/teams/" + team_idx, { headers: { 
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + this.getters.getAccessToken
-      }  });
-      const team = await teamRaw.json();
-      state.commit("setCurrentTeamIndex", team_idx );
-    }, */
-
-    async getChannels(state, team_idx) {
-
-      state.commit("setCurrentTeamIndex", team_idx );
-      const channelsRaw = await fetch(url+"/teams/" + this.getters.getCurrentTeam.id + "/channels", { headers: { 
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + this.getters.getAccessToken
-      }  });
-
-      const validChannels = await status(channelsRaw).catch(
-        (err) => {
-          console.log(err)
-          if (err == "Unauthorized") state.commit("setIsAuth", false);
-          return false;
-        })
-
-      if (validChannels) {
-        state.commit("setIsAuth", true);
-        const channels = await validChannels.json();
-        state.commit("setChannels", channels.value );
-      }
-    },
-
-    async getMessages(state, channel_idx) {
-
-      state.commit("setCurrentChannelIndex", channel_idx );
-
-      const messagesRaw = await fetch(url+"/teams/" + this.getters.getCurrentTeam.id + "/channels/"+ this.getters.getCurrentChannel.id + "/messages", { headers: { 
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + this.getters.getAccessToken
-      }  });
-
-      const validMessages = await status(messagesRaw).catch(
-        (err) => {
-          console.log(err)
-          if (err == "Unauthorized") state.commit("setIsAuth", false);
-          return false;
-        })
-
-      if (validMessages) {
-        state.commit("setIsAuth", true);
-        const messages = await validMessages.json();
-      
-        state.commit("setMessages", [] );
-        
-        messages.value.reverse().forEach( (message) => {
-          state.dispatch("setReplies", message);
-        }); 
-
-        //state.commit("setMessages", messages.value );
-
-              
       }
     },
 
@@ -242,6 +177,6 @@ export default {
       return state.isAuth;
     } 
   },
-  
+
   plugins: [createPersistedState()]
 }

@@ -3,12 +3,21 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import VueRouter from 'vue-router';
-Vue.use(VueRouter);
-
+import Vuex from 'vuex'
+import storeData from "./store/index"
 import Pokedex from './components/Pokedex.vue';
 import Team from './components/Team.vue';
+import Trade from './components/Trade.vue';
 
- const routes = [
+Vue.use(VueRouter);
+Vue.use(Vuex);
+
+
+const store = new Vuex.Store(
+    storeData
+) 
+
+const routes = [
     {
         path : '/',
         component: Pokedex
@@ -16,12 +25,20 @@ import Team from './components/Team.vue';
     {
         path: '/team',
         component: Team
+    },
+    {
+        path: '/trade',
+        component: Trade
     }
 ]; 
-Vue.component('Pokedex', require ('./components/Pokedex.vue').default)
-const Router = new VueRouter(routes);
+
+const router = new VueRouter({routes});
 
 const app = new Vue({
-    Router,
+
     el: '#app',
+    router,
+    store
 });
+
+

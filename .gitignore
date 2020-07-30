@@ -14,3 +14,4 @@ package-lock.json
 composer.lock
 /00_docs
 database/seeds/UserSeeder.php
+database/seeds/TeamSeeder.php

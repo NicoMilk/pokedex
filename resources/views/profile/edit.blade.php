@@ -4,13 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header d-flex flex-row flex-wrap py-2">
-                    <div class="my-2">{{ __('Modify Profile') }}</div>
-                             
-               
-                </div>
-                <div class="card-body">
+            <div class="">
+                    <h4 class="my-2">{{ __('Modify Profile') }}</h4>               
+                <div class="py-4">
                     <form method="POST" action="{{  route('profile.update', $user->id) }}">
                         @csrf
                         @method('PUT')

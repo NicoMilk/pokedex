@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    //return view('pokedex', [ 'user' =>  Auth::user()->id ]);
     return view('pokedex');
 });
 

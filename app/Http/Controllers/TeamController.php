@@ -25,9 +25,23 @@ class TeamController extends Controller
 
     }
 
-    public function update(request $request)
+    public function trade(Request $request, $rec_id)
     {
+        $id_pok = $request->pokemon_id;
+        $count = Team::where('user_id', $rec_id)->count();
 
+        if($count < 6)
+        {
+            Team::insert(['user_id' => $rec_id, 'id_pok' => $id_pok]);    // add pokemon tp receiver's team
+
+            Team::where('user_id', Auth::id())  // delete pokemon from current user's team
+                ->where('id_pok', $id_pok)
+                ->first()
+                ->delete();
+
+            return response()->json([], 201);
+        }
+
+        return response()->json(['error' => 'Could not create ressource'], 500);
     }
-
 }

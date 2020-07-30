@@ -15,7 +15,7 @@ class Pokemon extends JsonResource
     public function toArray($request)
     {
         return (object)
-        [ 'Pokemon'=>
+        ['Pokemon'=>
             [
                 'id'=>$this->id_pok,
                 'name'=>$this->nom_pok,
@@ -32,38 +32,31 @@ class Pokemon extends JsonResource
             ],
         'weaknesses'=> 
             [
-                ' bug '=>$this->bug,
-                ' dark '=>$this->dark,
-                ' dragon '=>$this->dragon ,
-                ' electric '=>$this->electric,
-                ' fairy '=> $this->fairy ,
-                ' fight '=> $this->fight ,
-                ' fire '=>$this->fire ,
-                ' flying '=> $this->flying ,
-                ' ghost '=>$this->ghost ,
-                ' grass '=> $this->grass ,
-                ' ground '=> $this->ground ,
-                ' ice '=> $this->ice ,
-                ' normal '=> $this->normal ,
-                ' poison '=> $this->poison ,
-                ' psychic '=> $this->psychic ,
-                ' rock '=> $this->rock,
-                ' steel '=> $this->steel ,
-                ' water '=> $this->water,
+                'bug'=>$this->bug,
+                'dark'=>$this->dark,
+                'dragon'=>$this->dragon ,
+                'electric'=>$this->electric,
+                'fairy'=>$this->fairy ,
+                'fight'=>$this->fight ,
+                'fire'=>$this->fire ,
+                'flying'=>$this->flying ,
+                'ghost'=>$this->ghost ,
+                'grass'=>$this->grass ,
+                'ground'=>$this->ground ,
+                'ice'=>$this->ice ,
+                'normal'=>$this->normal ,
+                'poison'=>$this->poison ,
+                'psychic'=>$this->psychic ,
+                'rock'=>$this->rock,
+                'steel'=>$this->steel ,
+                'water'=>$this->water,
             ],
-        'evolutions '=>
-            [
-                ' evolution '=>
+        'evolutions'=>
                 [
-                ' base_id ' =>$this->id_pok_base,
-                ' evolution_id ' =>$this->id_pok_evol,
-                ' required_lvl ' =>$this->lvl_evol_pok
-                ],
-                [
-                ' base_id ' =>$this->id_pok_base,
-                ' evolution_id ' =>$this->id_pok_evol,
-                ' required_lvl ' =>$this->lvl_evol_pok
-                ],
-            ]
+                'base_id'=>$this->id_pok_base,
+                'evolution_id'=>$this->id_pok_evol,
+                'required_lvl'=>$this->lvl_evol_pok
+                ]
+            
         ];}
 }

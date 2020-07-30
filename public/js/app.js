@@ -52850,6 +52850,7 @@ var routes = [{
   path: '/team',
   component: _components_Team_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }];
+Vue.component('Pokedex', __webpack_require__(/*! ./components/Pokedex.vue */ "./resources/js/components/Pokedex.vue")["default"]);
 var Router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"](routes);
 var app = new Vue({
   Router: Router,
@@ -53059,8 +53060,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/fannabi/Rendu/MVVM_Pokedex/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/fannabi/Rendu/MVVM_Pokedex/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/ln/MVVM_Pokedex/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/ln/MVVM_Pokedex/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

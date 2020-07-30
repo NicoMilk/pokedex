@@ -40,6 +40,13 @@ class User extends Authenticatable
 
     public function pokemon()
     {
-        return $this->belongsToMany(Pokedex::class);
+        return $this->hasMany(Pokedex::class);
+    } 
+    
+    public function team()
+    {
+        return $this->hasOne(Teams::class);
     }
+
+
 }

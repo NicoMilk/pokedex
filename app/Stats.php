@@ -8,8 +8,9 @@ class Stats extends Model
 {
 
     protected $table = 'Stats';
-    /*public function pokedex()
+    
+    public function pokedex()
     {
-        return $this->hasOne(Pokedex::class,'id_pok');
-    }*/
+        return $this->hasOne(Pokedex::class);
+    }
 }

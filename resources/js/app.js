@@ -18,7 +18,7 @@ import Team from './components/Team.vue';
         component: Team
     }
 ]; 
-
+Vue.component('Pokedex', require ('./components/Pokedex.vue').default)
 const Router = new VueRouter(routes);
 
 const app = new Vue({

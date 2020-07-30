@@ -58,7 +58,7 @@ class ProfileController extends Controller
     public function edit(User $user)
     {        
         
-        $this->authorize ('manage', $user);
+        $this->authorize ('manage', $user);  //to get only my user id
         return view ('profile.edit', compact ('user'));
     }
 
@@ -75,19 +75,17 @@ class ProfileController extends Controller
         $this->authorize ('manage', $user);
         
         $request->validate ([
-            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'name' => ['required', 'string', 'max:255'],
             'avatar' => ['required', 'string', 'max:20'],
             
         ]);
         
         $user->update ([
-            'email' => $request->email,
             'name' => $request->name,
             'avatar' => $request->avatar
         ]);
         
-        return back ()->with ('status', __ ('Profile has been updated'));
+        return  redirect('/home')->with ('status', __ ('Profile has been updated'));
     }
 
     /**

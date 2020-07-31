@@ -9,6 +9,10 @@ import Pokedex from './components/Pokedex.vue';
 import Team from './components/Team.vue';
 import Trade from './components/Trade.vue';
 import Pokemon from './components/Pokemon.vue';
+import Stats from './components/Stats.vue';
+import Weak from './components/Weak.vue';
+import Evol from './components/Evol.vue';
+
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
@@ -35,9 +39,30 @@ const routes = [
         component: Trade
     },
     {
-        name: 'pokemon',
         path: '/pokemon/:id',
-        component: Pokemon
+        component: Pokemon,
+        children: [
+            {
+                name: 'pokemon',
+                path: '',
+                component: Stats
+            },
+            {
+                name:"stats",
+                path: 'stats',
+                component: Stats
+            },
+            {
+                name:"weak",
+                path: 'weak',
+                component: Weak
+            },
+            {
+                name:"evol",
+                path: 'evol',
+                component: Evol
+            }
+          ]
     }
 ]; 
 

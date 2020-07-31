@@ -28,9 +28,7 @@ class Pokemon extends JsonResource
                             'special_attack'=>$this->sp_attack,
                             'special_defense'=>$this->sp_defense,
                             'speed'=>$this->speed],
-            ],
-        'weaknesses'=> 
-            [
+            'weaknesses'=> [
                 'bug'=>$this->bug,
                 'dark'=>$this->dark,
                 'dragon'=>$this->dragon ,
@@ -49,13 +47,15 @@ class Pokemon extends JsonResource
                 'rock'=>$this->rock,
                 'steel'=>$this->steel ,
                 'water'=>$this->water,
-            ],
-        'evolutions'=>
+            ],            
+            'evolutions'=>
                 [
                 'base_id'=>$this->id_pok_base,
                 'evolution_id'=>$this->id_pok_evol,
                 'required_lvl'=>$this->lvl_evol_pok
                 ]
+            ],
+        
             
         ];}
 }

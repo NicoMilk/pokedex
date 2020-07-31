@@ -6,6 +6,13 @@
             {{pokStore.image}}
             {{pokStore.types.type1}}
             {{pokStore.types.type2}}
+            {{pokStore.description}}
+
+            <router-link :to="{ name: 'stats' }">Stats</router-link>
+            <router-link :to="{ name: 'weak' }">Weaknesses</router-link>
+            <router-link :to="{ name: 'evol' }">Evolutions</router-link>
+            
+            <router-view/>
             
         </div>
         <pok-footer/>
@@ -15,16 +22,10 @@
 <script>
 
 import Footer from './Footer.vue';
-import Stats from './Stats.vue';
-import Weak from './Weak.vue';
-import Evol from './Evol.vue';
 
     export default {
         
         components: {
-            "stats" : Stats,
-            "weak" : Weak,
-            "evol" : Evol,
             "pok-footer" : Footer
         },
         name:"pokemon",

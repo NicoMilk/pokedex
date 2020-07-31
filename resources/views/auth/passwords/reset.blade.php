@@ -49,7 +49,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary my-4">
+                        <button type="submit" class="btn btn-primary">
                             {{ __('Reset Password') }}
                          </button>
                     </form>

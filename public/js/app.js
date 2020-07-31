@@ -1911,6 +1911,39 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Evol.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Evol.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    pokStore: function pokStore() {
+      return this.$store.getters.getPok;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pokedex.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pokedex.vue?vue&type=script&lang=js& ***!
@@ -1970,9 +2003,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Footer_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.vue */ "./resources/js/components/Footer.vue");
-/* harmony import */ var _Stats_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Stats.vue */ "./resources/js/components/Stats.vue");
-/* harmony import */ var _Weak_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Weak.vue */ "./resources/js/components/Weak.vue");
-/* harmony import */ var _Evol_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Evol.vue */ "./resources/js/components/Evol.vue");
 //
 //
 //
@@ -1987,21 +2017,53 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
-
-
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    "stats": _Stats_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    "weak": _Weak_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    "evol": _Evol_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     "pok-footer": _Footer_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   name: "pokemon",
   mounted: function mounted() {
     this.$store.dispatch("getPok", this.$route.params.id);
   },
+  computed: {
+    pokStore: function pokStore() {
+      return this.$store.getters.getPok;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Stats.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Stats.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     pokStore: function pokStore() {
       return this.$store.getters.getPok;
@@ -2072,6 +2134,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Weak.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Weak.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    pokStore: function pokStore() {
+      return this.$store.getters.getPok;
+    }
   }
 });
 
@@ -38428,7 +38535,23 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    EVOL\n")])
+  return _c("div", [
+    _vm._v(
+      "       \n    " +
+        _vm._s(_vm.pokStore.stats.hp) +
+        "\n    " +
+        _vm._s(_vm.pokStore.stats.attack) +
+        "\n    " +
+        _vm._s(_vm.pokStore.stats.defense) +
+        "\n    " +
+        _vm._s(_vm.pokStore.stats.special_attack) +
+        "\n    " +
+        _vm._s(_vm.pokStore.stats.special_defense) +
+        "\n    " +
+        _vm._s(_vm.pokStore.stats.speed) +
+        "\n"
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38600,19 +38723,39 @@ var render = function() {
     "div",
     { staticClass: "d-flex flex-column  justify-content-between h-100" },
     [
-      _c("div", { staticClass: "content bg-blur h-100 overflow-auto" }, [
-        _vm._v(
-          "  \n\n        " +
-            _vm._s(_vm.pokStore.name) +
-            "\n        " +
-            _vm._s(_vm.pokStore.image) +
-            "\n        " +
-            _vm._s(_vm.pokStore.types.type1) +
-            "\n        " +
-            _vm._s(_vm.pokStore.types.type2) +
-            "\n        \n    "
-        )
-      ]),
+      _c(
+        "div",
+        { staticClass: "content bg-blur h-100 overflow-auto" },
+        [
+          _vm._v(
+            "  \n\n        " +
+              _vm._s(_vm.pokStore.name) +
+              "\n        " +
+              _vm._s(_vm.pokStore.image) +
+              "\n        " +
+              _vm._s(_vm.pokStore.types.type1) +
+              "\n        " +
+              _vm._s(_vm.pokStore.types.type2) +
+              "\n        " +
+              _vm._s(_vm.pokStore.description) +
+              "\n\n        "
+          ),
+          _c("router-link", { attrs: { to: { name: "stats" } } }, [
+            _vm._v("Stats")
+          ]),
+          _vm._v(" "),
+          _c("router-link", { attrs: { to: { name: "weak" } } }, [
+            _vm._v("Weaknesses")
+          ]),
+          _vm._v(" "),
+          _c("router-link", { attrs: { to: { name: "evol" } } }, [
+            _vm._v("Evolutions")
+          ]),
+          _vm._v(" "),
+          _c("router-view")
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("pok-footer")
     ],
@@ -38641,7 +38784,23 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    STATS\n")])
+  return _c("div", [
+    _vm._v(
+      "\n    " +
+        _vm._s(_vm.pokStore.stats.hp) +
+        "\n    " +
+        _vm._s(_vm.pokStore.stats.attack) +
+        "\n    " +
+        _vm._s(_vm.pokStore.stats.defense) +
+        "\n    " +
+        _vm._s(_vm.pokStore.stats.special_attack) +
+        "\n    " +
+        _vm._s(_vm.pokStore.stats.special_defense) +
+        "\n    " +
+        _vm._s(_vm.pokStore.stats.speed) +
+        "\n"
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38755,7 +38914,47 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    WEAK\n\n")])
+  return _c("div", [
+    _vm._v(
+      "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.bug) +
+        "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.dark) +
+        "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.dragon) +
+        "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.electric) +
+        "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.fairy) +
+        "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.fight) +
+        "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.fire) +
+        "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.flying) +
+        "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.ghost) +
+        "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.grass) +
+        "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.ground) +
+        "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.ice) +
+        "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.normal) +
+        "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.poison) +
+        "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.psychic) +
+        "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.rock) +
+        "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.steel) +
+        "\n    " +
+        _vm._s(_vm.pokStore.weaknesses.water) +
+        "\n\n"
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -55247,9 +55446,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Team_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Team.vue */ "./resources/js/components/Team.vue");
 /* harmony import */ var _components_Trade_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Trade.vue */ "./resources/js/components/Trade.vue");
 /* harmony import */ var _components_Pokemon_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Pokemon.vue */ "./resources/js/components/Pokemon.vue");
+/* harmony import */ var _components_Stats_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Stats.vue */ "./resources/js/components/Stats.vue");
+/* harmony import */ var _components_Weak_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Weak.vue */ "./resources/js/components/Weak.vue");
+/* harmony import */ var _components_Evol_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Evol.vue */ "./resources/js/components/Evol.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
+
+
 
 
 
@@ -55273,9 +55478,25 @@ var routes = [{
   path: '/trade',
   component: _components_Trade_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
-  name: 'pokemon',
   path: '/pokemon/:id',
-  component: _components_Pokemon_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+  component: _components_Pokemon_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+  children: [{
+    name: 'pokemon',
+    path: '',
+    component: _components_Stats_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }, {
+    name: "stats",
+    path: 'stats',
+    component: _components_Stats_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }, {
+    name: "weak",
+    path: 'weak',
+    component: _components_Weak_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }, {
+    name: "evol",
+    path: 'evol',
+    component: _components_Evol_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   routes: routes
@@ -55343,15 +55564,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Evol_vue_vue_type_template_id_75cd5b8e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Evol.vue?vue&type=template&id=75cd5b8e& */ "./resources/js/components/Evol.vue?vue&type=template&id=75cd5b8e&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Evol_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Evol.vue?vue&type=script&lang=js& */ "./resources/js/components/Evol.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Evol_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Evol_vue_vue_type_template_id_75cd5b8e___WEBPACK_IMPORTED_MODULE_0__["render"],
   _Evol_vue_vue_type_template_id_75cd5b8e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -55365,6 +55588,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/Evol.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Evol.vue?vue&type=script&lang=js&":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/Evol.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Evol_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Evol.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Evol.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Evol_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -55640,15 +55877,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Stats_vue_vue_type_template_id_56c7d5c4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Stats.vue?vue&type=template&id=56c7d5c4& */ "./resources/js/components/Stats.vue?vue&type=template&id=56c7d5c4&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Stats_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Stats.vue?vue&type=script&lang=js& */ "./resources/js/components/Stats.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Stats_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Stats_vue_vue_type_template_id_56c7d5c4___WEBPACK_IMPORTED_MODULE_0__["render"],
   _Stats_vue_vue_type_template_id_56c7d5c4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -55662,6 +55901,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/Stats.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Stats.vue?vue&type=script&lang=js&":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/Stats.vue?vue&type=script&lang=js& ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Stats_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Stats.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Stats.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Stats_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -55831,15 +56084,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Weak_vue_vue_type_template_id_77b29a63___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Weak.vue?vue&type=template&id=77b29a63& */ "./resources/js/components/Weak.vue?vue&type=template&id=77b29a63&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Weak_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Weak.vue?vue&type=script&lang=js& */ "./resources/js/components/Weak.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Weak_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Weak_vue_vue_type_template_id_77b29a63___WEBPACK_IMPORTED_MODULE_0__["render"],
   _Weak_vue_vue_type_template_id_77b29a63___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -55853,6 +56108,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/Weak.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Weak.vue?vue&type=script&lang=js&":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/Weak.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Weak_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Weak.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Weak.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Weak_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -56020,8 +56289,8 @@ var status = function status(response) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/nico/Desktop/Projects/MVVM_Pokedex/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/nico/Desktop/Projects/MVVM_Pokedex/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/fannabi/Rendu/MVVM_Pokedex/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/fannabi/Rendu/MVVM_Pokedex/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

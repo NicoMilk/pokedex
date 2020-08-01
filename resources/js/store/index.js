@@ -115,7 +115,7 @@ export default {
 
       const usersRaw = await fetch(url+"users", { headers: { 
           Accept: "application/json",
-          Authorization: "Bearer "+ state.getters.getApiToken
+          Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5"
         }  
       });
      
@@ -135,9 +135,9 @@ export default {
     },
       async getTeams(state, user ){
 
-        const teamRaw = await fetch(url+"users/"+user.id+"/team" ,{ headers: { 
+        const teamRaw = await fetch(url+"users/"+user.user_id+"/team" ,{ headers: { 
           Accept: "application/json",
-          Authorization: "Bearer "+ state.getters.getApiToken,
+          Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5"
         }});
 
         const validTeam = await status(teamRaw);
@@ -152,7 +152,7 @@ export default {
       {
         method: 'GET',  
         headers: {
-          Authorization: "Bearer "+ state.getters.getApiToken, 
+          Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5",
           Accept: "application/json"}
       });
 
@@ -168,7 +168,7 @@ export default {
       {
         method: 'GET',  
         headers: {
-          Authorization: "Bearer "+ state.getters.getApiToken, // /!\ ACCESS TOKEN MISSING
+          Authorization: "Bearer "+ state.getters.getApiToken, 
           Accept: "application/json"}
       });
 

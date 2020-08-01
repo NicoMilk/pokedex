@@ -1977,9 +1977,6 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     profileStore: function profileStore() {
       return this.$store.getters.getMyProfile;
-    },
-    profilePix: function profilePix() {
-      return "/img/profile/" + this.profileStore.profile_icon_id + ".png";
     }
   }
 });
@@ -2307,7 +2304,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2324,6 +2320,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.$store.dispatch("getUsers");
+    this.$store.dispatch("getTeams");
   },
   computed: {
     usersStore: function usersStore() {
@@ -39377,73 +39374,62 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.query,
-            expression: "query"
-          }
-        ],
-        staticClass: "searchbar",
-        attrs: { type: "text", placeholder: "Search" },
-        domProps: { value: _vm.query },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+  return _c(
+    "div",
+    { staticClass: "d-flex flex-column  justify-content-between h-100" },
+    [
+      _c("div", [
+        _c("h3", { staticClass: "text-center py-3 m-0 bg-blur" }, [
+          _c("a", [_vm._v("Users")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.query,
+                expression: "query"
+              }
+            ],
+            staticClass: "searchbar",
+            attrs: { type: "text", placeholder: "Search" },
+            domProps: { value: _vm.query },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.query = $event.target.value
+              }
             }
-            _vm.query = $event.target.value
-          }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "sep" }, [_vm._v(" ")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "d-flex flex-column  justify-content-between h-100" },
-      [
-        _c(
-          "div",
-          { staticClass: "content bg-blur h-100 overflow-auto" },
-          _vm._l(_vm.filteredusers, function(user, index) {
-            return _c("div", { key: index }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(user.user_id) +
-                  "\n                " +
-                  _vm._s(user.username) +
-                  "\n                " +
-                  _vm._s(user.profile_icon_id) +
-                  "\n                " +
-                  _vm._s(user.team.length) +
-                  "\n            "
-              )
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "sep" }, [_vm._v(" ")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "content bg-blur h-100 overflow-auto" },
+        _vm._l(_vm.filteredusers, function(user, index) {
+          return _c("div", { key: index }, [
+            _c("div", { staticClass: "d-flex justify-content-between" }, [
+              _c("img", {
+                attrs: { src: "/img/profile/bulbasaur.png", alt: "" }
+              }),
+              _vm._v(" "),
+              _c("div", [_vm._v(_vm._s(user.username))]),
+              _vm._v(" "),
+              _c("div", [_vm._v("ID " + _vm._s(user.user_id))])
             ])
-          }),
-          0
-        )
-      ]
-    )
-  ])
+          ])
+        }),
+        0
+      )
+    ]
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "text-center py-3 m-0 bg-blur" }, [
-      _c("a", [_vm._v("Users")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -57078,7 +57064,7 @@ var status = function status(response) {
                 return fetch(url + "users", {
                   headers: {
                     Accept: "application/json",
-                    Authorization: "Bearer " + state.getters.getApiToken
+                    Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5"
                   }
                 });
 
@@ -57115,10 +57101,10 @@ var status = function status(response) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return fetch(url + "users/" + user.id + "/team", {
+                return fetch(url + "users/" + user.user_id + "/team", {
                   headers: {
                     Accept: "application/json",
-                    Authorization: "Bearer " + state.getters.getApiToken
+                    Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5"
                   }
                 });
 
@@ -57158,7 +57144,7 @@ var status = function status(response) {
                 return fetch(url + "users/me", {
                   method: 'GET',
                   headers: {
-                    Authorization: "Bearer " + state.getters.getApiToken,
+                    Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5",
                     Accept: "application/json"
                   }
                 });
@@ -57197,7 +57183,6 @@ var status = function status(response) {
                   method: 'GET',
                   headers: {
                     Authorization: "Bearer " + state.getters.getApiToken,
-                    // /!\ ACCESS TOKEN MISSING
                     Accept: "application/json"
                   }
                 });

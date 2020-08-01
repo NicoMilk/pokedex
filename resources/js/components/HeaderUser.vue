@@ -28,9 +28,7 @@ export default {
          return this.$store.getters.getMyProfile   
         },
 
-        profilePix() {
-            return "/img/profile/"+this.profileStore.profile_icon_id+".png"
-        }
+        
     }
 
 }

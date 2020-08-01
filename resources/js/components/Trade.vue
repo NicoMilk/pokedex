@@ -1,24 +1,23 @@
 <template>
-   <div>
+   <div class="d-flex flex-column  justify-content-between h-100">
        <div>
         <h3 class="text-center py-3 m-0 bg-blur">
-                <a>Users</a>
-            </h3>
+            <a>Users</a>
             <input class= "searchbar" type ="text" v-model = "query" placeholder="Search"> 
+        </h3>
         </div>
-            <div class="sep">&nbsp;</div> 
-    <div class="d-flex flex-column  justify-content-between h-100">
+        <div class="sep">&nbsp;</div> 
         <div class="content bg-blur h-100 overflow-auto" >                 
-            <div v-for="(user, index) in filteredusers " :key="index">
-                {{ user.user_id }}
-                {{ user.username }}
-                {{ user.profile_icon_id }}
-                {{ user.team.length }}
-            </div>    
-            </div>
+            <div v-for= "(user, index) in filteredusers" :key= "index">
+                <div class= "d-flex justify-content-between">
+                    <img src="/img/profile/bulbasaur.png" alt="" >
+                    <div>{{ user.username }}</div>
+                    <div>ID {{ user.user_id }}</div>
+                </div>
+               
         </div>
-</div>
- 
+    </div>
+    </div> 
 </template>
 
 <script>
@@ -39,9 +38,11 @@ import Headertrade from './Headertrade.vue';
     }),
     mounted() {
         this.$store.dispatch("getUsers");
+        
+        this.$store.dispatch("getTeams");
     },
     computed : {
-            usersStore () {
+        usersStore () {
             return this.$store.getters.getUsers; 
         },
         teamsStore(){
@@ -51,7 +52,8 @@ import Headertrade from './Headertrade.vue';
             return this.$store.getters.getUsers.filter((users)=> {
                 return users.username.match(this.query);
             });
-        }
+        },
+        
     } 
 }
 </script>

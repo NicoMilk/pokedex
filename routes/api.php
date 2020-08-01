@@ -27,14 +27,9 @@ Route::middleware('auth:api')->post('users/{id}/team', 'TeamController@trade'); 
 <<<<<<< HEAD
 Route::middleware('auth:')->group(function() {
     Route::apiResource('users','UserController');
-    // Route::get('users/me', 'UserController@me')->name('users.me');    //route for GET users/me RETURNS THE USERNAME OF THE CURRENT AUTHENTIFIED USER
-});
+    
 =======
-
-
-//Route::middleware('auth:api')->group(function() {
-   Route::apiResource('users','UserController');
-
-     //Route::get('users/me', 'UserController@me')->name('users.me');    //route for GET users/me RETURNS THE USERNAME OF THE CURRENT AUTHENTIFIED USER
-//});
->>>>>>> trade
+Route::middleware('auth:api')->group(function() {
+    Route::apiResource('users','UserController');
+>>>>>>> bd7f6c904eae6553cab70560ca40e53848711f76
+});

@@ -13,6 +13,7 @@
                 {{ user.user_id }}
                 {{ user.username }}
                 {{ user.profile_icon_id }}
+                {{ user.team.length }}
             </div>    
             </div>
         </div>
@@ -25,30 +26,32 @@ import Footer from './Footer.vue';
 import Headertrade from './Headertrade.vue'; 
 
  export default {
-        components: {
-            /* "pok-header" : Header,
-            "pok-footer" : Footer */
-            Headertrade
-        },
-        name:"trade",
 
-        data: () => ({ 
-            query:'',
-        }),
-        mounted() {
-            this.$store.dispatch("getUsers");
-            this.$store.dispatch("getTeams");   
+    components: {
+        /* "pok-header" : Header,
+        "pok-footer" : Footer */
+        Headertrade
+    },
+    name:"trade",
+
+    data: () => ({ 
+        query:'',
+    }),
+    mounted() {
+        this.$store.dispatch("getUsers");
+    },
+    computed : {
+            usersStore () {
+            return this.$store.getters.getUsers; 
         },
-        computed : {
-             usersStore () {
-                return this.$store.getters.getUsers; 
-            },
-            teamsStore(){
-                return this.$store.getters.getTeams;
-            },
-            filteredusers() {
-                return this.$store.getters.getUsers.filter((users)=> {
-                    return users.username.match(this.query);
-                });
-            }} }
+        teamsStore(){
+            return this.$store.getters.getTeams;
+        },
+        filteredusers() {
+            return this.$store.getters.getUsers.filter((users)=> {
+                return users.username.match(this.query);
+            });
+        }
+    } 
+}
 </script>

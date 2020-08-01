@@ -1,15 +1,14 @@
 <template>
-    <div>
         <div class="d-flex flex-column  justify-content-between h-100">
             <div>
-        <h3 class="text-center py-3 m-0 bg-blur">
-                <a>Pokemons</a>
-            
-            <input class = "searchbar" type = "text" v-model= "query" placeholder= "Search " > 
-            </h3>
+                <h3 class="text-center py-3 m-0 bg-blur">
+                    <a>Pokemons</a>
+                    <input class = "searchbar" type = "text" v-model= "query" placeholder= "Search " >
+                </h3>
+                 
             </div>
             <div class="sep">&nbsp;</div> 
-    </div>         
+                     
             <div class="content bg-blur h-100 overflow-auto" >                 
                 <div v-for="(pok, index) in filteredpoks" :key="index">
                     <router-link class="" :to="{ name: 'pokemon', params: { id: pok.id }}">
@@ -19,7 +18,6 @@
             </div>
             <pok-footer/>
         </div>
-    
 </template>
 
 <script>

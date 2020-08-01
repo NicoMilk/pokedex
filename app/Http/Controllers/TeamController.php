@@ -16,12 +16,12 @@ class TeamController extends Controller
             $id = Auth::user()->id;
         }
 
-            $team = Team::select('teams.id_pok as pokemon_id')
-                ->where('teams.user_id',$id)
-                ->get();
+        $team = Team::select('teams.id_pok as pokemon_id')
+            ->where('teams.user_id',$id)
+            ->get();
 
-            $response = (object) ["team" => $team];
-            return response()->json($response);
+        $response = (object) ["team" => $team];
+        return response()->json($response);
 
     }
 

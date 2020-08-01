@@ -238,3 +238,9 @@ a {
 
 --battleship-grey: #6e7587;
 }
+.searchbar {
+    
+    width: 90%;
+    border-radius: 20px;
+    background-color: #cccccc;;
+}

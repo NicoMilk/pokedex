@@ -10,6 +10,10 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
+<<<<<<< HEAD
+=======
+        //$this->middleware('auth');
+>>>>>>> bd7f6c904eae6553cab70560ca40e53848711f76
         $users = User::select('users.id as user_id', 'users.name as username', 'users.avatar as profile_icon_id')
             ->get();
         $response = (object) ["users" => $users];

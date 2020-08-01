@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="d-flex flex-row flex-wrap justify-content-center mx-4 my-3 ">
+        <div class="d-flex flex-row flex-wrap justify-content-center mx-4 my-3">
             <div class="col-4 weak-item d-inline" v-for="(weak, idx) in weaks" :key="idx">
                <div class="text-left text-nowrap pl-2 py-1">
                    <img :src="getTypeImage(weak)" :alt="weak" /><span>&nbsp;{{ getWeak(pokStore.weaknesses[weak]) }}</span>

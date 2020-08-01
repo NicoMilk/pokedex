@@ -14,7 +14,7 @@
     </div>
 </template>
 
-<script>
+<script> 
 
 export default {
 
@@ -24,6 +24,9 @@ export default {
     },
 
     computed : {
+        myTeamStore() {
+            return this.$store.getters.getMyTeam;
+        }
     }
 
 }

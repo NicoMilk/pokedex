@@ -1,5 +1,5 @@
 <template>
-    <div>       
+    <div>       take it from store
         {{ pokStore.evolutions.required_lvl}}
         {{ pokStore.evolutions.evolution_id}}
         {{ pokEvolStore.evolutions.required_lvl}}

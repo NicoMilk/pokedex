@@ -12,7 +12,9 @@ export default {
 
   state: {
     poks : [],
-    pok : {}
+    pok : {},
+    users :[],
+    teams: []
   },
   
   mutations: {
@@ -22,6 +24,12 @@ export default {
     setPok(state, pok) {
       state.pok = pok;
     },
+    setUsers(state, users){
+      state.users=users;
+     },
+     setTeams(state,teams){
+       state.teams=teams;
+     }
   },
 
   actions: {    
@@ -55,7 +63,39 @@ export default {
       state.commit("setPok", pok.data[0].Pokemon );
       
     },
+    async getUsers(state) {
+
+      const usersRaw = await fetch(url+"users", { headers: { 
+          "Content-Type": "application/json"
+        }  
+      });
+     
+      const validUsers = await status(usersRaw);
+
+      const users = await validUsers.json();
+
+      state.commit("setUsers", users.users );
+      
+    },
+      async getTeams(state){
+
+      let teams= [];
+
+      for (let user of state.users)
+      {
+        const teamRaw = await fetch(url+"users/"+user.id+"/team" ,{ headers: { 
+          "Content-Type": "application/json"
+        }});
+
+        const validTeam = await status(teamRaw);
+        const team = await validTeam.json();
+        teams.push('team');
+      }
+
+        state.commit("setTeams",teams.data);
+    }
   },
+
   
   
   modules: {
@@ -69,6 +109,12 @@ export default {
 
     getPok(state) {
       return state.pok;
+    },
+    getUsers(state) {
+      return state.users;
+    },
+    getTeams(state){
+      return state.teams;
     }
   },
 

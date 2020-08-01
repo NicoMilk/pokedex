@@ -1,9 +1,17 @@
 <template>
-    <div class="d-flex flex-column  justify-content-between h-100">
-
-            <pok-header/>          
+    <div>
+        <div class="d-flex flex-column  justify-content-between h-100">
+            <div>
+        <h3 class="text-center py-3 m-0 bg-blur">
+                <a>Pokemons</a>
+            
+            <input class = "searchbar" type = "text" v-model= "query" placeholder= "Search " > 
+            </h3>
+            </div>
+            <div class="sep">&nbsp;</div> 
+    </div>         
             <div class="content bg-blur h-100 overflow-auto" >                 
-                <div v-for="(pok, index) in poksStore" :key="index">
+                <div v-for="(pok, index) in filteredpoks" :key="index">
                     <router-link class="" :to="{ name: 'pokemon', params: { id: pok.id }}">
                     {{ pok.name }}
                     </router-link>
@@ -27,6 +35,10 @@ import Header from './Header.vue';
             "pok-footer" : Footer
         },
         name:"pokedex",
+
+        data: () => ({ 
+            query:'',
+        }),
         mounted() {
             this.$store.dispatch("getPoks");
             
@@ -34,7 +46,12 @@ import Header from './Header.vue';
         computed : {
             poksStore () {
                 return this.$store.getters.getPoks;
-            }
+            },
+            filteredpoks() {
+                return this.$store.getters.getPoks.filter((poks)=> {
+                    return poks.name.match(this.query);
+                });
+             }
         }
     }
 </script>

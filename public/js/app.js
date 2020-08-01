@@ -2014,7 +2014,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PokList',
   mounted: function mounted() {},
-  computed: {}
+  computed: {
+    myTeamStore: function myTeamStore() {
+      return this.$store.getters.getMyTeam;
+    }
+  }
 });
 
 /***/ }),
@@ -2030,8 +2034,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Footer_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.vue */ "./resources/js/components/Footer.vue");
 /* harmony import */ var _Header_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Header.vue */ "./resources/js/components/Header.vue");
-//
-//
 //
 //
 //
@@ -2305,6 +2307,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2321,7 +2324,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.$store.dispatch("getUsers");
-    this.$store.dispatch("getTeams");
   },
   computed: {
     usersStore: function usersStore() {
@@ -38741,7 +38743,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm._v(
-      "       \n    " +
+      "       take it from store\n    " +
         _vm._s(_vm.pokStore.evolutions.required_lvl) +
         "\n    " +
         _vm._s(_vm.pokStore.evolutions.evolution_id) +
@@ -39022,42 +39024,37 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "d-flex flex-column  justify-content-between h-100" },
     [
-      _c(
-        "div",
-        { staticClass: "d-flex flex-column  justify-content-between h-100" },
-        [
-          _c("div", [
-            _c("h3", { staticClass: "text-center py-3 m-0 bg-blur" }, [
-              _c("a", [_vm._v("Pokemons")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.query,
-                    expression: "query"
-                  }
-                ],
-                staticClass: "searchbar",
-                attrs: { type: "text", placeholder: "Search " },
-                domProps: { value: _vm.query },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.query = $event.target.value
-                  }
-                }
-              })
-            ])
-          ]),
+      _c("div", [
+        _c("h3", { staticClass: "text-center py-3 m-0 bg-blur" }, [
+          _c("a", [_vm._v("Pokemons")]),
           _vm._v(" "),
-          _c("div", { staticClass: "sep" }, [_vm._v(" ")])
-        ]
-      ),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.query,
+                expression: "query"
+              }
+            ],
+            staticClass: "searchbar",
+            attrs: { type: "text", placeholder: "Search " },
+            domProps: { value: _vm.query },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.query = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "sep" }, [_vm._v(" ")]),
       _vm._v(" "),
       _c(
         "div",
@@ -39070,13 +39067,7 @@ var render = function() {
               _c(
                 "router-link",
                 { attrs: { to: { name: "pokemon", params: { id: pok.id } } } },
-                [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(pok.name) +
-                      "\n                "
-                  )
-                ]
+                [_vm._v("\n            " + _vm._s(pok.name) + "\n            ")]
               )
             ],
             1
@@ -39431,6 +39422,8 @@ var render = function() {
                   _vm._s(user.username) +
                   "\n                " +
                   _vm._s(user.profile_icon_id) +
+                  "\n                " +
+                  _vm._s(user.team.length) +
                   "\n            "
               )
             ])
@@ -39477,7 +39470,7 @@ var render = function() {
       "div",
       {
         staticClass:
-          "d-flex flex-row flex-wrap justify-content-center mx-4 my-3 "
+          "d-flex flex-row flex-wrap justify-content-center mx-4 my-3"
       },
       _vm._l(_vm.weaks, function(weak, idx) {
         return _c(
@@ -56006,6 +55999,13 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store(_store_index__WEBPACK_IMPORTED_MODULE_2__["default"]);
+var apiToken = "";
+
+window.onload = function () {
+  apiToken = window.Laravel ? window.Laravel.apiToken : '';
+  store.commit("setApiToken", apiToken);
+};
+
 var routes = [{
   name: 'pokedex',
   path: '/',
@@ -56045,7 +56045,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
 var app = new Vue({
   el: '#app',
   router: router,
-  store: store
+  store: store,
+  apiToken: apiToken
 });
 
 /***/ }),
@@ -56887,17 +56888,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex_persistedstate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex-persistedstate */ "./node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
 
-
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 var url = "http://localhost:8000/api/";
@@ -56906,14 +56904,7 @@ headers.append("Content-Type", "application/json");
 
 var status = function status(response) {
   return response.status >= 200 && response.status < 300 ? Promise.resolve(response) : Promise.reject(response.statusText);
-}; // const apitoken = laravel =>  {
-//   console.log(laravel);
-//   return Promise.resolve(laravel.apiToken);
-// }
-// getApiToken(state) {
-//   return window.Laravel.apiToken;
-// }
-
+};
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: {
@@ -56924,8 +56915,9 @@ var status = function status(response) {
     teams: [],
     myProfile: [],
     //Nico
-    myTeam: [] //Nico
-
+    myTeam: [],
+    //Nico
+    apiToken: ''
   },
   mutations: {
     setPoks: function setPoks(state, poks) {
@@ -56940,8 +56932,10 @@ var status = function status(response) {
     setUsers: function setUsers(state, users) {
       state.users = users;
     },
-    setTeams: function setTeams(state, teams) {
-      state.teams = teams;
+    setUsersTeams: function setUsersTeams(state, payload) {
+      var user = payload.user;
+      user.team = payload.team.team;
+      state.users.push(user);
     },
     setMyProfile: function setMyProfile(state, myProfile) {
       //Nico
@@ -56957,6 +56951,9 @@ var status = function status(response) {
         });
       });
       state.myTeam.push(teamPok);
+    },
+    setApiToken: function setApiToken(state, apiToken) {
+      state.apiToken = apiToken;
     }
   },
   actions: {
@@ -57079,7 +57076,8 @@ var status = function status(response) {
                 _context4.next = 2;
                 return fetch(url + "users", {
                   headers: {
-                    "Content-Type": "application/json"
+                    Accept: "application/json",
+                    Authorization: "Bearer " + state.getters.getApiToken
                   }
                 });
 
@@ -57095,9 +57093,12 @@ var status = function status(response) {
 
               case 8:
                 users = _context4.sent;
-                state.commit("setUsers", users.users);
+                state.commit("setUsers", []);
+                users.users.forEach(function (user) {
+                  state.dispatch("getTeams", user);
+                });
 
-              case 10:
+              case 11:
               case "end":
                 return _context4.stop();
             }
@@ -57105,78 +57106,44 @@ var status = function status(response) {
         }, _callee4);
       }))();
     },
-    getTeams: function getTeams(state) {
+    getTeams: function getTeams(state, user) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var teams, _iterator, _step, user, teamRaw, validTeam, team;
-
+        var teamRaw, validTeam, team;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                teams = [];
-                _iterator = _createForOfIteratorHelper(state.users);
-                _context5.prev = 2;
-
-                _iterator.s();
-
-              case 4:
-                if ((_step = _iterator.n()).done) {
-                  _context5.next = 18;
-                  break;
-                }
-
-                user = _step.value;
-                _context5.next = 8;
+                _context5.next = 2;
                 return fetch(url + "users/" + user.id + "/team", {
                   headers: {
-                    "Content-Type": "application/json"
+                    Accept: "application/json",
+                    Authorization: "Bearer " + state.getters.getApiToken
                   }
                 });
 
-              case 8:
+              case 2:
                 teamRaw = _context5.sent;
-                _context5.next = 11;
+                _context5.next = 5;
                 return status(teamRaw);
 
-              case 11:
+              case 5:
                 validTeam = _context5.sent;
-                _context5.next = 14;
+                _context5.next = 8;
                 return validTeam.json();
 
-              case 14:
+              case 8:
                 team = _context5.sent;
-                teams.push('team');
+                state.commit("setUsersTeams", {
+                  user: user,
+                  team: team
+                });
 
-              case 16:
-                _context5.next = 4;
-                break;
-
-              case 18:
-                _context5.next = 23;
-                break;
-
-              case 20:
-                _context5.prev = 20;
-                _context5.t0 = _context5["catch"](2);
-
-                _iterator.e(_context5.t0);
-
-              case 23:
-                _context5.prev = 23;
-
-                _iterator.f();
-
-                return _context5.finish(23);
-
-              case 26:
-                state.commit("setTeams", teams.data);
-
-              case 27:
+              case 10:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, null, [[2, 20, 23, 26]]);
+        }, _callee5);
       }))();
     },
     myProfile: function myProfile(state) {
@@ -57190,8 +57157,7 @@ var status = function status(response) {
                 return fetch(url + "users/me", {
                   method: 'GET',
                   headers: {
-                    // Authorization: "Bearer ", // /!\ ACCESS TOKEN MISSING
-                    Authorization: "Bearer wpornjjNcP9uwwMSlj4XB1mAHtbu6ZRwwORhL7cifoSbSJfnE1xwodi9O6H6e3XUim42ipDA7MZyRf6obKluS1e8ncTydEGrKmiT",
+                    Authorization: "Bearer " + state.getters.getApiToken,
                     Accept: "application/json"
                   }
                 });
@@ -57229,8 +57195,8 @@ var status = function status(response) {
                 return fetch(url + "users/me/team", {
                   method: 'GET',
                   headers: {
-                    // Authorization: "Bearer "+state.getters.getApiToken, // /!\ ACCESS TOKEN MISSING
-                    Authorization: "Bearer wpornjjNcP9uwwMSlj4XB1mAHtbu6ZRwwORhL7cifoSbSJfnE1xwodi9O6H6e3XUim42ipDA7MZyRf6obKluS1e8ncTydEGrKmiT",
+                    Authorization: "Bearer " + state.getters.getApiToken,
+                    // /!\ ACCESS TOKEN MISSING
                     Accept: "application/json"
                   }
                 });
@@ -57272,9 +57238,6 @@ var status = function status(response) {
     getUsers: function getUsers(state) {
       return state.users;
     },
-    getTeams: function getTeams(state) {
-      return state.teams;
-    },
     getMyProfile: function getMyProfile(state) {
       // Nico
       return state.myProfile;
@@ -57282,6 +57245,9 @@ var status = function status(response) {
     getMyTeam: function getMyTeam(state) {
       // Nico
       return state.myTeam;
+    },
+    getApiToken: function getApiToken(state) {
+      return state.apiToken;
     }
   },
   plugins: [Object(vuex_persistedstate__WEBPACK_IMPORTED_MODULE_1__["default"])()]

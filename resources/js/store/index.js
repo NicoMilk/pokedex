@@ -12,7 +12,8 @@ export default {
 
   state: {
     poks : [],
-    pok : {}
+    pok : {},
+    evolPok : {}
   },
   
   mutations: {
@@ -21,6 +22,9 @@ export default {
     },
     setPok(state, pok) {
       state.pok = pok;
+    },
+    setEvolPok(state, evolPok) {
+      state.evolPok = evolPok;
     },
   },
 
@@ -53,6 +57,23 @@ export default {
       const pok = await validPok.json();
 
       state.commit("setPok", pok.data[0].Pokemon );
+
+      if (pok.data[0].Pokemon.evolutions.evolution_id) state.dispatch("getEvolPok", pok.data[0].Pokemon.evolutions.evolution_id)
+      
+    },
+
+    async getEvolPok(state, id) {
+
+      const pokEvolRaw = await fetch(url+"pokemons/"+id, { headers: { 
+          "Content-Type": "application/json"
+        }  
+      });
+
+      const validEvolPok = await status(pokEvolRaw)
+
+      const evolPok = await validEvolPok.json();
+
+      state.commit("setEvolPok", evolPok.data[0].Pokemon );
       
     },
   },
@@ -66,9 +87,11 @@ export default {
     getPoks(state) {
       return state.poks;
     },
-
     getPok(state) {
       return state.pok;
+    },
+    getEvolPok(state) {
+      return state.evolPok;
     }
   },
 

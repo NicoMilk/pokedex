@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="bg-default">
         <div class="sep">&nbsp;</div>
         <div class="tab p-4 bg-blur">
 

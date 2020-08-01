@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    //return view('pokedex', [ 'user' =>  Auth::user()->id ]);
+    
     return view('pokedex');
 });
 
@@ -27,7 +27,6 @@ Auth::routes([
 ]);
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 
 Route::resource ('profile', 'ProfileController', [
     'only' => ['edit', 'update', 'destroy', 'show'],

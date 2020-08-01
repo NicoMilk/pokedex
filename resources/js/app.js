@@ -18,6 +18,7 @@ Vue.use(VueRouter);
 Vue.use(Vuex);
 
 
+
 const store = new Vuex.Store(
     storeData
 ) 
@@ -43,7 +44,7 @@ const routes = [
         component: Pokemon,
         children: [
             {
-                name: 'pokemon',
+                name: "pokemon",
                 path: '',
                 component: Stats
             },

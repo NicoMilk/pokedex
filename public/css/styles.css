@@ -11,6 +11,12 @@ html, body {
     background-image: linear-gradient(91deg, #6e95fd -4%, #6fdefa 31%, #8de061 71%, #51e85e 109%);
     
 }
+a {
+    text-decoration: none !important;
+}
+.bg-default {
+    background-image: linear-gradient(91deg, #6e95fd -4%, #6fdefa 31%, #8de061 71%, #51e85e 109%);
+}
 
 .bg-blur {
     backdrop-filter: blur(10px);
@@ -48,4 +54,187 @@ html, body {
 }
 .tab span.offset {
     margin-left: -8px;
+}
+
+.grass {
+    background-image: linear-gradient(to right, #5fbc51 0%, #5ac178 100%);   
+}
+
+.fire {
+    background-image: linear-gradient(to right, #fb9b51 0%, #fbae46 100%);   
+}
+
+.bug {
+    background-image: linear-gradient(to right, #92bc2c 0%, #afc836 100%);
+}
+
+.dark {
+    background-image: linear-gradient(to right, #595761 1%, #6e7587 99%);
+}
+
+.dragon {
+    background-image: linear-gradient(to right, #0c69c8 1%, #0180c7 99%);
+}
+
+.flying {
+    background-image: linear-gradient(to right, #90a7da 0%, #a6c2f2 100%);
+}
+
+.ghost {
+    background-image: linear-gradient(to right, #516aac 1%, #7773d4 99%);
+}
+
+.fairy {
+    background-image: linear-gradient(to right, #ec8ce5 1%, #f3a7e7 99%);
+}
+
+.water {
+    background-image: linear-gradient(to right, #559edf 38%, #69b9e3 62%);
+}
+
+.fight {
+    background-image: linear-gradient(to right, #ce4265 1%, #e74347 99%);
+}
+
+.psychic {
+    background-image: linear-gradient(to right, #f66f71 0%, #fe9f92 100%);
+}
+
+.ground {
+    background-image: linear-gradient(to right, #dc7545 1%, #d29463 99%);
+}
+
+.ice {
+    background-image: linear-gradient(to right, #70ccbd 0%, #8cddd4 100%);
+}
+
+.normal {
+    background-image: linear-gradient(to right, #9298a4 1%, #a3a49e 99%);
+}
+
+.poison {
+    background-image: linear-gradient(to right, #a864c7 0%, #c261d4 100%);
+}
+
+.rock {
+    background-image: linear-gradient(to right, #c5b489 0%, #d7cd90 100%);
+}
+
+.electric {
+    background-image: linear-gradient(to right, #edd53e 1%, #fbe273 99%);
+}
+
+.steel {
+    background-image: linear-gradient(to right, #52869d 0%, #58a6aa 100%);
+}
+
+.pok-top {
+    width:170px;
+    height: 170px;
+    display: inline-block;
+    text-align: center;
+    margin-top: -140px;
+}
+
+.pok-content {
+    margin-top:120px;
+    background-color:#fafafa! important;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    text-align: center;
+
+    max-width: 500px;
+}
+
+.pok-chars :not(.router-link-exact-active) {
+
+    color: rgb(83, 83, 83) !important;
+    border-radius: 20px;
+    padding : 5px 15px 5px 15px;
+    background-image: none ;
+
+
+}
+.pok-chars .router-link-exact-active {
+
+    color : #fafafa !important;
+    border-radius: 20px;
+    padding : 5px 15px 5px 15px;
+
+}
+
+.progress {
+    height : 8px;
+}
+.progress-bar {
+    border-radius: 5px;;
+}
+
+.stat-label {
+    width : 60px;
+    font-weight: 800;
+    text-align: left;
+}
+.stat-label-val {
+    width : 40px;
+    opacity: 0.6;
+    text-align: left;
+}
+
+
+:root {
+
+--sick-green: #9dc130;
+
+--greyish-brown: #4f4f4f;
+
+--white: #fafafa;
+
+--slate-grey: #5f606d;
+
+--cerulean: #0773c7;
+
+--very-light-pink: #cccccc;
+
+--off-yellow: #edd53f;
+
+--bubblegum-pink: #ef97e6;
+
+--cloudy-blue: #9bb4e8;
+
+--light-orange: #f8a54f;
+
+--faded-red: #d94256;
+
+--boring-green: #5dbe62;
+
+--dark-periwinkle: #6970c5;
+
+--dark-peach: #d78555;
+
+--seafoam-blue: #7ed4c9;
+
+--lightish-purple: #b563ce;
+
+--salmon: #f87c7a;
+
+--bluey-grey: #9a9da1;
+
+--very-light-brown: #cec18c;
+
+--stormy-blue: #5596a4;
+
+--white-80: rgba(250, 250, 250, 0.8);
+
+--black: #000000;
+
+--dark-sky-blue: #559edf;
+
+--lightish-green: #51e85e;
+
+--dark-sky-blue-70: rgba(96, 173, 225, 0.7);
+
+--slate-grey-two: #595761;
+
+--battleship-grey: #6e7587;
 }

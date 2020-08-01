@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex flex-column  justify-content-between h-100">
+    <div class="d-flex flex-column justify-content-between h-100">
 
             <pok-header/>          
             <div class="content bg-blur h-100 overflow-auto" >                 
@@ -10,8 +10,6 @@
                 </div>
             </div>
             <pok-footer/>
-
-            
         </div>
     
 </template>

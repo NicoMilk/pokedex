@@ -1,11 +1,9 @@
 <template>
     <div>       
-        {{ pokStore.stats.hp}}
-        {{ pokStore.stats.attack}}
-        {{ pokStore.stats.defense}}
-        {{ pokStore.stats.special_attack}}
-        {{ pokStore.stats.special_defense}}
-        {{ pokStore.stats.speed}}
+        {{ pokStore.evolutions.required_lvl}}
+        {{ pokStore.evolutions.evolution_id}}
+        {{ pokEvolStore.evolutions.required_lvl}}
+        {{ pokEvolStore.evolutions.evolution_id}}
     </div>
 </template>
 
@@ -19,6 +17,9 @@
         computed : {
             pokStore () {
                 return this.$store.getters.getPok;
+            },
+            pokEvolStore () {
+                return this.$store.getters.getEvolPok;
             }
         }
     }

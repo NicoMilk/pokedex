@@ -12,7 +12,8 @@ html, body {
     
 }
 a {
-    text-decoration: none !important;
+    text-decoration: none !important;   
+    color: #111111
 }
 .bg-default {
     background-image: linear-gradient(91deg, #6e95fd -4%, #6fdefa 31%, #8de061 71%, #51e85e 109%);
@@ -96,7 +97,7 @@ a {
     background-image: linear-gradient(to right, #559edf 38%, #69b9e3 62%);
 }
 
-.fight {
+.fighting {
     background-image: linear-gradient(to right, #ce4265 1%, #e74347 99%);
 }
 
@@ -186,6 +187,22 @@ a {
     text-align: left;
 }
 
+.pok-evol {
+    width: 65px;
+}
+
+.pok-sm {
+    width: 50px;
+}
+
+.pok-type  {
+    width:40px;
+    height:40px;
+}
+.pok-id  {
+    color: grey !important;
+}
+
 
 :root {
 
@@ -245,15 +262,18 @@ a {
 }
 .searchbar {
     
-    width: 90%;
+    width: 80%;
     border-radius: 20px;
-    background-color: #cccccc;;
+    border : solid 1px lightgrey;
+    background-color: #eeeeee;
+    font-size: 16px;
 }
 
 .profilePix
 {
+    width: 120px;
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -279,5 +299,5 @@ a {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
     position: relative;
     display: inline-block;
-    margin-top: 83px;
+    margin-top: 30px;
 }

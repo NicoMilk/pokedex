@@ -15,7 +15,7 @@
 
 
 </head>
-<body">
+<body>
     <div class="container-fluid p-0 h-100" id="app">
                 
                 <router-view></router-view>                
@@ -28,5 +28,5 @@
         'apiToken' => Auth::user()->api_token ?? null
     ]) !!};
     </script>
-    </body>
+</body>
 </html>

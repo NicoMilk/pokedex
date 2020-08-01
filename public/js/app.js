@@ -38598,7 +38598,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm._v(
-      "       \n    " +
+      "       take it from store\n    " +
         _vm._s(_vm.pokStore.evolutions.required_lvl) +
         "\n    " +
         _vm._s(_vm.pokStore.evolutions.evolution_id) +
@@ -39116,7 +39116,7 @@ var render = function() {
       "div",
       {
         staticClass:
-          "d-flex flex-row flex-wrap justify-content-center mx-4 my-3 "
+          "d-flex flex-row flex-wrap justify-content-center mx-4 my-3"
       },
       _vm._l(_vm.weaks, function(weak, idx) {
         return _c(

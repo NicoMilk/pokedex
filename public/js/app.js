@@ -1932,12 +1932,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     pokStore: function pokStore() {
       return this.$store.getters.getPok;
+    },
+    pokEvolStore: function pokEvolStore() {
+      return this.$store.getters.getEvolPok;
     }
   }
 });
@@ -1973,6 +1974,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1981,12 +1988,24 @@ __webpack_require__.r(__webpack_exports__);
     "pok-footer": _Footer_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   name: "pokedex",
+  data: function data() {
+    return {
+      query: ''
+    };
+  },
   mounted: function mounted() {
     this.$store.dispatch("getPoks");
   },
   computed: {
     poksStore: function poksStore() {
       return this.$store.getters.getPoks;
+    },
+    filteredpoks: function filteredpoks() {
+      var _this = this;
+
+      return this.$store.getters.getPoks.filter(function (poks) {
+        return poks.name.match(_this.query);
+      });
     }
   }
 });
@@ -2024,8 +2043,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      charActive: 0
+    };
+  },
   components: {
     "pok-footer": _Footer_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -2033,9 +2065,20 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.$store.dispatch("getPok", this.$route.params.id);
   },
+  methods: {
+    getTypeImage: function getTypeImage(type) {
+      return type ? "/img/types/large/tag-" + type + ".png" : "";
+    },
+    setActive: function setActive(_char) {
+      this.charActive = _char;
+    }
+  },
   computed: {
     pokStore: function pokStore() {
       return this.$store.getters.getPok;
+    },
+    pokImage: function pokImage() {
+      return "/img/pokemon/" + this.pokStore.image;
     }
   }
 });
@@ -2051,6 +2094,43 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2115,6 +2195,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Footer_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.vue */ "./resources/js/components/Footer.vue");
+/* harmony import */ var _Headertrade_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Headertrade.vue */ "./resources/js/components/Headertrade.vue");
 //
 //
 //
@@ -2131,9 +2213,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    /* "pok-header" : Header,
+    "pok-footer" : Footer */
+    Headertrade: _Headertrade_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  name: "trade",
+  data: function data() {
+    return {
+      query: ''
+    };
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    this.$store.dispatch("getUsers");
+    this.$store.dispatch("getTeams");
+  },
+  computed: {
+    usersStore: function usersStore() {
+      return this.$store.getters.getUsers;
+    },
+    teamsStore: function teamsStore() {
+      return this.$store.getters.getTeams;
+    },
+    filteredusers: function filteredusers() {
+      var _this = this;
+
+      return this.$store.getters.getUsers.filter(function (users) {
+        return users.username.match(_this.query);
+      });
+    }
   }
 });
 
@@ -2162,19 +2279,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      weaks: ['bug', 'dark', 'dragon', 'electric', 'fairy', 'fight', 'fire', 'flying', 'ghost', 'grass', 'ground', 'ice', 'normal', 'poison', 'psychic', 'rock', 'steel', 'water']
+    };
+  },
+  methods: {
+    getTypeImage: function getTypeImage(type) {
+      return "/img/types/small/types-" + type + ".png";
+    },
+    getWeak: function getWeak(weak) {
+      return weak == "0.25" ? "1/4x" : weak == "0.5" ? "1/2x" : weak + "x";
+    }
+  },
   computed: {
     pokStore: function pokStore() {
       return this.$store.getters.getPok;
@@ -38538,17 +38656,13 @@ var render = function() {
   return _c("div", [
     _vm._v(
       "       \n    " +
-        _vm._s(_vm.pokStore.stats.hp) +
+        _vm._s(_vm.pokStore.evolutions.required_lvl) +
         "\n    " +
-        _vm._s(_vm.pokStore.stats.attack) +
+        _vm._s(_vm.pokStore.evolutions.evolution_id) +
         "\n    " +
-        _vm._s(_vm.pokStore.stats.defense) +
+        _vm._s(_vm.pokEvolStore.evolutions.required_lvl) +
         "\n    " +
-        _vm._s(_vm.pokStore.stats.special_attack) +
-        "\n    " +
-        _vm._s(_vm.pokStore.stats.special_defense) +
-        "\n    " +
-        _vm._s(_vm.pokStore.stats.speed) +
+        _vm._s(_vm.pokEvolStore.evolutions.evolution_id) +
         "\n"
     )
   ])
@@ -38575,7 +38689,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "bg-default" }, [
     _c("div", { staticClass: "sep" }, [_vm._v(" ")]),
     _vm._v(" "),
     _c(
@@ -38645,6 +38759,59 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Headertrade.vue?vue&type=template&id=c5cf7348&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Headertrade.vue?vue&type=template&id=c5cf7348& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("input", {
+      directives: [
+        { name: "model", rawName: "v-model", value: _vm.q, expression: "q" }
+      ],
+      attrs: { type: "text" },
+      domProps: { value: _vm.q },
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.q = $event.target.value
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c("div", { staticClass: "sep" }, [_vm._v(" ")])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "text-center py-3 m-0 bg-blur" }, [
+      _c("a", [_vm._v("Users")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Pokedex.vue?vue&type=template&id=38e02443&":
 /*!**********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Pokedex.vue?vue&type=template&id=38e02443& ***!
@@ -38662,14 +38829,47 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "d-flex flex-column  justify-content-between h-100" },
     [
-      _c("pok-header"),
+      _c(
+        "div",
+        { staticClass: "d-flex flex-column  justify-content-between h-100" },
+        [
+          _c("div", [
+            _c("h3", { staticClass: "text-center py-3 m-0 bg-blur" }, [
+              _c("a", [_vm._v("Pokemons")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.query,
+                    expression: "query"
+                  }
+                ],
+                staticClass: "searchbar",
+                attrs: { type: "text", placeholder: "Search " },
+                domProps: { value: _vm.query },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.query = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "sep" }, [_vm._v(" ")])
+        ]
+      ),
       _vm._v(" "),
       _c(
         "div",
         { staticClass: "content bg-blur h-100 overflow-auto" },
-        _vm._l(_vm.poksStore, function(pok, index) {
+        _vm._l(_vm.filteredpoks, function(pok, index) {
           return _c(
             "div",
             { key: index },
@@ -38721,41 +38921,101 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "d-flex flex-column  justify-content-between h-100" },
+    {
+      staticClass:
+        "d-flex flex-column text-center justify-content-start  w-100  h-100",
+      class: _vm.pokStore.types.type1
+    },
     [
-      _c(
-        "div",
-        { staticClass: "content bg-blur h-100 overflow-auto" },
-        [
-          _vm._v(
-            "  \n\n        " +
-              _vm._s(_vm.pokStore.name) +
-              "\n        " +
-              _vm._s(_vm.pokStore.image) +
-              "\n        " +
-              _vm._s(_vm.pokStore.types.type1) +
-              "\n        " +
-              _vm._s(_vm.pokStore.types.type2) +
-              "\n        " +
-              _vm._s(_vm.pokStore.description) +
-              "\n\n        "
-          ),
-          _c("router-link", { attrs: { to: { name: "stats" } } }, [
-            _vm._v("Stats")
-          ]),
-          _vm._v(" "),
-          _c("router-link", { attrs: { to: { name: "weak" } } }, [
-            _vm._v("Weaknesses")
-          ]),
-          _vm._v(" "),
-          _c("router-link", { attrs: { to: { name: "evol" } } }, [
-            _vm._v("Evolutions")
-          ]),
-          _vm._v(" "),
-          _c("router-view")
-        ],
-        1
-      ),
+      _c("div", { staticClass: "h-100 overflow-auto" }, [
+        _c("div", { staticClass: "text-left m-4 text-white" }, [_vm._v("V")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "d-inline-block" }, [
+          _c(
+            "div",
+            { staticClass: "pok-content pb-2" },
+            [
+              _c("img", {
+                staticClass: "pok-top",
+                attrs: { src: _vm.pokImage, alt: _vm.pokStore.name }
+              }),
+              _vm._v(" "),
+              _c("h2", { staticClass: "pt-3 text-center" }, [
+                _vm._v(_vm._s(_vm.pokStore.name))
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "pok-types my-2" },
+                _vm._l(_vm.pokStore.types, function(type) {
+                  return _c("div", { key: type, staticClass: "d-inline" }, [
+                    _c("img", {
+                      attrs: { src: _vm.getTypeImage(type), alt: type }
+                    })
+                  ])
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "mx-2 p-2" }, [
+                _vm._v(_vm._s(_vm.pokStore.description))
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "d-inline pok-chars" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      class: _vm.pokStore.types.type1,
+                      attrs: { to: { name: "pokemon" } },
+                      on: {
+                        click: function($event) {
+                          return _vm.setActive(0)
+                        }
+                      }
+                    },
+                    [_vm._v("Stats")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      class: _vm.pokStore.types.type1,
+                      attrs: { to: { name: "weak" } },
+                      on: {
+                        click: function($event) {
+                          return _vm.setActive(1)
+                        }
+                      }
+                    },
+                    [_vm._v("Weaknesses")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      class: _vm.pokStore.types.type1,
+                      attrs: { to: { name: "evol" } },
+                      on: {
+                        click: function($event) {
+                          return _vm.setActive(2)
+                        }
+                      }
+                    },
+                    [_vm._v("Evolutions")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("router-view")
+            ],
+            1
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c("pok-footer")
     ],
@@ -38785,21 +39045,101 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._v(
-      "\n    " +
-        _vm._s(_vm.pokStore.stats.hp) +
-        "\n    " +
-        _vm._s(_vm.pokStore.stats.attack) +
-        "\n    " +
-        _vm._s(_vm.pokStore.stats.defense) +
-        "\n    " +
-        _vm._s(_vm.pokStore.stats.special_attack) +
-        "\n    " +
-        _vm._s(_vm.pokStore.stats.special_defense) +
-        "\n    " +
-        _vm._s(_vm.pokStore.stats.speed) +
-        "\n"
-    )
+    _c("div", { staticClass: "d-flex flex-row mx-2 my-3 mx-5" }, [
+      _c("span", { staticClass: "mx-2 stat-label" }, [_vm._v("HP")]),
+      _vm._v(" "),
+      _c("span", { staticClass: "mx-2 stat-label-val" }, [
+        _vm._v(_vm._s(_vm.pokStore.stats.hp))
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "progress w-100 ml-2 mt-2" }, [
+        _c("div", {
+          staticClass: "progress-bar",
+          class: _vm.pokStore.types.type1,
+          style: { width: _vm.pokStore.stats.hp + "%" }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "d-flex flex-row mx-2 my-3 mx-5" }, [
+      _c("span", { staticClass: "mx-2 stat-label" }, [_vm._v("ATK")]),
+      _vm._v(" "),
+      _c("span", { staticClass: "mx-2 stat-label-val" }, [
+        _vm._v(_vm._s(_vm.pokStore.stats.attack))
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "progress w-100 mx-2 mt-2" }, [
+        _c("div", {
+          staticClass: "progress-bar",
+          class: _vm.pokStore.types.type1,
+          style: { width: _vm.pokStore.stats.attack + "%" }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "d-flex flex-row mx-2 my-3 mx-5" }, [
+      _c("span", { staticClass: "mx-2 stat-label" }, [_vm._v("DEF")]),
+      _vm._v(" "),
+      _c("span", { staticClass: "mx-2 stat-label-val" }, [
+        _vm._v(_vm._s(_vm.pokStore.stats.defense))
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "progress w-100 mx-2 mt-2" }, [
+        _c("div", {
+          staticClass: "progress-bar",
+          class: _vm.pokStore.types.type1,
+          style: { width: _vm.pokStore.stats.defense + "%" }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "d-flex flex-row mx-2 my-3 mx-5" }, [
+      _c("span", { staticClass: "mx-2 stat-label" }, [_vm._v("SATK")]),
+      _vm._v(" "),
+      _c("span", { staticClass: "mx-2 stat-label-val" }, [
+        _vm._v(_vm._s(_vm.pokStore.stats.special_attack))
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "progress w-100 mx-2 mt-2" }, [
+        _c("div", {
+          staticClass: "progress-bar",
+          class: _vm.pokStore.types.type1,
+          style: { width: _vm.pokStore.stats.special_attack + "%" }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "d-flex flex-row mx-2 my-3 mx-5" }, [
+      _c("span", { staticClass: "mx-2 stat-label" }, [_vm._v("SDEF")]),
+      _vm._v(" "),
+      _c("span", { staticClass: "mx-2 stat-label-val" }, [
+        _vm._v(_vm._s(_vm.pokStore.stats.special_defense))
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "progress w-100 mx-2 mt-2" }, [
+        _c("div", {
+          staticClass: "progress-bar",
+          class: _vm.pokStore.types.type1,
+          style: { width: _vm.pokStore.stats.special_defense + "%" }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "d-flex flex-row mx-2 my-3 mx-5" }, [
+      _c("span", { staticClass: "mx-2 stat-label" }, [_vm._v("SPD")]),
+      _vm._v(" "),
+      _c("span", { staticClass: "mx-2 stat-label-val" }, [
+        _vm._v(_vm._s(_vm.pokStore.stats.speed))
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "progress w-100 mx-2 mt-2" }, [
+        _c("div", {
+          staticClass: "progress-bar",
+          class: _vm.pokStore.types.type1,
+          style: { width: _vm.pokStore.stats.speed + "%" }
+        })
+      ])
+    ])
   ])
 }
 var staticRenderFns = []
@@ -38869,27 +39209,68 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("div", [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.query,
+            expression: "query"
+          }
+        ],
+        staticClass: "searchbar",
+        attrs: { type: "text", placeholder: "Search" },
+        domProps: { value: _vm.query },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.query = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "sep" }, [_vm._v(" ")]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "d-flex flex-column  justify-content-between h-100" },
+      [
+        _c(
+          "div",
+          { staticClass: "content bg-blur h-100 overflow-auto" },
+          _vm._l(_vm.filteredusers, function(user, index) {
+            return _c("div", { key: index }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(user.user_id) +
+                  "\n                " +
+                  _vm._s(user.username) +
+                  "\n                " +
+                  _vm._s(user.profile_icon_id) +
+                  "\n            "
+              )
+            ])
+          }),
+          0
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v("\n                    TRADE\n                ")
-            ])
-          ])
-        ])
-      ])
+    return _c("h3", { staticClass: "text-center py-3 m-0 bg-blur" }, [
+      _c("a", [_vm._v("Users")])
     ])
   }
 ]
@@ -38915,44 +39296,27 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._v(
-      "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.bug) +
-        "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.dark) +
-        "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.dragon) +
-        "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.electric) +
-        "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.fairy) +
-        "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.fight) +
-        "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.fire) +
-        "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.flying) +
-        "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.ghost) +
-        "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.grass) +
-        "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.ground) +
-        "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.ice) +
-        "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.normal) +
-        "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.poison) +
-        "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.psychic) +
-        "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.rock) +
-        "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.steel) +
-        "\n    " +
-        _vm._s(_vm.pokStore.weaknesses.water) +
-        "\n\n"
+    _c(
+      "div",
+      {
+        staticClass:
+          "d-flex flex-row flex-wrap justify-content-center mx-4 my-3 "
+      },
+      _vm._l(_vm.weaks, function(weak, idx) {
+        return _c(
+          "div",
+          { key: idx, staticClass: "col-4 weak-item d-inline" },
+          [
+            _c("div", { staticClass: "text-left text-nowrap pl-2 py-1" }, [
+              _c("img", { attrs: { src: _vm.getTypeImage(weak), alt: weak } }),
+              _c("span", [
+                _vm._v(" " + _vm._s(_vm.getWeak(_vm.pokStore.weaknesses[weak])))
+              ])
+            ])
+          ]
+        )
+      }),
+      0
     )
   ])
 }
@@ -55481,7 +55845,7 @@ var routes = [{
   path: '/pokemon/:id',
   component: _components_Pokemon_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
   children: [{
-    name: 'pokemon',
+    name: "pokemon",
     path: '',
     component: _components_Stats_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   }, {
@@ -55724,6 +56088,59 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_template_id_1f42fb90___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_template_id_1f42fb90___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Headertrade.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/Headertrade.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Headertrade_vue_vue_type_template_id_c5cf7348___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Headertrade.vue?vue&type=template&id=c5cf7348& */ "./resources/js/components/Headertrade.vue?vue&type=template&id=c5cf7348&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _Headertrade_vue_vue_type_template_id_c5cf7348___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Headertrade_vue_vue_type_template_id_c5cf7348___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Headertrade.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Headertrade.vue?vue&type=template&id=c5cf7348&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/Headertrade.vue?vue&type=template&id=c5cf7348& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Headertrade_vue_vue_type_template_id_c5cf7348___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Headertrade.vue?vue&type=template&id=c5cf7348& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Headertrade.vue?vue&type=template&id=c5cf7348&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Headertrade_vue_vue_type_template_id_c5cf7348___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Headertrade_vue_vue_type_template_id_c5cf7348___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -56157,6 +56574,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex_persistedstate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex-persistedstate */ "./node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js");
 
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -56173,7 +56596,10 @@ var status = function status(response) {
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: {
     poks: [],
-    pok: {}
+    pok: {},
+    evolPok: {},
+    users: [],
+    teams: []
   },
   mutations: {
     setPoks: function setPoks(state, poks) {
@@ -56181,6 +56607,15 @@ var status = function status(response) {
     },
     setPok: function setPok(state, pok) {
       state.pok = pok;
+    },
+    setEvolPok: function setEvolPok(state, evolPok) {
+      state.evolPok = evolPok;
+    },
+    setUsers: function setUsers(state, users) {
+      state.users = users;
+    },
+    setTeams: function setTeams(state, teams) {
+      state.teams = teams;
     }
   },
   actions: {
@@ -56247,13 +56682,160 @@ var status = function status(response) {
               case 8:
                 pok = _context2.sent;
                 state.commit("setPok", pok.data[0].Pokemon);
+                if (pok.data[0].Pokemon.evolutions.evolution_id) state.dispatch("getEvolPok", pok.data[0].Pokemon.evolutions.evolution_id);
 
-              case 10:
+              case 11:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2);
+      }))();
+    },
+    getEvolPok: function getEvolPok(state, id) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var pokEvolRaw, validEvolPok, evolPok;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return fetch(url + "pokemons/" + id, {
+                  headers: {
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+                pokEvolRaw = _context3.sent;
+                _context3.next = 5;
+                return status(pokEvolRaw);
+
+              case 5:
+                validEvolPok = _context3.sent;
+                _context3.next = 8;
+                return validEvolPok.json();
+
+              case 8:
+                evolPok = _context3.sent;
+                state.commit("setEvolPok", evolPok.data[0].Pokemon);
+
+              case 10:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    getUsers: function getUsers(state) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var usersRaw, validUsers, users;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return fetch(url + "users", {
+                  headers: {
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+                usersRaw = _context4.sent;
+                _context4.next = 5;
+                return status(usersRaw);
+
+              case 5:
+                validUsers = _context4.sent;
+                _context4.next = 8;
+                return validUsers.json();
+
+              case 8:
+                users = _context4.sent;
+                state.commit("setUsers", users.users);
+
+              case 10:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    getTeams: function getTeams(state) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var teams, _iterator, _step, user, teamRaw, validTeam, team;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                teams = [];
+                _iterator = _createForOfIteratorHelper(state.users);
+                _context5.prev = 2;
+
+                _iterator.s();
+
+              case 4:
+                if ((_step = _iterator.n()).done) {
+                  _context5.next = 18;
+                  break;
+                }
+
+                user = _step.value;
+                _context5.next = 8;
+                return fetch(url + "users/" + user.id + "/team", {
+                  headers: {
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 8:
+                teamRaw = _context5.sent;
+                _context5.next = 11;
+                return status(teamRaw);
+
+              case 11:
+                validTeam = _context5.sent;
+                _context5.next = 14;
+                return validTeam.json();
+
+              case 14:
+                team = _context5.sent;
+                teams.push('team');
+
+              case 16:
+                _context5.next = 4;
+                break;
+
+              case 18:
+                _context5.next = 23;
+                break;
+
+              case 20:
+                _context5.prev = 20;
+                _context5.t0 = _context5["catch"](2);
+
+                _iterator.e(_context5.t0);
+
+              case 23:
+                _context5.prev = 23;
+
+                _iterator.f();
+
+                return _context5.finish(23);
+
+              case 26:
+                state.commit("setTeams", teams.data);
+
+              case 27:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, null, [[2, 20, 23, 26]]);
       }))();
     }
   },
@@ -56264,6 +56846,15 @@ var status = function status(response) {
     },
     getPok: function getPok(state) {
       return state.pok;
+    },
+    getEvolPok: function getEvolPok(state) {
+      return state.evolPok;
+    },
+    getUsers: function getUsers(state) {
+      return state.users;
+    },
+    getTeams: function getTeams(state) {
+      return state.teams;
     }
   },
   plugins: [Object(vuex_persistedstate__WEBPACK_IMPORTED_MODULE_1__["default"])()]

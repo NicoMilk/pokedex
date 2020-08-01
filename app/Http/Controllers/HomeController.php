@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        //var_dump("index@homectrl");
+        return view('/home');
     }
 }

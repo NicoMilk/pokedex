@@ -10,10 +10,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-<<<<<<< HEAD
-        $this->middleware('auth');
-=======
->>>>>>> teamVue
+        //$this->middleware('auth');
         $users = User::select('users.id as user_id', 'users.name as username', 'users.avatar as profile_icon_id')
             ->get();
         $response = (object) ["users" => $users];

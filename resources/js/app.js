@@ -18,10 +18,17 @@ Vue.use(VueRouter);
 Vue.use(Vuex);
 
 
-
 const store = new Vuex.Store(
     storeData
 ) 
+
+let apiToken = "";
+window.onload = () => {
+
+    apiToken = window.Laravel ? window.Laravel.apiToken : '';
+    store.commit("setApiToken", apiToken)
+
+}
 
 const routes = [
     {
@@ -73,7 +80,8 @@ const app = new Vue({
 
     el: '#app',
     router,
-    store
+    store,
+    apiToken
 });
 
 

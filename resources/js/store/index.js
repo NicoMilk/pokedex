@@ -1,5 +1,6 @@
 
 import createPersistedState from "vuex-persistedstate";
+import { forEach } from "lodash";
 
 const url = "http://localhost:8000/api/";
 
@@ -8,15 +9,7 @@ headers.append("Content-Type","application/json");
 
 const status = response => (response.status >= 200 && response.status < 300) ? Promise.resolve(response) : Promise.reject((response.statusText));
 
-// const apitoken = laravel =>  {
-  
-//   console.log(laravel);
-//   return Promise.resolve(laravel.apiToken);
-// }
 
-// getApiToken(state) {
-//   return window.Laravel.apiToken;
-// }
 
 export default {
 
@@ -28,6 +21,7 @@ export default {
     teams: [],
     myProfile : [],  //Nico
     myTeam : [], //Nico
+    apiToken : ''
   },
   
   mutations: {
@@ -43,9 +37,11 @@ export default {
     setUsers(state, users){
       state.users=users;
      },
-     setTeams(state,teams){
-       state.teams=teams;
-     },
+    setUsersTeams(state, payload){
+      let user = payload.user;
+      user.team = payload.team.team;
+      state.users.push(user);
+    },
 
     setMyProfile(state, myProfile) {  //Nico
       state.myProfile = myProfile;
@@ -60,6 +56,9 @@ export default {
       });
       state.myTeam.push(teamPok);
     },
+    setApiToken(state, apiToken) {
+      state.apiToken = apiToken;
+    }
 
   },
 
@@ -114,7 +113,8 @@ export default {
     async getUsers(state) {
 
       const usersRaw = await fetch(url+"users", { headers: { 
-          "Content-Type": "application/json"
+          Accept: "application/json",
+          Authorization: "Bearer "+ state.getters.getApiToken
         }  
       });
      
@@ -122,25 +122,28 @@ export default {
 
       const users = await validUsers.json();
 
-      state.commit("setUsers", users.users );
+
+      state.commit("setUsers", [] );
+
+      users.users.forEach( user => {
+
+        state.dispatch("getTeams", user)
+        
+      });
       
     },
-      async getTeams(state){
+      async getTeams(state, user ){
 
-      let teams= [];
-
-      for (let user of state.users)
-      {
         const teamRaw = await fetch(url+"users/"+user.id+"/team" ,{ headers: { 
-          "Content-Type": "application/json"
+          Accept: "application/json",
+          Authorization: "Bearer "+ state.getters.getApiToken,
         }});
 
         const validTeam = await status(teamRaw);
-        const team = await validTeam.json();
-        teams.push('team');
-      }
 
-        state.commit("setTeams",teams.data);
+        const team = await validTeam.json();
+        
+        state.commit("setUsersTeams", { user , team: team });
     },
 
     async myProfile(state) {  // GET profile for HeaderUser
@@ -148,7 +151,7 @@ export default {
       {
         method: 'GET',  
         headers: {
-          Authorization: "Bearer ", // /!\ ACCESS TOKEN MISSING
+          Authorization: "Bearer "+ state.getters.getApiToken, 
           Accept: "application/json"}
       });
 
@@ -164,7 +167,7 @@ export default {
       {
         method: 'GET',  
         headers: {
-          Authorization: "Bearer "+state.getters.getApiToken, // /!\ ACCESS TOKEN MISSING
+          Authorization: "Bearer "+ state.getters.getApiToken, // /!\ ACCESS TOKEN MISSING
           Accept: "application/json"}
       });
 
@@ -196,9 +199,7 @@ export default {
     getUsers(state) {
       return state.users;
     },
-    getTeams(state){
-      return state.teams;
-    },
+
 
     getMyProfile(state) { // Nico
       return state.myProfile;
@@ -207,6 +208,9 @@ export default {
     getMyTeam(state) { // Nico
       return state.myTeam;
     },
+    getApiToken(state) {
+      return state.apiToken;
+    }
 
   },
 

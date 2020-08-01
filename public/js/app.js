@@ -57006,7 +57006,8 @@ var status = function status(response) {
                 _context2.next = 2;
                 return fetch(url + "pokemons/" + id, {
                   headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "access-token": ""
                   }
                 });
 
@@ -57043,7 +57044,7 @@ var status = function status(response) {
                 _context3.next = 2;
                 return fetch(url + "pokemons/" + id, {
                   headers: {
-                    "Content-Type": "application/json"
+                    "Authenti": "application/json"
                   }
                 });
 
@@ -57129,7 +57130,9 @@ var status = function status(response) {
                 _context5.next = 8;
                 return fetch(url + "users/" + user.id + "/team", {
                   headers: {
-                    "Content-Type": "application/json"
+                    Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5",
+                    // /!\ ACCESS TOKEN MISSING
+                    Accept: "application/json"
                   }
                 });
 
@@ -57307,8 +57310,8 @@ var status = function status(response) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/nico/Desktop/Projects/MVVM_Pokedex/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/nico/Desktop/Projects/MVVM_Pokedex/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/ln/MVVM_Pokedex/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/ln/MVVM_Pokedex/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

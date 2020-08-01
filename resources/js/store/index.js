@@ -83,7 +83,8 @@ export default {
     async getPok(state, id) {
 
       const pokRaw = await fetch(url+"pokemons/"+id, { headers: { 
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "access-token": "",
         }  
       });
 
@@ -100,7 +101,7 @@ export default {
     async getEvolPok(state, id) {
 
       const pokEvolRaw = await fetch(url+"pokemons/"+id, { headers: { 
-          "Content-Type": "application/json"
+          "Authenti": "application/json"
         }  
       });
 
@@ -131,8 +132,9 @@ export default {
 
       for (let user of state.users)
       {
-        const teamRaw = await fetch(url+"users/"+user.id+"/team" ,{ headers: { 
-          "Content-Type": "application/json"
+        const teamRaw = await fetch(url+"users/"+user.id+"/team" ,{ headers: 
+          { Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5", // /!\ ACCESS TOKEN MISSING
+            Accept: "application/json"
         }});
 
         const validTeam = await status(teamRaw);

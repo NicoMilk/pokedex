@@ -12,6 +12,10 @@ html, body {
     
 }
 
+.bg-head {
+    background-image: linear-gradient(to right, #e7f8e1 38%, #e6f8fd 62%);
+}
+
 .bg-blur {
     backdrop-filter: blur(10px);
     background-color: rgba(250, 250, 250, 0.8);
@@ -48,4 +52,36 @@ html, body {
 }
 .tab span.offset {
     margin-left: -8px;
+}
+
+.profilePix
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.userName
+{
+    font-size: 40px;
+    color: #4f4f4f;
+}
+
+.userId
+{
+    font-size: 16px;
+    color: #a4a4a4;
+}
+
+.circle
+{
+    height: 145px;
+    width: 150px;
+    background-color: #fff;
+    border-radius: 100%;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    position: relative;
+    display: inline-block;
+    margin-top: 83px;
 }

@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $users = User::select('users.id as user_id', 'users.name as username', 'users.avatar as profile-icon_id')
+        $users = User::select('users.id as user_id', 'users.name as username', 'users.avatar as profile_icon_id')
             ->get();
         $response = (object) ["users" => $users];
         return response()->json($response) ;
@@ -23,7 +23,7 @@ class UserController extends Controller
             $id = Auth::user()->id;
         }
 
-            $user = User::select('users.id as user_id', 'users.name as username', 'users.avatar as profile-icon_id')
+            $user = User::select('users.id as user_id', 'users.name as username', 'users.avatar as profile_icon_id')
                 ->where('users.id',$id)
                 ->get();
             $response = (object) ["user" => $user];

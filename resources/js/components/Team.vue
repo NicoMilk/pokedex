@@ -1,23 +1,41 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        TEAM
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="container p-0">
+        <HeaderUser/>
+        <PokList/>
+        <Footer/>
     </div>
 </template>
 
 <script>
+
+import HeaderUser from "./HeaderUser.vue"
+import Footer from './Footer.vue';
+import PokList from './PokList.vue';
+
     export default {
+
+        name: 'Team',
+
+        components: {
+            HeaderUser,
+            PokList, 
+            Footer
+        },
+
         mounted() {
-            console.log('Component mounted.')
+            this.$store.dispatch("myTeam");
+        },
+
+        computed : {
+            myProfileStore() {
+                return this.$store.getters.getMyProfile;
+            },
+            myTeamStore() {
+                return this.$store.getters.getMyTeam;
+            },
+
         }
+
+
     }
 </script>

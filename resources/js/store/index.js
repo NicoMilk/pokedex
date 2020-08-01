@@ -148,7 +148,8 @@ export default {
       {
         method: 'GET',  
         headers: {
-          Authorization: "Bearer ", // /!\ ACCESS TOKEN MISSING
+          // Authorization: "Bearer ", // /!\ ACCESS TOKEN MISSING
+          Authorization: "Bearer wpornjjNcP9uwwMSlj4XB1mAHtbu6ZRwwORhL7cifoSbSJfnE1xwodi9O6H6e3XUim42ipDA7MZyRf6obKluS1e8ncTydEGrKmiT",
           Accept: "application/json"}
       });
 
@@ -164,7 +165,8 @@ export default {
       {
         method: 'GET',  
         headers: {
-          Authorization: "Bearer "+state.getters.getApiToken, // /!\ ACCESS TOKEN MISSING
+          // Authorization: "Bearer "+state.getters.getApiToken, // /!\ ACCESS TOKEN MISSING
+          Authorization: "Bearer wpornjjNcP9uwwMSlj4XB1mAHtbu6ZRwwORhL7cifoSbSJfnE1xwodi9O6H6e3XUim42ipDA7MZyRf6obKluS1e8ncTydEGrKmiT",
           Accept: "application/json"}
       });
 

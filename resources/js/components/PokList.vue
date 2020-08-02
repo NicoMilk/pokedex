@@ -1,5 +1,4 @@
 <template>
-    <div >
         <div class="content bg-blur h-100 overflow-auto" >                 
             <div v-for="(pok, index) in myTeamStore" :key="index">
                 <router-link class="" :to="{ name: 'pokemon', params: { id: pok.id }}">
@@ -11,7 +10,6 @@
                 </router-link>
             </div>
         </div>
-    </div>
 </template>
 
 <script> 

@@ -3,20 +3,19 @@
        <div>
         <h3 class="text-center py-3 m-0 bg-blur">
             <a>Users</a>
-            <input class= "searchbar" type ="text" v-model = "query" placeholder="Search"> 
+            <input class= "searchbar" type ="text" v-model = "query" placeholder="Search"/> 
         </h3>
         </div>
         <div class="sep">&nbsp;</div> 
         <div class="content bg-blur h-100 overflow-auto" >                 
             <div v-for= "(user, index) in filteredusers" :key= "index">
-                <div class= "d-flex justify-content-between">
-                    <img src="/img/profile/bulbasaur.png" alt="" >
-                    <div>{{ user.username }}</div>
-                    <div>ID {{ user.user_id }}</div>
-                </div>
-               
+                <div class= "d-flex justify-content-between align-items-center p-3">
+                    <img v-bind:src ="getUserAvatar(user)" class= "pok-trade"/>
+                    <h2 class ="d-flex"> {{ user.username }}</h2>
+                    <div class ="pok-id align-items-end">ID {{ getUserId(user) }}</div>
+                </div> 
+             </div>
         </div>
-    </div>
     </div> 
 </template>
 
@@ -39,7 +38,7 @@ import Headertrade from './Headertrade.vue';
     mounted() {
         this.$store.dispatch("getUsers");
         
-        this.$store.dispatch("getTeams");
+        //this.$store.dispatch("getTeams");
     },
     computed : {
         usersStore () {
@@ -53,7 +52,39 @@ import Headertrade from './Headertrade.vue';
                 return users.username.match(this.query);
             });
         },
-        
+    },
+     methods: {
+        getUserId (user) {
+            return "#"+("00"+user.user_id).substr(-3);
+        },
+        getUserAvatar(user) {
+
+            return "/img/profile/"+user.profile_icon_id+".png";
+            //console.log(user.profile_icon_id);
+            /* switch(user.profile_icon_id){
+                case '1':
+                    return "/img/profile/bulbausaur.png";
+                    break;
+                 case '2':
+                    return "/img/profile/charmander.png";
+                    break;
+                 case '3':
+                    return "/img/profile/jigglypuff.png";
+                    break;
+                 case '4':
+                    return "/img/profile/pikachu.png";
+                    break;
+                 case '5':
+                    return "/img/profile/pokeball.png";
+                    break;
+                 case '6':
+                    return "/img/profile/squirtle.png";
+                    break;
+                default:
+                    return "/img/profile/pikachu.png"; */
+            }
+        }
     } 
-}
+
+
 </script>

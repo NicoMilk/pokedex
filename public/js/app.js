@@ -1932,6 +1932,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     pokStore: function pokStore() {
@@ -1939,6 +1959,18 @@ __webpack_require__.r(__webpack_exports__);
     },
     pokEvolStore: function pokEvolStore() {
       return this.$store.getters.getEvolPok;
+    },
+    pokEvolStore2: function pokEvolStore2() {
+      return this.$store.getters.getEvolPok2;
+    },
+    pokImage: function pokImage() {
+      return "/img/pokemon/" + this.pokStore.image;
+    },
+    evolPokImage: function evolPokImage() {
+      return "/img/pokemon/" + this.pokEvolStore.image;
+    },
+    evolPokImage2: function evolPokImage2() {
+      return "/img/pokemon/" + this.pokEvolStore2.image;
     }
   }
 });
@@ -1966,9 +1998,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HeaderUser',
   mounted: function mounted() {
@@ -1977,6 +2006,9 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     profileStore: function profileStore() {
       return this.$store.getters.getMyProfile;
+    },
+    profilePix: function profilePix() {
+      return "/img/profile/" + this.profileStore.profile_icon_id + ".png";
     }
   }
 });
@@ -1992,8 +2024,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
 //
 //
 //
@@ -2053,6 +2083,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2068,6 +2111,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.$store.dispatch("getPoks");
+  },
+  methods: {
+    pokImage: function pokImage(pok) {
+      return "/img/pokemon/" + pok.image;
+    },
+    typeImage: function typeImage(type) {
+      return "/img/types/small/types-" + type + ".png";
+    },
+    getPokId: function getPokId(id) {
+      return "#" + ("00" + id).substr(-3);
+    }
   },
   computed: {
     poksStore: function poksStore() {
@@ -2246,6 +2300,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2303,7 +2360,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2319,8 +2375,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.$store.dispatch("getUsers");
-    this.$store.dispatch("getTeams");
+    this.$store.dispatch("getUsers"); //this.$store.dispatch("getTeams");
   },
   computed: {
     usersStore: function usersStore() {
@@ -2335,6 +2390,36 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.getters.getUsers.filter(function (users) {
         return users.username.match(_this.query);
       });
+    }
+  },
+  methods: {
+    getUserId: function getUserId(user) {
+      return "#" + ("00" + user.user_id).substr(-3);
+    },
+    getUserAvatar: function getUserAvatar(user) {
+      return "/img/profile/" + user.profile_icon_id + ".png"; //console.log(user.profile_icon_id);
+
+      /* switch(user.profile_icon_id){
+          case '1':
+              return "/img/profile/bulbausaur.png";
+              break;
+           case '2':
+              return "/img/profile/charmander.png";
+              break;
+           case '3':
+              return "/img/profile/jigglypuff.png";
+              break;
+           case '4':
+              return "/img/profile/pikachu.png";
+              break;
+           case '5':
+              return "/img/profile/pokeball.png";
+              break;
+           case '6':
+              return "/img/profile/squirtle.png";
+              break;
+          default:
+              return "/img/profile/pikachu.png"; */
     }
   }
 });
@@ -38738,21 +38823,102 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm._v(
-      "       take it from store\n    " +
-        _vm._s(_vm.pokStore.evolutions.required_lvl) +
-        "\n    " +
-        _vm._s(_vm.pokStore.evolutions.evolution_id) +
-        "\n    " +
-        _vm._s(_vm.pokEvolStore.evolutions.required_lvl) +
-        "\n    " +
-        _vm._s(_vm.pokEvolStore.evolutions.evolution_id) +
-        "\n"
-    )
-  ])
+  return _c(
+    "div",
+    { staticClass: "d-flex flex-column justify-content-start my-3" },
+    [
+      _c(
+        "div",
+        { staticClass: "d-flex flex-row flex-nowrap justify-content-center" },
+        [
+          _c("div", [
+            _c("img", {
+              staticClass: "pok-evol",
+              attrs: { src: _vm.pokImage, alt: _vm.pokStore.name }
+            }),
+            _vm._v(" "),
+            _c("div", [_vm._v(_vm._s(_vm.pokStore.name))])
+          ]),
+          _vm._v(" "),
+          _vm.pokStore.evolutions.evolution_id
+            ? _c("div", { staticClass: "w-25 pt-3 " }, [
+                _c("div", [
+                  _vm._v(_vm._s(_vm.pokStore.evolutions.required_lvl))
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.pokStore.evolutions.evolution_id
+            ? _c("div", [
+                _c("img", {
+                  staticClass: "pok-evol",
+                  attrs: { src: _vm.evolPokImage, alt: _vm.pokEvolStore.name }
+                }),
+                _vm._v(" "),
+                _c("div", [_vm._v(_vm._s(_vm.pokEvolStore.name))])
+              ])
+            : _vm._e()
+        ]
+      ),
+      _vm._v(" "),
+      _vm.pokEvolStore.evolutions.evolution_id
+        ? _c("div", { staticClass: "px-5" }, [_c("hr")])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.pokEvolStore.evolutions.evolution_id
+        ? _c(
+            "div",
+            {
+              staticClass: "d-flex flex-row flex-nowrap justify-content-center"
+            },
+            [
+              _c("div", [
+                _c("img", {
+                  staticClass: "pok-evol",
+                  attrs: { src: _vm.evolPokImage, alt: _vm.pokEvolStore.name }
+                }),
+                _vm._v(" "),
+                _c("div", [_vm._v(_vm._s(_vm.pokStore.name))])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-25" }, [
+                _c("div", [
+                  _vm._v(_vm._s(_vm.pokEvolStore.evolutions.required_lvl))
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("img", {
+                  staticClass: "pok-evol",
+                  attrs: { src: _vm.evolPokImage2, alt: _vm.pokEvolStore2.name }
+                }),
+                _vm._v(" "),
+                _c("div", [_vm._v(_vm._s(_vm.pokEvolStore2.name))])
+              ])
+            ]
+          )
+        : _vm._e()
+    ]
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("i", { staticClass: "fa fa-long-arrow-right" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("i", { staticClass: "fa fa-long-arrow-right" })])
+  }
+]
 render._withStripped = true
 
 
@@ -38859,32 +39025,32 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      { staticClass: "container-fluid justify-content-center p-0 bg-head" },
-      [
-        _c("div", { staticClass: "circle" }, [
-          _c("img", {
-            staticClass: "profilePix",
-            attrs: { src: _vm.profilePix, alt: "", width: "100", height: "100" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row justify-content-end" }, [
-          _c("h3", { staticClass: "col-4 py-3 m-0 align-middle userName" }, [
+  return _c(
+    "div",
+    { staticClass: "container-fluid justify-content-center p-0 bg-head" },
+    [
+      _c("div", { staticClass: "circle" }, [
+        _c("img", {
+          staticClass: "profilePix",
+          attrs: { src: _vm.profilePix, alt: "" }
+        })
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "d-flex flex-row flex-nowrap justify-content-center" },
+        [
+          _c("h3", { staticClass: "py-3 m-0 align-middle userName mr-3" }, [
             _vm._v(_vm._s(this.$store.state.myProfile.username))
           ]),
           _vm._v(" "),
-          _c("h4", { staticClass: "col-4 py-3 m-0 align-middle userId" }, [
+          _c("h4", { staticClass: "py-3 m-0 align-middle userId" }, [
             _vm._v("ID #" + _vm._s(this.$store.state.myProfile.user_id))
           ])
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "sep" }, [_vm._v(" ")])
-  ])
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38961,41 +39127,39 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      { staticClass: "content bg-blur h-100 overflow-auto" },
-      _vm._l(_vm.myTeamStore, function(pok, index) {
-        return _c(
-          "div",
-          { key: index },
-          [
-            _c(
-              "router-link",
-              { attrs: { to: { name: "pokemon", params: { id: pok.id } } } },
-              [
-                _vm._v(
-                  "\n            " +
-                    _vm._s(pok.image) +
-                    "\n            " +
-                    _vm._s(pok.name) +
-                    "\n            " +
-                    _vm._s(pok.id) +
-                    "\n            " +
-                    _vm._s(pok.types.type1) +
-                    "\n            " +
-                    _vm._s(pok.types.type2) +
-                    "\n            "
-                )
-              ]
-            )
-          ],
-          1
-        )
-      }),
-      0
-    )
-  ])
+  return _c(
+    "div",
+    { staticClass: "content bg-blur h-100 overflow-auto" },
+    _vm._l(_vm.myTeamStore, function(pok, index) {
+      return _c(
+        "div",
+        { key: index },
+        [
+          _c(
+            "router-link",
+            { attrs: { to: { name: "pokemon", params: { id: pok.id } } } },
+            [
+              _vm._v(
+                "\n        " +
+                  _vm._s(pok.image) +
+                  "\n        " +
+                  _vm._s(pok.name) +
+                  "\n        " +
+                  _vm._s(pok.id) +
+                  "\n        " +
+                  _vm._s(pok.types.type1) +
+                  "\n        " +
+                  _vm._s(pok.types.type2) +
+                  "\n        "
+              )
+            ]
+          )
+        ],
+        1
+      )
+    }),
+    0
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -39021,41 +39185,39 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "d-flex flex-column  justify-content-between h-100" },
+    { staticClass: "d-flex flex-column justify-content-between h-100" },
     [
-      _c("div", [
-        _c("h3", { staticClass: "text-center py-3 m-0 bg-blur" }, [
-          _c("a", [_vm._v("Pokemons")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.query,
-                expression: "query"
-              }
-            ],
-            staticClass: "searchbar",
-            attrs: { type: "text", placeholder: "Search " },
-            domProps: { value: _vm.query },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.query = $event.target.value
-              }
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "bg-blur text-center" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.query,
+              expression: "query"
             }
-          })
-        ])
+          ],
+          staticClass: "searchbar px-2 mb-2",
+          attrs: { type: "text", placeholder: "Search" },
+          domProps: { value: _vm.query },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.query = $event.target.value
+            }
+          }
+        })
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "sep" }, [_vm._v(" ")]),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "content bg-blur h-100 overflow-auto" },
+        { staticClass: "content h-100 overflow-auto bg-light px-4" },
         _vm._l(_vm.filteredpoks, function(pok, index) {
           return _c(
             "div",
@@ -39064,7 +39226,51 @@ var render = function() {
               _c(
                 "router-link",
                 { attrs: { to: { name: "pokemon", params: { id: pok.id } } } },
-                [_vm._v("\n            " + _vm._s(pok.name) + "\n            ")]
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "d-flex flex-row flex-nowrap justify-content-between my-3"
+                    },
+                    [
+                      _c("img", {
+                        staticClass: "pok-sm",
+                        attrs: { src: _vm.pokImage(pok), alt: pok.name }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "flex-grow-1 text-left ml-3" }, [
+                        _c("h5", [_vm._v(_vm._s(pok.name))]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "pok-id" }, [
+                          _vm._v(_vm._s(_vm.getPokId(pok.id)))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", [
+                        _c("img", {
+                          staticClass: "pok-type",
+                          attrs: {
+                            src: _vm.typeImage(pok.types.type1),
+                            alt: pok.types.type1
+                          }
+                        }),
+                        _vm._v(" "),
+                        pok.types.type2
+                          ? _c("img", {
+                              staticClass: "pok-type",
+                              attrs: {
+                                src: _vm.typeImage(pok.types.type2),
+                                alt: pok.types.type2
+                              }
+                            })
+                          : _vm._e()
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("hr")
+                ]
               )
             ],
             1
@@ -39078,7 +39284,16 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "text-center py-3 m-0 bg-blur" }, [
+      _c("a", [_vm._v("Pokemons")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -39347,8 +39562,21 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container p-0" },
-    [_c("HeaderUser"), _vm._v(" "), _c("PokList"), _vm._v(" "), _c("Footer")],
+    { staticClass: "d-flex flex-column  justify-content-between h-100" },
+    [
+      _c("HeaderUser"),
+      _vm._v(" "),
+      _c("div", { staticClass: "sep" }, [_vm._v(" ")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "content bg-blur h-100 overflow-auto" },
+        [_c("PokList")],
+        1
+      ),
+      _vm._v(" "),
+      _c("Footer")
+    ],
     1
   )
 }
@@ -39413,15 +39641,27 @@ var render = function() {
         { staticClass: "content bg-blur h-100 overflow-auto" },
         _vm._l(_vm.filteredusers, function(user, index) {
           return _c("div", { key: index }, [
-            _c("div", { staticClass: "d-flex justify-content-between" }, [
-              _c("img", {
-                attrs: { src: "/img/profile/bulbasaur.png", alt: "" }
-              }),
-              _vm._v(" "),
-              _c("div", [_vm._v(_vm._s(user.username))]),
-              _vm._v(" "),
-              _c("div", [_vm._v("ID " + _vm._s(user.user_id))])
-            ])
+            _c(
+              "div",
+              {
+                staticClass:
+                  "d-flex justify-content-between align-items-center p-3"
+              },
+              [
+                _c("img", {
+                  staticClass: "pok-trade",
+                  attrs: { src: _vm.getUserAvatar(user) }
+                }),
+                _vm._v(" "),
+                _c("h2", { staticClass: "d-flex" }, [
+                  _vm._v(" " + _vm._s(user.username))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "pok-id align-items-end" }, [
+                  _vm._v("ID " + _vm._s(_vm.getUserId(user)))
+                ])
+              ]
+            )
           ])
         }),
         0
@@ -56897,6 +57137,7 @@ var status = function status(response) {
     poks: [],
     pok: {},
     evolPok: {},
+    evolPok2: {},
     users: [],
     teams: [],
     myProfile: [],
@@ -56914,6 +57155,9 @@ var status = function status(response) {
     },
     setEvolPok: function setEvolPok(state, evolPok) {
       state.evolPok = evolPok;
+    },
+    setEvolPok2: function setEvolPok2(state, evolPok2) {
+      state.evolPok2 = evolPok2;
     },
     setUsers: function setUsers(state, users) {
       state.users = users;
@@ -57044,8 +57288,9 @@ var status = function status(response) {
               case 8:
                 evolPok = _context3.sent;
                 state.commit("setEvolPok", evolPok.data[0].Pokemon);
+                if (evolPok.data[0].Pokemon.evolutions.evolution_id) state.dispatch("getEvolPok2", evolPok.data[0].Pokemon.evolutions.evolution_id);
 
-              case 10:
+              case 11:
               case "end":
                 return _context3.stop();
             }
@@ -57053,14 +57298,50 @@ var status = function status(response) {
         }, _callee3);
       }))();
     },
-    getUsers: function getUsers(state) {
+    getEvolPok2: function getEvolPok2(state, id) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var usersRaw, validUsers, users;
+        var pokEvolRaw2, validEvolPok2, evolPok2;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
+                return fetch(url + "pokemons/" + id, {
+                  headers: {
+                    "Content-Type": "application/json"
+                  }
+                });
+
+              case 2:
+                pokEvolRaw2 = _context4.sent;
+                _context4.next = 5;
+                return status(pokEvolRaw2);
+
+              case 5:
+                validEvolPok2 = _context4.sent;
+                _context4.next = 8;
+                return validEvolPok2.json();
+
+              case 8:
+                evolPok2 = _context4.sent;
+                state.commit("setEvolPok2", evolPok2.data[0].Pokemon);
+
+              case 10:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }))();
+    },
+    getUsers: function getUsers(state) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+        var usersRaw, validUsers, users;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
                 return fetch(url + "users", {
                   headers: {
                     Accept: "application/json",
@@ -57069,17 +57350,17 @@ var status = function status(response) {
                 });
 
               case 2:
-                usersRaw = _context4.sent;
-                _context4.next = 5;
+                usersRaw = _context5.sent;
+                _context5.next = 5;
                 return status(usersRaw);
 
               case 5:
-                validUsers = _context4.sent;
-                _context4.next = 8;
+                validUsers = _context5.sent;
+                _context5.next = 8;
                 return validUsers.json();
 
               case 8:
-                users = _context4.sent;
+                users = _context5.sent;
                 state.commit("setUsers", []);
                 users.users.forEach(function (user) {
                   state.dispatch("getTeams", user);
@@ -57087,20 +57368,20 @@ var status = function status(response) {
 
               case 11:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4);
+        }, _callee5);
       }))();
     },
     getTeams: function getTeams(state, user) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
         var teamRaw, validTeam, team;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context6.prev = _context6.next) {
               case 0:
-                _context5.next = 2;
+                _context6.next = 2;
                 return fetch(url + "users/" + user.user_id + "/team", {
                   headers: {
                     Accept: "application/json",
@@ -57109,59 +57390,21 @@ var status = function status(response) {
                 });
 
               case 2:
-                teamRaw = _context5.sent;
-                _context5.next = 5;
+                teamRaw = _context6.sent;
+                _context6.next = 5;
                 return status(teamRaw);
 
               case 5:
-                validTeam = _context5.sent;
-                _context5.next = 8;
+                validTeam = _context6.sent;
+                _context6.next = 8;
                 return validTeam.json();
 
               case 8:
-                team = _context5.sent;
+                team = _context6.sent;
                 state.commit("setUsersTeams", {
                   user: user,
                   team: team
                 });
-
-              case 10:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5);
-      }))();
-    },
-    myProfile: function myProfile(state) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
-        var myProfileRaw, validMyProfile, myProfile;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
-          while (1) {
-            switch (_context6.prev = _context6.next) {
-              case 0:
-                _context6.next = 2;
-                return fetch(url + "users/me", {
-                  method: 'GET',
-                  headers: {
-                    Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5",
-                    Accept: "application/json"
-                  }
-                });
-
-              case 2:
-                myProfileRaw = _context6.sent;
-                _context6.next = 5;
-                return status(myProfileRaw);
-
-              case 5:
-                validMyProfile = _context6.sent;
-                _context6.next = 8;
-                return validMyProfile.json();
-
-              case 8:
-                myProfile = _context6.sent;
-                state.commit('setMyProfile', myProfile.user[0]);
 
               case 10:
               case "end":
@@ -57171,14 +57414,52 @@ var status = function status(response) {
         }, _callee6);
       }))();
     },
-    myTeam: function myTeam(state) {
+    myProfile: function myProfile(state) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
-        var myTeamRaw, validMyTeam, myTeam;
+        var myProfileRaw, validMyProfile, myProfile;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
                 _context7.next = 2;
+                return fetch(url + "users/me", {
+                  method: 'GET',
+                  headers: {
+                    Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5",
+                    Accept: "application/json"
+                  }
+                });
+
+              case 2:
+                myProfileRaw = _context7.sent;
+                _context7.next = 5;
+                return status(myProfileRaw);
+
+              case 5:
+                validMyProfile = _context7.sent;
+                _context7.next = 8;
+                return validMyProfile.json();
+
+              case 8:
+                myProfile = _context7.sent;
+                state.commit('setMyProfile', myProfile.user[0]);
+
+              case 10:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
+      }))();
+    },
+    myTeam: function myTeam(state) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
+        var myTeamRaw, validMyTeam, myTeam;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                _context8.next = 2;
                 return fetch(url + "users/me/team", {
                   method: 'GET',
                   headers: {
@@ -57188,25 +57469,25 @@ var status = function status(response) {
                 });
 
               case 2:
-                myTeamRaw = _context7.sent;
-                _context7.next = 5;
+                myTeamRaw = _context8.sent;
+                _context8.next = 5;
                 return status(myTeamRaw);
 
               case 5:
-                validMyTeam = _context7.sent;
-                _context7.next = 8;
+                validMyTeam = _context8.sent;
+                _context8.next = 8;
                 return validMyTeam.json();
 
               case 8:
-                myTeam = _context7.sent;
+                myTeam = _context8.sent;
                 state.commit("setMyTeam", myTeam.team);
 
               case 10:
               case "end":
-                return _context7.stop();
+                return _context8.stop();
             }
           }
-        }, _callee7);
+        }, _callee8);
       }))();
     }
   },
@@ -57220,6 +57501,9 @@ var status = function status(response) {
     },
     getEvolPok: function getEvolPok(state) {
       return state.evolPok;
+    },
+    getEvolPok2: function getEvolPok2(state) {
+      return state.evolPok2;
     },
     getUsers: function getUsers(state) {
       return state.users;

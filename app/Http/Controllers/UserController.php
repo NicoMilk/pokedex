@@ -23,11 +23,12 @@ class UserController extends Controller
             $id = Auth::user()->id;
         }
 
-            $user = User::select('users.id as user_id', 'users.name as username', 'users.avatar as profile_icon_id')
-                ->where('users.id',$id)
-                ->get();
-            $response = (object) ["user" => $user];
-            return response()->json($response);
+        $user = User::select('users.id as user_id', 'users.name as username', 'users.avatar as profile_icon_id')
+            ->where('users.id',$id)
+            ->get();
+            
+        $response = (object) ["user" => $user];
+        return response()->json($response);
     }
 
     public function update(Request $request)

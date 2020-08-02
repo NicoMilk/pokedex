@@ -29,9 +29,16 @@
                         
                         <div class="form-group row">
                             <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Avatar') }}</label>
-
                             <div class="col-md-6">
-                                <input id="avatar" type="text" class="form-control @error('avatar') is-invalid @enderror" name="avatar" value="{{ $user->avatar }}" required >
+                                <!--<input id="avatar" type="text" class="form-control @error('avatar') is-invalid @enderror" name="avatar" value="{{ $user->avatar }}" required >-->
+                                <select class="form-control @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}" required>
+                                <option value ="bulbasaur">{{__('bulbasaur')  }}</option>
+                                <option value="charmander">{{__('charmander')  }}</option>
+                                <option value="jigglypuff" >{{__('jigglypuff')  }}</option>
+                                <option value="pikachu">{{__('pikachu')  }}</option>
+                                <option value="pokeball" >{{__('pokeball')  }}</option>
+                                <option value="squirtle">{{__('squirtle')  }}</option>
+                            </select>
 
                                 @error('avatar')
                                     <span class="invalid-feedback" role="alert">

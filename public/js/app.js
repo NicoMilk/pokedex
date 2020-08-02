@@ -56253,7 +56253,6 @@ var apiToken = "";
 
 window.onload = function () {
   apiToken = window.Laravel ? window.Laravel.apiToken : '';
-  console.log("apiToken : ", apiToken);
   store.commit("setApiToken", apiToken);
 };
 

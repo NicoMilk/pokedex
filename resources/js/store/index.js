@@ -220,6 +220,8 @@ export default {
 
       const trade = await validTradeRaw.json();
 
+      state.dispatch("myTeam");
+
     }
   },
 

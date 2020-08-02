@@ -33,9 +33,9 @@ import PokList from './PokList.vue';
             myProfileStore() {
                 return this.$store.getters.getMyProfile;
             },
-            myTeamStore() {
-                return this.$store.getters.getMyTeam;
-            },
+            // myTeamStore() {
+            //     return this.$store.getters.getMyTeam;
+            // },
 
         }
 

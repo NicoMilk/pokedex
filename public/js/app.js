@@ -1998,6 +1998,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HeaderUser',
   mounted: function mounted() {
@@ -2038,12 +2040,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PokList',
   mounted: function mounted() {},
+  methods: {
+    pokImage: function pokImage(pok) {
+      return "/img/pokemon/" + pok.image;
+    },
+    typeImage: function typeImage(type) {
+      return "/img/types/small/types-" + type + ".png";
+    },
+    getPokId: function getPokId(id) {
+      return "#" + ("00" + id).substr(-3);
+    }
+  },
   computed: {
-    myTeamStore: function myTeamStore() {
-      return this.$store.getters.getMyTeam;
+    myProfileStore: function myProfileStore() {
+      return this.$store.getters.getMyUserProfile;
+    },
+    pokListPix: function pokListPix() {
+      return "/img/profile/" + this.myProfileStore.team[0].image; //+".png"
     }
   }
 });
@@ -2149,10 +2174,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Footer_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.vue */ "./resources/js/components/Footer.vue");
-//
-//
-//
-//
 //
 //
 //
@@ -2319,10 +2340,10 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     myProfileStore: function myProfileStore() {
       return this.$store.getters.getMyProfile;
-    },
-    myTeamStore: function myTeamStore() {
-      return this.$store.getters.getMyTeam;
-    }
+    } // myTeamStore() {
+    //     return this.$store.getters.getMyTeam;
+    // },
+
   }
 });
 
@@ -38852,7 +38873,7 @@ var render = function() {
                   attrs: { src: _vm.evolPokImage, alt: _vm.pokEvolStore.name }
                 }),
                 _vm._v(" "),
-                _c("div", [_vm._v(_vm._s(_vm.pokStore.name))])
+                _c("div", [_vm._v(_vm._s(_vm.pokEvolStore.name))])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "w-25" }, [
@@ -39001,11 +39022,13 @@ var render = function() {
     "div",
     { staticClass: "container-fluid justify-content-center p-0 bg-head" },
     [
-      _c("div", { staticClass: "circle" }, [
-        _c("img", {
-          staticClass: "profilePix",
-          attrs: { src: _vm.profilePix, alt: "" }
-        })
+      _c("a", { attrs: { href: "/home" } }, [
+        _c("div", { staticClass: "circle" }, [
+          _c("img", {
+            staticClass: "profilePix",
+            attrs: { src: _vm.profilePix, alt: "" }
+          })
+        ])
       ]),
       _vm._v(" "),
       _c(
@@ -39013,11 +39036,11 @@ var render = function() {
         { staticClass: "d-flex flex-row flex-nowrap justify-content-center" },
         [
           _c("h3", { staticClass: "py-3 m-0 align-middle userName mr-3" }, [
-            _vm._v(_vm._s(this.$store.state.myProfile.username))
+            _vm._v(_vm._s(_vm.profileStore.username))
           ]),
           _vm._v(" "),
           _c("h4", { staticClass: "py-3 m-0 align-middle userId" }, [
-            _vm._v("ID #" + _vm._s(this.$store.state.myProfile.user_id))
+            _vm._v("ID #" + _vm._s(_vm.profileStore.user_id))
           ])
         ]
       )
@@ -39101,8 +39124,8 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "content bg-blur h-100 overflow-auto" },
-    _vm._l(_vm.myTeamStore, function(pok, index) {
+    { staticClass: "content h-100 overflow-auto bg-light px-4" },
+    _vm._l(_vm.myProfileStore.team, function(pok, index) {
       return _c(
         "div",
         { key: index },
@@ -39111,19 +39134,49 @@ var render = function() {
             "router-link",
             { attrs: { to: { name: "pokemon", params: { id: pok.id } } } },
             [
-              _vm._v(
-                "\n        " +
-                  _vm._s(pok.image) +
-                  "\n        " +
-                  _vm._s(pok.name) +
-                  "\n        " +
-                  _vm._s(pok.id) +
-                  "\n        " +
-                  _vm._s(pok.types.type1) +
-                  "\n        " +
-                  _vm._s(pok.types.type2) +
-                  "\n        "
-              )
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "d-flex flex-row flex-nowrap justify-content-between my-3"
+                },
+                [
+                  _c("img", {
+                    staticClass: "pok-sm",
+                    attrs: { src: _vm.pokImage(pok), alt: pok.name }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flex-grow-1 text-left ml-3" }, [
+                    _c("h5", [_vm._v(_vm._s(pok.name))]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "pok-id" }, [
+                      _vm._v(_vm._s(_vm.getPokId(pok.id)))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("img", {
+                      staticClass: "pok-type",
+                      attrs: {
+                        src: _vm.typeImage(pok.types.type1),
+                        alt: pok.types.type1
+                      }
+                    }),
+                    _vm._v(" "),
+                    pok.types.type2
+                      ? _c("img", {
+                          staticClass: "pok-type",
+                          attrs: {
+                            src: _vm.typeImage(pok.types.type2),
+                            alt: pok.types.type2
+                          }
+                        })
+                      : _vm._e()
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("hr")
             ]
           )
         ],
@@ -39203,7 +39256,7 @@ var render = function() {
                     "div",
                     {
                       staticClass:
-                        "d-flex flex-row flex-nowrap justify-content-between my-3"
+                        "d-flex flex-row flex-nowrap justify-content-between mt-3 mb-0"
                     },
                     [
                       _c("img", {
@@ -39219,7 +39272,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", [
+                      _c("div", { staticClass: "pt-2" }, [
                         _c("img", {
                           staticClass: "pok-type",
                           attrs: {
@@ -39298,91 +39351,89 @@ var render = function() {
       _c("div", { staticClass: "h-100 overflow-auto" }, [
         _c("div", { staticClass: "text-left m-4 text-white" }, [_vm._v("V")]),
         _vm._v(" "),
-        _c("div", { staticClass: "d-inline-block" }, [
-          _c(
-            "div",
-            { staticClass: "pok-content pb-2" },
-            [
-              _c("img", {
-                staticClass: "pok-top",
-                attrs: { src: _vm.pokImage, alt: _vm.pokStore.name }
+        _c(
+          "div",
+          { staticClass: "pok-content pb-2 w-100" },
+          [
+            _c("img", {
+              staticClass: "pok-top",
+              attrs: { src: _vm.pokImage, alt: _vm.pokStore.name }
+            }),
+            _vm._v(" "),
+            _c("h2", { staticClass: "pt-3 text-center" }, [
+              _vm._v(_vm._s(_vm.pokStore.name))
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "pok-types my-2" },
+              _vm._l(_vm.pokStore.types, function(type) {
+                return _c("div", { key: type, staticClass: "d-inline" }, [
+                  _c("img", {
+                    attrs: { src: _vm.getTypeImage(type), alt: type }
+                  })
+                ])
               }),
-              _vm._v(" "),
-              _c("h2", { staticClass: "pt-3 text-center" }, [
-                _vm._v(_vm._s(_vm.pokStore.name))
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "pok-types my-2" },
-                _vm._l(_vm.pokStore.types, function(type) {
-                  return _c("div", { key: type, staticClass: "d-inline" }, [
-                    _c("img", {
-                      attrs: { src: _vm.getTypeImage(type), alt: type }
-                    })
-                  ])
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "mx-2 p-2" }, [
-                _vm._v(_vm._s(_vm.pokStore.description))
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "d-inline pok-chars" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      class: _vm.pokStore.types.type1,
-                      attrs: { to: { name: "pokemon" } },
-                      on: {
-                        click: function($event) {
-                          return _vm.setActive(0)
-                        }
+              0
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "mx-2 p-2" }, [
+              _vm._v(_vm._s(_vm.pokStore.description))
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "d-inline pok-chars" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    class: _vm.pokStore.types.type1,
+                    attrs: { to: { name: "pokemon" } },
+                    on: {
+                      click: function($event) {
+                        return _vm.setActive(0)
                       }
-                    },
-                    [_vm._v("Stats")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      class: _vm.pokStore.types.type1,
-                      attrs: { to: { name: "weak" } },
-                      on: {
-                        click: function($event) {
-                          return _vm.setActive(1)
-                        }
+                    }
+                  },
+                  [_vm._v("Stats")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    class: _vm.pokStore.types.type1,
+                    attrs: { to: { name: "weak" } },
+                    on: {
+                      click: function($event) {
+                        return _vm.setActive(1)
                       }
-                    },
-                    [_vm._v("Weaknesses")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      class: _vm.pokStore.types.type1,
-                      attrs: { to: { name: "evol" } },
-                      on: {
-                        click: function($event) {
-                          return _vm.setActive(2)
-                        }
+                    }
+                  },
+                  [_vm._v("Weaknesses")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    class: _vm.pokStore.types.type1,
+                    attrs: { to: { name: "evol" } },
+                    on: {
+                      click: function($event) {
+                        return _vm.setActive(2)
                       }
-                    },
-                    [_vm._v("Evolutions")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("router-view")
-            ],
-            1
-          )
-        ])
+                    }
+                  },
+                  [_vm._v("Evolutions")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("router-view")
+          ],
+          1
+        )
       ]),
       _vm._v(" "),
       _c("pok-footer")
@@ -56200,6 +56251,7 @@ var apiToken = "";
 
 window.onload = function () {
   apiToken = window.Laravel ? window.Laravel.apiToken : '';
+  console.log("apiToken : ", apiToken);
   store.commit("setApiToken", apiToken);
 };
 
@@ -57113,6 +57165,8 @@ var status = function status(response) {
     teams: [],
     myProfile: [],
     //Nico
+    myUserProfile: {},
+    //Nico
     myTeam: [],
     //Nico
     apiToken: ''
@@ -57144,14 +57198,15 @@ var status = function status(response) {
     },
     setMyTeam: function setMyTeam(state, myTeamPoks) {
       //Nico
-      state.myTeam = [];
-      var teamPok = {};
+      var team = [];
       myTeamPoks.forEach(function (element) {
-        teamPok = state.poks.find(function (pok) {
+        var teamPok = state.poks.find(function (pok) {
           return pok.id == element.pokemon_id;
         });
+        team.push(teamPok);
       });
-      state.myTeam.push(teamPok);
+      state.myUserProfile = state.myProfile;
+      state.myUserProfile.team = team;
     },
     setApiToken: function setApiToken(state, apiToken) {
       state.apiToken = apiToken;
@@ -57435,7 +57490,6 @@ var status = function status(response) {
                   method: 'GET',
                   headers: {
                     Authorization: "Bearer " + state.getters.getApiToken,
-                    // /!\ ACCESS TOKEN MISSING
                     Accept: "application/json"
                   }
                 });
@@ -57483,6 +57537,10 @@ var status = function status(response) {
     getMyProfile: function getMyProfile(state) {
       // Nico
       return state.myProfile;
+    },
+    getMyUserProfile: function getMyUserProfile(state) {
+      // Nico
+      return state.myUserProfile;
     },
     getMyTeam: function getMyTeam(state) {
       // Nico

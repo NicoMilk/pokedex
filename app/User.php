@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'api_token', 'avatar'
+        'name', 'email', 'password', 'api_token', 'avatar', 'last_gift_at'
     ];
 
     /**
@@ -37,6 +37,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_gist_at' => 'datetime'
     ];
 
 

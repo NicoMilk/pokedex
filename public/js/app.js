@@ -2535,14 +2535,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      selectedPok: ''
+      selectedPok: null
     };
   },
   methods: {
+    selectPok: function selectPok(pok) {
+      this.selectedPok = pok;
+    },
     sendToTrader: function sendToTrader() {
-      this.$store.dispatch("sendToTrader", {
-        user_id: this.selectedPok.id,
-        trader_id: this.route.params.idt
+      console.log(this.selectedPok);
+      if (this.selectedPok) this.$store.dispatch("sendToTrader", {
+        pok_id: this.selectedPok.id,
+        trader_id: this.$route.params.idt
       });
     },
     pokImage: function pokImage(pok) {
@@ -2567,7 +2571,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     myProfileStore: function myProfileStore() {
-      console.log(this.$store.getters.getMyUserProfile);
       return this.$store.getters.getMyUserProfile;
     }
   }
@@ -39936,7 +39939,7 @@ var render = function() {
                   attrs: { src: _vm.pokImage(pok), alt: pok.name },
                   on: {
                     click: function($event) {
-                      _vm.selectedPok = pok
+                      return _vm.selectPok(pok)
                     }
                   }
                 })
@@ -39955,16 +39958,18 @@ var render = function() {
               [
                 _vm._m(0),
                 _vm._v(" "),
-                _c("div", [
-                  _c("img", {
-                    staticClass: "sending-icon",
-                    attrs: { src: "/img/sending-icon.png", alt: "send" },
-                    on: { click: _vm.sendToTrader }
-                  }),
-                  _c("i", { staticClass: "ml-2 fa fa-long-arrow-down" })
-                ]),
+                _vm._m(1),
                 _vm._v(" "),
-                _vm._m(1)
+                _c("div", { staticClass: "pt-1" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary rounded-pill",
+                      on: { click: _vm.sendToTrader }
+                    },
+                    [_c("strong", [_vm._v("SEND")])]
+                  )
+                ])
               ]
             ),
             _vm._v(" "),
@@ -40010,10 +40015,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "pt-1" }, [
-      _c("button", { staticClass: "btn btn-primary rounded-pill" }, [
-        _c("strong", [_vm._v("SEND")])
-      ])
+    return _c("div", [
+      _c("img", {
+        staticClass: "sending-icon",
+        attrs: { src: "/img/sending-icon.png", alt: "send" }
+      }),
+      _c("i", { staticClass: "ml-2 fa fa-long-arrow-down" })
     ])
   }
 ]
@@ -57606,7 +57613,7 @@ var status = function status(response) {
                 _context2.next = 2;
                 return fetch(url + "pokemons/" + id, {
                   headers: {
-                    "Content-Type": "application/json",
+                    Accept: "application/json",
                     "access-token": ""
                   }
                 });
@@ -57644,7 +57651,7 @@ var status = function status(response) {
                 _context3.next = 2;
                 return fetch(url + "pokemons/" + id, {
                   headers: {
-                    "Authenti": "application/json"
+                    Accept: "application/json"
                   }
                 });
 
@@ -57861,6 +57868,47 @@ var status = function status(response) {
             }
           }
         }, _callee8);
+      }))();
+    },
+    sendToTrader: function sendToTrader(state, payload) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9() {
+        var myTradeRaw, validTradeRaw, trade;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                _context9.next = 2;
+                return fetch(url + "users/" + payload.trader_id + "/team", {
+                  method: 'POST',
+                  body: JSON.stringify({
+                    pokemon_id: payload.pok_id.toString()
+                  }),
+                  headers: {
+                    Authorization: "Bearer " + state.getters.getApiToken,
+                    Accept: "application/json",
+                    "Content-type": "application/json"
+                  }
+                });
+
+              case 2:
+                myTradeRaw = _context9.sent;
+                _context9.next = 5;
+                return status(myTradeRaw);
+
+              case 5:
+                validTradeRaw = _context9.sent;
+                _context9.next = 8;
+                return validTradeRaw.json();
+
+              case 8:
+                trade = _context9.sent;
+
+              case 9:
+              case "end":
+                return _context9.stop();
+            }
+          }
+        }, _callee9);
       }))();
     }
   },

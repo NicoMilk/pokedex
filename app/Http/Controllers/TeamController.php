@@ -27,6 +27,8 @@ class TeamController extends Controller
 
     public function trade(Request $request, $rec_id)
     {
+
+        //dd($request);
         $id_pok = $request->pokemon_id;
         $count = Team::where('user_id', $rec_id)->count();
 

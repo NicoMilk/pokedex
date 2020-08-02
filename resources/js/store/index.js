@@ -89,7 +89,7 @@ export default {
     async getPok(state, id) {
 
       const pokRaw = await fetch(url+"pokemons/"+id, { headers: { 
-          "Content-Type": "application/json",
+          Accept : "application/json",
           "access-token": "",
         }  
       });
@@ -107,7 +107,7 @@ export default {
     async getEvolPok(state, id) {
 
       const pokEvolRaw = await fetch(url+"pokemons/"+id, { headers: { 
-          "Authenti": "application/json"
+          Accept: "application/json"
         }  
       });
 
@@ -203,20 +203,23 @@ export default {
       state.commit("setMyTeam", myTeam.team);
     },
 
-    async myTeam(state , payload ) {  // GET current user's team
-      const myTeamRaw = await fetch(url+"users/"+payload.trader_id+"/team", 
+    async sendToTrader(state , payload ) {  // GET current user's team
+      
+      const myTradeRaw = await fetch(url+"users/"+payload.trader_id+"/team", 
       {
-        method: 'POST',  
+        method: 'POST', 
+        body: JSON.stringify({ pokemon_id : (payload.pok_id).toString() }), 
         headers: {
           Authorization: "Bearer "+ state.getters.getApiToken, 
-          Accept: "application/json"}
+          Accept: "application/json",
+          "Content-type" : "application/json"
+        }
       });
 
-      const validMyTeam = await status(myTeamRaw);
+      const validTradeRaw = await status(myTradeRaw);
 
-      const myTeam = await validMyTeam.json();
+      const trade = await validTradeRaw.json();
 
-      state.commit("setMyTeam", myTeam.team);
     }
   },
 

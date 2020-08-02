@@ -6,15 +6,15 @@
             
             <div class="d-flex flex-row flex-nowrap py-2 px-1  bg-white border-bottom">
                 <div v-for="(pok,idx) in myProfileStore.team" :key="idx" >
-                     <img v-bind:src="pokImage(pok)" :alt="pok.name" class="pok-sm m-1" @click="selectedPok = pok"/>
+                     <img v-bind:src="pokImage(pok)" :alt="pok.name" class="pok-sm m-1" @click="selectPok(pok)"/>
                 </div>
             </div>
             <div>
 
                 <div class="d-flex justify-content-around bg-white py-3 border-bottom">
                     <div class="pt-1"><button class="btn btn-danger rounded-pill"><strong>CANCEL</strong></button></div>
-                    <div><img src="/img/sending-icon.png" alt="send" class="sending-icon" @click="sendToTrader"><i class="ml-2 fa fa-long-arrow-down"></i></div>
-                    <div class="pt-1"><button class="btn btn-primary rounded-pill"><strong>SEND</strong></button></div>
+                    <div><img src="/img/sending-icon.png" alt="send" class="sending-icon" ><i class="ml-2 fa fa-long-arrow-down"></i></div>
+                    <div class="pt-1"><button class="btn btn-primary rounded-pill" @click="sendToTrader"><strong>SEND</strong></button></div>
                 </div>
                 <div class="circle">
                     <img v-bind:src="traderImage()" alt="trader" class="profilePix"/>
@@ -53,11 +53,16 @@ import PokList from './PokList.vue';
             this.$store.dispatch("myTeam");
         },
         data : () =>({
-            selectedPok : ''
+            selectedPok : null
         }),
         methods : {
+            selectPok(pok) {
+                this.selectedPok = pok;
+            },
             sendToTrader () {
-                this.$store.dispatch("sendToTrader", { user_id : this.selectedPok.id, trader_id: this.route.params.idt}  )
+                console.log(this.selectedPok)
+
+                if (this.selectedPok) this.$store.dispatch("sendToTrader", { pok_id : this.selectedPok.id, trader_id: this.$route.params.idt}  )
             },
 
             pokImage (pok) {
@@ -76,7 +81,6 @@ import PokList from './PokList.vue';
         },        
         computed : {
             myProfileStore() {
-                console.log(this.$store.getters.getMyUserProfile);
                 return this.$store.getters.getMyUserProfile;
             }
          }

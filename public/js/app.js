@@ -2040,12 +2040,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PokList',
   mounted: function mounted() {},
+  methods: {
+    pokImage: function pokImage(pok) {
+      return "/img/pokemon/" + pok.image;
+    },
+    typeImage: function typeImage(type) {
+      return "/img/types/small/types-" + type + ".png";
+    },
+    getPokId: function getPokId(id) {
+      return "#" + ("00" + id).substr(-3);
+    }
+  },
   computed: {
     myProfileStore: function myProfileStore() {
-      console.log(this.$store.getters.getMyUserProfile);
       return this.$store.getters.getMyUserProfile;
     },
     pokListPix: function pokListPix() {
@@ -39019,11 +39036,11 @@ var render = function() {
         { staticClass: "d-flex flex-row flex-nowrap justify-content-center" },
         [
           _c("h3", { staticClass: "py-3 m-0 align-middle userName mr-3" }, [
-            _vm._v(_vm._s(this.$store.state.myProfile.username))
+            _vm._v(_vm._s(_vm.profileStore.username))
           ]),
           _vm._v(" "),
           _c("h4", { staticClass: "py-3 m-0 align-middle userId" }, [
-            _vm._v("ID #" + _vm._s(this.$store.state.myProfile.user_id))
+            _vm._v("ID #" + _vm._s(_vm.profileStore.user_id))
           ])
         ]
       )
@@ -39101,8 +39118,76 @@ render._withStripped = true
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "content h-100 overflow-auto bg-light px-4" },
+    _vm._l(_vm.myProfileStore.team, function(pok, index) {
+      return _c(
+        "div",
+        { key: index },
+        [
+          _c(
+            "router-link",
+            { attrs: { to: { name: "pokemon", params: { id: pok.id } } } },
+            [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "d-flex flex-row flex-nowrap justify-content-between my-3"
+                },
+                [
+                  _c("img", {
+                    staticClass: "pok-sm",
+                    attrs: { src: _vm.pokImage(pok), alt: pok.name }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "flex-grow-1 text-left ml-3" }, [
+                    _c("h5", [_vm._v(_vm._s(pok.name))]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "pok-id" }, [
+                      _vm._v(_vm._s(_vm.getPokId(pok.id)))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("img", {
+                      staticClass: "pok-type",
+                      attrs: {
+                        src: _vm.typeImage(pok.types.type1),
+                        alt: pok.types.type1
+                      }
+                    }),
+                    _vm._v(" "),
+                    pok.types.type2
+                      ? _c("img", {
+                          staticClass: "pok-type",
+                          attrs: {
+                            src: _vm.typeImage(pok.types.type2),
+                            alt: pok.types.type2
+                          }
+                        })
+                      : _vm._e()
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("hr")
+            ]
+          )
+        ],
+        1
+      )
+    }),
+    0
+  )
+}
 var staticRenderFns = []
+render._withStripped = true
 
 
 
@@ -56168,6 +56253,7 @@ var apiToken = "";
 
 window.onload = function () {
   apiToken = window.Laravel ? window.Laravel.apiToken : '';
+  console.log("apiToken : ", apiToken);
   store.commit("setApiToken", apiToken);
 };
 

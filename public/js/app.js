@@ -57287,7 +57287,7 @@ var status = function status(response) {
                 _context2.next = 2;
                 return fetch(url + "pokemons/" + id, {
                   headers: {
-                    "Content-Type": "application/json",
+                    Accept: "application/json",
                     "access-token": ""
                   }
                 });
@@ -57325,7 +57325,7 @@ var status = function status(response) {
                 _context3.next = 2;
                 return fetch(url + "pokemons/" + id, {
                   headers: {
-                    "Authenti": "application/json"
+                    Accept: "application/json"
                   }
                 });
 

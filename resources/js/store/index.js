@@ -89,8 +89,8 @@ export default {
     async getPok(state, id) {
 
       const pokRaw = await fetch(url+"pokemons/"+id, { headers: { 
-          "Content-Type": "application/json",
-          "access-token": "",
+        Accept: "application/json",
+        "access-token": "",
         }  
       });
 
@@ -107,8 +107,8 @@ export default {
     async getEvolPok(state, id) {
 
       const pokEvolRaw = await fetch(url+"pokemons/"+id, { headers: { 
-          "Authenti": "application/json"
-        }  
+        Accept: "application/json",
+      }  
       });
 
       const validEvolPok = await status(pokEvolRaw)

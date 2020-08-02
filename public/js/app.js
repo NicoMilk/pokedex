@@ -2011,12 +2011,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PokList',
   mounted: function mounted() {},
   computed: {
-    myTeamStore: function myTeamStore() {
-      return this.$store.getters.getMyTeam;
+    myProfileStore: function myProfileStore() {
+      console.log(this.$store.getters.getMyUserProfile);
+      return this.$store.getters.getMyUserProfile;
+    },
+    pokListPix: function pokListPix() {
+      return "/img/profile/" + this.myProfileStore.team[0].image; //+".png"
     }
   }
 });
@@ -2265,10 +2270,10 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     myProfileStore: function myProfileStore() {
       return this.$store.getters.getMyProfile;
-    },
-    myTeamStore: function myTeamStore() {
-      return this.$store.getters.getMyTeam;
-    }
+    } // myTeamStore() {
+    //     return this.$store.getters.getMyTeam;
+    // },
+
   }
 });
 
@@ -38964,41 +38969,57 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "div",
-      { staticClass: "content bg-blur h-100 overflow-auto" },
-      _vm._l(_vm.myTeamStore, function(pok, index) {
-        return _c(
-          "div",
-          { key: index },
-          [
-            _c(
-              "router-link",
-              { attrs: { to: { name: "pokemon", params: { id: pok.id } } } },
-              [
-                _vm._v(
-                  "\n            " +
-                    _vm._s(pok.image) +
-                    "\n            " +
-                    _vm._s(pok.name) +
-                    "\n            " +
-                    _vm._s(pok.id) +
-                    "\n            " +
-                    _vm._s(pok.types.type1) +
-                    "\n            " +
-                    _vm._s(pok.types.type2) +
-                    "\n            "
-                )
-              ]
-            )
-          ],
-          1
-        )
-      }),
-      0
-    )
-  ])
+  return _c(
+    "div",
+    { staticClass: "content bg-blur" },
+    _vm._l(_vm.myProfileStore.team, function(pok, index) {
+      return _c(
+        "div",
+        { key: index },
+        [
+          _c(
+            "router-link",
+            { attrs: { to: { name: "pokemon", params: { id: pok.id } } } },
+            [
+              _c(
+                "div",
+                { staticClass: "container-fluid justify-content-between" },
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(pok.image) +
+                      "\n                "
+                  ),
+                  _c("img", {
+                    staticClass: "profilePix",
+                    attrs: {
+                      src: _vm.pokListPix,
+                      alt: "",
+                      width: "50",
+                      height: "50"
+                    }
+                  }),
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(pok.name) +
+                      "\n                " +
+                      _vm._s(pok.id) +
+                      "\n                " +
+                      _vm._s(pok.types.type1) +
+                      "\n                " +
+                      _vm._s(pok.types.type2) +
+                      "\n            "
+                  )
+                ]
+              )
+            ]
+          )
+        ],
+        1
+      )
+    }),
+    0
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -39350,7 +39371,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container p-0" },
+    { staticClass: "h-100 p-0" },
     [_c("HeaderUser"), _vm._v(" "), _c("PokList"), _vm._v(" "), _c("Footer")],
     1
   )
@@ -56915,6 +56936,8 @@ var status = function status(response) {
     teams: [],
     myProfile: [],
     //Nico
+    myUserProfile: {},
+    //Nico
     myTeam: [],
     //Nico
     apiToken: ''
@@ -56943,14 +56966,15 @@ var status = function status(response) {
     },
     setMyTeam: function setMyTeam(state, myTeamPoks) {
       //Nico
-      state.myTeam = [];
-      var teamPok = {};
+      var team = [];
       myTeamPoks.forEach(function (element) {
-        teamPok = state.poks.find(function (pok) {
+        var teamPok = state.poks.find(function (pok) {
           return pok.id == element.pokemon_id;
         });
+        team.push(teamPok);
       });
-      state.myTeam.push(teamPok);
+      state.myUserProfile = state.myProfile;
+      state.myUserProfile.team = team;
     },
     setApiToken: function setApiToken(state, apiToken) {
       state.apiToken = apiToken;
@@ -57114,7 +57138,7 @@ var status = function status(response) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return fetch(url + "users/" + user.id + "/team", {
+                return fetch(url + "users/" + user.user_id + "/team", {
                   headers: {
                     Accept: "application/json",
                     Authorization: "Bearer " + state.getters.getApiToken
@@ -57196,7 +57220,6 @@ var status = function status(response) {
                   method: 'GET',
                   headers: {
                     Authorization: "Bearer " + state.getters.getApiToken,
-                    // /!\ ACCESS TOKEN MISSING
                     Accept: "application/json"
                   }
                 });
@@ -57241,6 +57264,10 @@ var status = function status(response) {
     getMyProfile: function getMyProfile(state) {
       // Nico
       return state.myProfile;
+    },
+    getMyUserProfile: function getMyUserProfile(state) {
+      // Nico
+      return state.myUserProfile;
     },
     getMyTeam: function getMyTeam(state) {
       // Nico

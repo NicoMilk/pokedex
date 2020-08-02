@@ -1,5 +1,5 @@
 <template>
-    <div class="container p-0">
+    <div class="h-100 p-0">
         <HeaderUser/>
         <PokList/>
         <Footer/>
@@ -30,9 +30,9 @@ import PokList from './PokList.vue';
             myProfileStore() {
                 return this.$store.getters.getMyProfile;
             },
-            myTeamStore() {
-                return this.$store.getters.getMyTeam;
-            },
+            // myTeamStore() {
+            //     return this.$store.getters.getMyTeam;
+            // },
 
         }
 

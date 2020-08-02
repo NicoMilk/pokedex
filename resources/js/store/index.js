@@ -20,6 +20,7 @@ export default {
     users :[],
     teams: [],
     myProfile : [],  //Nico
+    myUserProfile : {},  //Nico
     myTeam : [], //Nico
     apiToken : ''
   },
@@ -48,14 +49,16 @@ export default {
     },
 
     setMyTeam(state, myTeamPoks) {  //Nico
-      state.myTeam = [];
-      let teamPok = {};
+      let team = [];
 
       myTeamPoks.forEach(element => {
-        teamPok = state.poks.find(pok => pok.id == element.pokemon_id)
+        let teamPok = state.poks.find(pok => pok.id == element.pokemon_id)
+        team.push(teamPok);
       });
-      state.myTeam.push(teamPok);
+      state.myUserProfile = state.myProfile;
+      state.myUserProfile.team = team;
     },
+
     setApiToken(state, apiToken) {
       state.apiToken = apiToken;
     }
@@ -134,7 +137,7 @@ export default {
     },
       async getTeams(state, user ){
 
-        const teamRaw = await fetch(url+"users/"+user.id+"/team" ,{ headers: { 
+        const teamRaw = await fetch(url+"users/"+user.user_id+"/team" ,{ headers: { 
           Accept: "application/json",
           Authorization: "Bearer "+ state.getters.getApiToken,
         }});
@@ -167,7 +170,7 @@ export default {
       {
         method: 'GET',  
         headers: {
-          Authorization: "Bearer "+ state.getters.getApiToken, // /!\ ACCESS TOKEN MISSING
+          Authorization: "Bearer "+ state.getters.getApiToken,
           Accept: "application/json"}
       });
 
@@ -200,14 +203,18 @@ export default {
       return state.users;
     },
 
-
     getMyProfile(state) { // Nico
       return state.myProfile;
+    },
+
+    getMyUserProfile(state) { // Nico
+      return state.myUserProfile;
     },
 
     getMyTeam(state) { // Nico
       return state.myTeam;
     },
+
     getApiToken(state) {
       return state.apiToken;
     }

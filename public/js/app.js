@@ -1998,6 +1998,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HeaderUser',
   mounted: function mounted() {
@@ -2172,10 +2174,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Footer_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.vue */ "./resources/js/components/Footer.vue");
-//
-//
-//
-//
 //
 //
 //
@@ -2383,8 +2381,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2400,7 +2396,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.$store.dispatch("getUsers");
+    this.$store.dispatch("getUsers"); //this.$store.dispatch("getTeams");
   },
   computed: {
     usersStore: function usersStore() {
@@ -2415,6 +2411,36 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.getters.getUsers.filter(function (users) {
         return users.username.match(_this.query);
       });
+    }
+  },
+  methods: {
+    getUserId: function getUserId(user) {
+      return "#" + ("00" + user.user_id).substr(-3);
+    },
+    getUserAvatar: function getUserAvatar(user) {
+      return "/img/profile/" + user.profile_icon_id + ".png"; //console.log(user.profile_icon_id);
+
+      /* switch(user.profile_icon_id){
+          case '1':
+              return "/img/profile/bulbausaur.png";
+              break;
+           case '2':
+              return "/img/profile/charmander.png";
+              break;
+           case '3':
+              return "/img/profile/jigglypuff.png";
+              break;
+           case '4':
+              return "/img/profile/pikachu.png";
+              break;
+           case '5':
+              return "/img/profile/pokeball.png";
+              break;
+           case '6':
+              return "/img/profile/squirtle.png";
+              break;
+          default:
+              return "/img/profile/pikachu.png"; */
     }
   }
 });
@@ -38875,7 +38901,7 @@ var render = function() {
                   attrs: { src: _vm.evolPokImage, alt: _vm.pokEvolStore.name }
                 }),
                 _vm._v(" "),
-                _c("div", [_vm._v(_vm._s(_vm.pokStore.name))])
+                _c("div", [_vm._v(_vm._s(_vm.pokEvolStore.name))])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "w-25" }, [
@@ -39024,11 +39050,13 @@ var render = function() {
     "div",
     { staticClass: "container-fluid justify-content-center p-0 bg-head" },
     [
-      _c("div", { staticClass: "circle" }, [
-        _c("img", {
-          staticClass: "profilePix",
-          attrs: { src: _vm.profilePix, alt: "" }
-        })
+      _c("a", { attrs: { href: "/home" } }, [
+        _c("div", { staticClass: "circle" }, [
+          _c("img", {
+            staticClass: "profilePix",
+            attrs: { src: _vm.profilePix, alt: "" }
+          })
+        ])
       ]),
       _vm._v(" "),
       _c(
@@ -39351,91 +39379,89 @@ var render = function() {
       _c("div", { staticClass: "h-100 overflow-auto" }, [
         _c("div", { staticClass: "text-left m-4 text-white" }, [_vm._v("V")]),
         _vm._v(" "),
-        _c("div", { staticClass: "d-inline-block" }, [
-          _c(
-            "div",
-            { staticClass: "pok-content pb-2" },
-            [
-              _c("img", {
-                staticClass: "pok-top",
-                attrs: { src: _vm.pokImage, alt: _vm.pokStore.name }
+        _c(
+          "div",
+          { staticClass: "pok-content pb-2 w-100" },
+          [
+            _c("img", {
+              staticClass: "pok-top",
+              attrs: { src: _vm.pokImage, alt: _vm.pokStore.name }
+            }),
+            _vm._v(" "),
+            _c("h2", { staticClass: "pt-3 text-center" }, [
+              _vm._v(_vm._s(_vm.pokStore.name))
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "pok-types my-2" },
+              _vm._l(_vm.pokStore.types, function(type) {
+                return _c("div", { key: type, staticClass: "d-inline" }, [
+                  _c("img", {
+                    attrs: { src: _vm.getTypeImage(type), alt: type }
+                  })
+                ])
               }),
-              _vm._v(" "),
-              _c("h2", { staticClass: "pt-3 text-center" }, [
-                _vm._v(_vm._s(_vm.pokStore.name))
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "pok-types my-2" },
-                _vm._l(_vm.pokStore.types, function(type) {
-                  return _c("div", { key: type, staticClass: "d-inline" }, [
-                    _c("img", {
-                      attrs: { src: _vm.getTypeImage(type), alt: type }
-                    })
-                  ])
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "mx-2 p-2" }, [
-                _vm._v(_vm._s(_vm.pokStore.description))
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "d-inline pok-chars" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      class: _vm.pokStore.types.type1,
-                      attrs: { to: { name: "pokemon" } },
-                      on: {
-                        click: function($event) {
-                          return _vm.setActive(0)
-                        }
+              0
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "mx-2 p-2" }, [
+              _vm._v(_vm._s(_vm.pokStore.description))
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "d-inline pok-chars" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    class: _vm.pokStore.types.type1,
+                    attrs: { to: { name: "pokemon" } },
+                    on: {
+                      click: function($event) {
+                        return _vm.setActive(0)
                       }
-                    },
-                    [_vm._v("Stats")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      class: _vm.pokStore.types.type1,
-                      attrs: { to: { name: "weak" } },
-                      on: {
-                        click: function($event) {
-                          return _vm.setActive(1)
-                        }
+                    }
+                  },
+                  [_vm._v("Stats")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    class: _vm.pokStore.types.type1,
+                    attrs: { to: { name: "weak" } },
+                    on: {
+                      click: function($event) {
+                        return _vm.setActive(1)
                       }
-                    },
-                    [_vm._v("Weaknesses")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      class: _vm.pokStore.types.type1,
-                      attrs: { to: { name: "evol" } },
-                      on: {
-                        click: function($event) {
-                          return _vm.setActive(2)
-                        }
+                    }
+                  },
+                  [_vm._v("Weaknesses")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    class: _vm.pokStore.types.type1,
+                    attrs: { to: { name: "evol" } },
+                    on: {
+                      click: function($event) {
+                        return _vm.setActive(2)
                       }
-                    },
-                    [_vm._v("Evolutions")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("router-view")
-            ],
-            1
-          )
-        ])
+                    }
+                  },
+                  [_vm._v("Evolutions")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("router-view")
+          ],
+          1
+        )
       ]),
       _vm._v(" "),
       _c("pok-footer")
@@ -39627,73 +39653,74 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.query,
-            expression: "query"
-          }
-        ],
-        staticClass: "searchbar",
-        attrs: { type: "text", placeholder: "Search" },
-        domProps: { value: _vm.query },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+  return _c(
+    "div",
+    { staticClass: "d-flex flex-column  justify-content-between h-100" },
+    [
+      _c("div", [
+        _c("h3", { staticClass: "text-center py-3 m-0 bg-blur" }, [
+          _c("a", [_vm._v("Users")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.query,
+                expression: "query"
+              }
+            ],
+            staticClass: "searchbar",
+            attrs: { type: "text", placeholder: "Search" },
+            domProps: { value: _vm.query },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.query = $event.target.value
+              }
             }
-            _vm.query = $event.target.value
-          }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "sep" }, [_vm._v(" ")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "d-flex flex-column  justify-content-between h-100" },
-      [
-        _c(
-          "div",
-          { staticClass: "content bg-blur h-100 overflow-auto" },
-          _vm._l(_vm.filteredusers, function(user, index) {
-            return _c("div", { key: index }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(user.user_id) +
-                  "\n                " +
-                  _vm._s(user.username) +
-                  "\n                " +
-                  _vm._s(user.profile_icon_id) +
-                  "\n                " +
-                  _vm._s(user.team.length) +
-                  "\n            "
-              )
-            ])
-          }),
-          0
-        )
-      ]
-    )
-  ])
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "sep" }, [_vm._v(" ")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "content bg-blur h-100 overflow-auto" },
+        _vm._l(_vm.filteredusers, function(user, index) {
+          return _c("div", { key: index }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "d-flex justify-content-between align-items-center p-3"
+              },
+              [
+                _c("img", {
+                  staticClass: "pok-trade",
+                  attrs: { src: _vm.getUserAvatar(user) }
+                }),
+                _vm._v(" "),
+                _c("h2", { staticClass: "d-flex" }, [
+                  _vm._v(" " + _vm._s(user.username))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "pok-id align-items-end" }, [
+                  _vm._v("ID " + _vm._s(_vm.getUserId(user)))
+                ])
+              ]
+            )
+          ])
+        }),
+        0
+      )
+    ]
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "text-center py-3 m-0 bg-blur" }, [
-      _c("a", [_vm._v("Users")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -57260,7 +57287,8 @@ var status = function status(response) {
                 _context2.next = 2;
                 return fetch(url + "pokemons/" + id, {
                   headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "access-token": ""
                   }
                 });
 
@@ -57297,7 +57325,7 @@ var status = function status(response) {
                 _context3.next = 2;
                 return fetch(url + "pokemons/" + id, {
                   headers: {
-                    "Content-Type": "application/json"
+                    "Authenti": "application/json"
                   }
                 });
 
@@ -57371,7 +57399,7 @@ var status = function status(response) {
                 return fetch(url + "users", {
                   headers: {
                     Accept: "application/json",
-                    Authorization: "Bearer " + state.getters.getApiToken
+                    Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5"
                   }
                 });
 
@@ -57411,7 +57439,7 @@ var status = function status(response) {
                 return fetch(url + "users/" + user.user_id + "/team", {
                   headers: {
                     Accept: "application/json",
-                    Authorization: "Bearer " + state.getters.getApiToken
+                    Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5"
                   }
                 });
 
@@ -57451,7 +57479,7 @@ var status = function status(response) {
                 return fetch(url + "users/me", {
                   method: 'GET',
                   headers: {
-                    Authorization: "Bearer " + state.getters.getApiToken,
+                    Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5",
                     Accept: "application/json"
                   }
                 });
@@ -57573,8 +57601,8 @@ var status = function status(response) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/nico/Desktop/Projects/MVVM_Pokedex/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/nico/Desktop/Projects/MVVM_Pokedex/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/ln/MVVM_Pokedex/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/ln/MVVM_Pokedex/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

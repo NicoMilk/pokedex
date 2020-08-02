@@ -148,7 +148,7 @@ a {
     border-top-right-radius: 40px;
     text-align: center;
 
-    max-width: 500px;
+    xmax-width: 500px;
 }
 
 .pok-chars :not(.router-link-exact-active) {
@@ -167,6 +167,10 @@ a {
     border-radius: 20px;
     padding : 5px 15px 5px 15px;
 
+}
+
+pok-chars {
+    margin-left : 50px;
 }
 
 .progress {
@@ -203,6 +207,10 @@ a {
     color: grey !important;
 }
 
+.pok-trade {
+    width:80px;
+    height:60px;
+}
 
 :root {
 

@@ -195,8 +195,11 @@ pok-chars {
     width: 65px;
 }
 
-.pok-sm {
+.pok-sm , .sending-icon{
     width: 50px;
+}
+.pok-xs {
+    width: 3.125rem;
 }
 
 .pok-type  {
@@ -208,8 +211,11 @@ pok-chars {
 }
 
 .pok-trade {
-    width:80px;
-    height:60px;
+    width:4.375rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 :root {
@@ -281,7 +287,7 @@ pok-chars {
 {
     width: 120px;
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -308,4 +314,14 @@ pok-chars {
     position: relative;
     display: inline-block;
     margin-top: 30px;
+}
+.circle-sm
+{
+    height: 5rem;
+    width: 5rem;
+    background-color: #fff;
+    border-radius: 100%;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    position: relative;
+    display: inline-block;
 }

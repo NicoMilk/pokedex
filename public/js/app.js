@@ -86,18 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/@babel/runtime/regenerator/index.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
-
-
-/***/ }),
-
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -2359,7 +2347,34 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Footer_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.vue */ "./resources/js/components/Footer.vue");
-/* harmony import */ var _Headertrade_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Headertrade.vue */ "./resources/js/components/Headertrade.vue");
+/* harmony import */ var _PokList_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PokList.vue */ "./resources/js/components/PokList.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2385,9 +2400,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    /* "pok-header" : Header,
-    "pok-footer" : Footer */
-    Headertrade: _Headertrade_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    PokList: _PokList_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    Footer: _Footer_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   name: "trade",
   data: function data() {
@@ -2396,7 +2410,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.$store.dispatch("getUsers"); //this.$store.dispatch("getTeams");
+    this.$store.dispatch("getUsers");
   },
   computed: {
     usersStore: function usersStore() {
@@ -2414,33 +2428,138 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    getPoksTeam: function getPoksTeam(pokTeam) {
+      var _this2 = this;
+
+      var teamPoks = [];
+      pokTeam.forEach(function (element) {
+        var pok = _this2.$store.getters.getPoks.find(function (item) {
+          return item.id == element.pokemon_id;
+        });
+
+        teamPoks.push(pok);
+      });
+      return teamPoks;
+    },
+    pokImage: function pokImage(pok) {
+      return "/img/pokemon/" + pok.image;
+    },
+    typeImage: function typeImage(type) {
+      return "/img/types/small/types-" + type + ".png";
+    },
+    getPokId: function getPokId(id) {
+      return "#" + ("00" + id).substr(-3);
+    },
     getUserId: function getUserId(user) {
       return "#" + ("00" + user.user_id).substr(-3);
     },
     getUserAvatar: function getUserAvatar(user) {
-      return "/img/profile/" + user.profile_icon_id + ".png"; //console.log(user.profile_icon_id);
+      return "/img/profile/" + user.profile_icon_id + ".png";
+    }
+  }
+});
 
-      /* switch(user.profile_icon_id){
-          case '1':
-              return "/img/profile/bulbausaur.png";
-              break;
-           case '2':
-              return "/img/profile/charmander.png";
-              break;
-           case '3':
-              return "/img/profile/jigglypuff.png";
-              break;
-           case '4':
-              return "/img/profile/pikachu.png";
-              break;
-           case '5':
-              return "/img/profile/pokeball.png";
-              break;
-           case '6':
-              return "/img/profile/squirtle.png";
-              break;
-          default:
-              return "/img/profile/pikachu.png"; */
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TradeIn.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TradeIn.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _HeaderUser_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HeaderUser.vue */ "./resources/js/components/HeaderUser.vue");
+/* harmony import */ var _Footer_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Footer.vue */ "./resources/js/components/Footer.vue");
+/* harmony import */ var _PokList_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PokList.vue */ "./resources/js/components/PokList.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'Team',
+  components: {
+    HeaderUser: _HeaderUser_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    PokList: _PokList_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Footer: _Footer_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  mounted: function mounted() {
+    this.$store.dispatch("myTeam");
+  },
+  data: function data() {
+    return {
+      selectedPok: null
+    };
+  },
+  methods: {
+    selectPok: function selectPok(pok) {
+      this.selectedPok = pok;
+    },
+    sendToTrader: function sendToTrader() {
+      console.log(this.selectedPok);
+      if (this.selectedPok) this.$store.dispatch("sendToTrader", {
+        pok_id: this.selectedPok.id,
+        trader_id: this.$route.params.idt
+      });
+    },
+    pokImage: function pokImage(pok) {
+      return "/img/pokemon/" + pok.image;
+    },
+    traderImage: function traderImage() {
+      var _this = this;
+
+      var userTrade = this.$store.getters.getUsers.find(function (item) {
+        return item.user_id == _this.$route.params.idt;
+      });
+      return "/img/profile/" + userTrade.profile_icon_id + ".png";
+    },
+    traderName: function traderName() {
+      var _this2 = this;
+
+      var userTrade = this.$store.getters.getUsers.find(function (item) {
+        return item.user_id == _this2.$route.params.idt;
+      });
+      return userTrade.username;
+    }
+  },
+  computed: {
+    myProfileStore: function myProfileStore() {
+      return this.$store.getters.getMyUserProfile;
     }
   }
 });
@@ -37797,765 +37916,6 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "./node_modules/regenerator-runtime/runtime.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/regenerator-runtime/runtime.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-var runtime = (function (exports) {
-  "use strict";
-
-  var Op = Object.prototype;
-  var hasOwn = Op.hasOwnProperty;
-  var undefined; // More compressible than void 0.
-  var $Symbol = typeof Symbol === "function" ? Symbol : {};
-  var iteratorSymbol = $Symbol.iterator || "@@iterator";
-  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
-  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
-
-  function define(obj, key, value) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-    return obj[key];
-  }
-  try {
-    // IE 8 has a broken Object.defineProperty that only works on DOM objects.
-    define({}, "");
-  } catch (err) {
-    define = function(obj, key, value) {
-      return obj[key] = value;
-    };
-  }
-
-  function wrap(innerFn, outerFn, self, tryLocsList) {
-    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
-    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
-    var generator = Object.create(protoGenerator.prototype);
-    var context = new Context(tryLocsList || []);
-
-    // The ._invoke method unifies the implementations of the .next,
-    // .throw, and .return methods.
-    generator._invoke = makeInvokeMethod(innerFn, self, context);
-
-    return generator;
-  }
-  exports.wrap = wrap;
-
-  // Try/catch helper to minimize deoptimizations. Returns a completion
-  // record like context.tryEntries[i].completion. This interface could
-  // have been (and was previously) designed to take a closure to be
-  // invoked without arguments, but in all the cases we care about we
-  // already have an existing method we want to call, so there's no need
-  // to create a new function object. We can even get away with assuming
-  // the method takes exactly one argument, since that happens to be true
-  // in every case, so we don't have to touch the arguments object. The
-  // only additional allocation required is the completion record, which
-  // has a stable shape and so hopefully should be cheap to allocate.
-  function tryCatch(fn, obj, arg) {
-    try {
-      return { type: "normal", arg: fn.call(obj, arg) };
-    } catch (err) {
-      return { type: "throw", arg: err };
-    }
-  }
-
-  var GenStateSuspendedStart = "suspendedStart";
-  var GenStateSuspendedYield = "suspendedYield";
-  var GenStateExecuting = "executing";
-  var GenStateCompleted = "completed";
-
-  // Returning this object from the innerFn has the same effect as
-  // breaking out of the dispatch switch statement.
-  var ContinueSentinel = {};
-
-  // Dummy constructor functions that we use as the .constructor and
-  // .constructor.prototype properties for functions that return Generator
-  // objects. For full spec compliance, you may wish to configure your
-  // minifier not to mangle the names of these two functions.
-  function Generator() {}
-  function GeneratorFunction() {}
-  function GeneratorFunctionPrototype() {}
-
-  // This is a polyfill for %IteratorPrototype% for environments that
-  // don't natively support it.
-  var IteratorPrototype = {};
-  IteratorPrototype[iteratorSymbol] = function () {
-    return this;
-  };
-
-  var getProto = Object.getPrototypeOf;
-  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
-  if (NativeIteratorPrototype &&
-      NativeIteratorPrototype !== Op &&
-      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
-    // This environment has a native %IteratorPrototype%; use it instead
-    // of the polyfill.
-    IteratorPrototype = NativeIteratorPrototype;
-  }
-
-  var Gp = GeneratorFunctionPrototype.prototype =
-    Generator.prototype = Object.create(IteratorPrototype);
-  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
-  GeneratorFunctionPrototype.constructor = GeneratorFunction;
-  GeneratorFunction.displayName = define(
-    GeneratorFunctionPrototype,
-    toStringTagSymbol,
-    "GeneratorFunction"
-  );
-
-  // Helper for defining the .next, .throw, and .return methods of the
-  // Iterator interface in terms of a single ._invoke method.
-  function defineIteratorMethods(prototype) {
-    ["next", "throw", "return"].forEach(function(method) {
-      define(prototype, method, function(arg) {
-        return this._invoke(method, arg);
-      });
-    });
-  }
-
-  exports.isGeneratorFunction = function(genFun) {
-    var ctor = typeof genFun === "function" && genFun.constructor;
-    return ctor
-      ? ctor === GeneratorFunction ||
-        // For the native GeneratorFunction constructor, the best we can
-        // do is to check its .name property.
-        (ctor.displayName || ctor.name) === "GeneratorFunction"
-      : false;
-  };
-
-  exports.mark = function(genFun) {
-    if (Object.setPrototypeOf) {
-      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
-    } else {
-      genFun.__proto__ = GeneratorFunctionPrototype;
-      define(genFun, toStringTagSymbol, "GeneratorFunction");
-    }
-    genFun.prototype = Object.create(Gp);
-    return genFun;
-  };
-
-  // Within the body of any async function, `await x` is transformed to
-  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
-  // `hasOwn.call(value, "__await")` to determine if the yielded value is
-  // meant to be awaited.
-  exports.awrap = function(arg) {
-    return { __await: arg };
-  };
-
-  function AsyncIterator(generator, PromiseImpl) {
-    function invoke(method, arg, resolve, reject) {
-      var record = tryCatch(generator[method], generator, arg);
-      if (record.type === "throw") {
-        reject(record.arg);
-      } else {
-        var result = record.arg;
-        var value = result.value;
-        if (value &&
-            typeof value === "object" &&
-            hasOwn.call(value, "__await")) {
-          return PromiseImpl.resolve(value.__await).then(function(value) {
-            invoke("next", value, resolve, reject);
-          }, function(err) {
-            invoke("throw", err, resolve, reject);
-          });
-        }
-
-        return PromiseImpl.resolve(value).then(function(unwrapped) {
-          // When a yielded Promise is resolved, its final value becomes
-          // the .value of the Promise<{value,done}> result for the
-          // current iteration.
-          result.value = unwrapped;
-          resolve(result);
-        }, function(error) {
-          // If a rejected Promise was yielded, throw the rejection back
-          // into the async generator function so it can be handled there.
-          return invoke("throw", error, resolve, reject);
-        });
-      }
-    }
-
-    var previousPromise;
-
-    function enqueue(method, arg) {
-      function callInvokeWithMethodAndArg() {
-        return new PromiseImpl(function(resolve, reject) {
-          invoke(method, arg, resolve, reject);
-        });
-      }
-
-      return previousPromise =
-        // If enqueue has been called before, then we want to wait until
-        // all previous Promises have been resolved before calling invoke,
-        // so that results are always delivered in the correct order. If
-        // enqueue has not been called before, then it is important to
-        // call invoke immediately, without waiting on a callback to fire,
-        // so that the async generator function has the opportunity to do
-        // any necessary setup in a predictable way. This predictability
-        // is why the Promise constructor synchronously invokes its
-        // executor callback, and why async functions synchronously
-        // execute code before the first await. Since we implement simple
-        // async functions in terms of async generators, it is especially
-        // important to get this right, even though it requires care.
-        previousPromise ? previousPromise.then(
-          callInvokeWithMethodAndArg,
-          // Avoid propagating failures to Promises returned by later
-          // invocations of the iterator.
-          callInvokeWithMethodAndArg
-        ) : callInvokeWithMethodAndArg();
-    }
-
-    // Define the unified helper method that is used to implement .next,
-    // .throw, and .return (see defineIteratorMethods).
-    this._invoke = enqueue;
-  }
-
-  defineIteratorMethods(AsyncIterator.prototype);
-  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
-    return this;
-  };
-  exports.AsyncIterator = AsyncIterator;
-
-  // Note that simple async functions are implemented on top of
-  // AsyncIterator objects; they just return a Promise for the value of
-  // the final result produced by the iterator.
-  exports.async = function(innerFn, outerFn, self, tryLocsList, PromiseImpl) {
-    if (PromiseImpl === void 0) PromiseImpl = Promise;
-
-    var iter = new AsyncIterator(
-      wrap(innerFn, outerFn, self, tryLocsList),
-      PromiseImpl
-    );
-
-    return exports.isGeneratorFunction(outerFn)
-      ? iter // If outerFn is a generator, return the full iterator.
-      : iter.next().then(function(result) {
-          return result.done ? result.value : iter.next();
-        });
-  };
-
-  function makeInvokeMethod(innerFn, self, context) {
-    var state = GenStateSuspendedStart;
-
-    return function invoke(method, arg) {
-      if (state === GenStateExecuting) {
-        throw new Error("Generator is already running");
-      }
-
-      if (state === GenStateCompleted) {
-        if (method === "throw") {
-          throw arg;
-        }
-
-        // Be forgiving, per 25.3.3.3.3 of the spec:
-        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
-        return doneResult();
-      }
-
-      context.method = method;
-      context.arg = arg;
-
-      while (true) {
-        var delegate = context.delegate;
-        if (delegate) {
-          var delegateResult = maybeInvokeDelegate(delegate, context);
-          if (delegateResult) {
-            if (delegateResult === ContinueSentinel) continue;
-            return delegateResult;
-          }
-        }
-
-        if (context.method === "next") {
-          // Setting context._sent for legacy support of Babel's
-          // function.sent implementation.
-          context.sent = context._sent = context.arg;
-
-        } else if (context.method === "throw") {
-          if (state === GenStateSuspendedStart) {
-            state = GenStateCompleted;
-            throw context.arg;
-          }
-
-          context.dispatchException(context.arg);
-
-        } else if (context.method === "return") {
-          context.abrupt("return", context.arg);
-        }
-
-        state = GenStateExecuting;
-
-        var record = tryCatch(innerFn, self, context);
-        if (record.type === "normal") {
-          // If an exception is thrown from innerFn, we leave state ===
-          // GenStateExecuting and loop back for another invocation.
-          state = context.done
-            ? GenStateCompleted
-            : GenStateSuspendedYield;
-
-          if (record.arg === ContinueSentinel) {
-            continue;
-          }
-
-          return {
-            value: record.arg,
-            done: context.done
-          };
-
-        } else if (record.type === "throw") {
-          state = GenStateCompleted;
-          // Dispatch the exception by looping back around to the
-          // context.dispatchException(context.arg) call above.
-          context.method = "throw";
-          context.arg = record.arg;
-        }
-      }
-    };
-  }
-
-  // Call delegate.iterator[context.method](context.arg) and handle the
-  // result, either by returning a { value, done } result from the
-  // delegate iterator, or by modifying context.method and context.arg,
-  // setting context.delegate to null, and returning the ContinueSentinel.
-  function maybeInvokeDelegate(delegate, context) {
-    var method = delegate.iterator[context.method];
-    if (method === undefined) {
-      // A .throw or .return when the delegate iterator has no .throw
-      // method always terminates the yield* loop.
-      context.delegate = null;
-
-      if (context.method === "throw") {
-        // Note: ["return"] must be used for ES3 parsing compatibility.
-        if (delegate.iterator["return"]) {
-          // If the delegate iterator has a return method, give it a
-          // chance to clean up.
-          context.method = "return";
-          context.arg = undefined;
-          maybeInvokeDelegate(delegate, context);
-
-          if (context.method === "throw") {
-            // If maybeInvokeDelegate(context) changed context.method from
-            // "return" to "throw", let that override the TypeError below.
-            return ContinueSentinel;
-          }
-        }
-
-        context.method = "throw";
-        context.arg = new TypeError(
-          "The iterator does not provide a 'throw' method");
-      }
-
-      return ContinueSentinel;
-    }
-
-    var record = tryCatch(method, delegate.iterator, context.arg);
-
-    if (record.type === "throw") {
-      context.method = "throw";
-      context.arg = record.arg;
-      context.delegate = null;
-      return ContinueSentinel;
-    }
-
-    var info = record.arg;
-
-    if (! info) {
-      context.method = "throw";
-      context.arg = new TypeError("iterator result is not an object");
-      context.delegate = null;
-      return ContinueSentinel;
-    }
-
-    if (info.done) {
-      // Assign the result of the finished delegate to the temporary
-      // variable specified by delegate.resultName (see delegateYield).
-      context[delegate.resultName] = info.value;
-
-      // Resume execution at the desired location (see delegateYield).
-      context.next = delegate.nextLoc;
-
-      // If context.method was "throw" but the delegate handled the
-      // exception, let the outer generator proceed normally. If
-      // context.method was "next", forget context.arg since it has been
-      // "consumed" by the delegate iterator. If context.method was
-      // "return", allow the original .return call to continue in the
-      // outer generator.
-      if (context.method !== "return") {
-        context.method = "next";
-        context.arg = undefined;
-      }
-
-    } else {
-      // Re-yield the result returned by the delegate method.
-      return info;
-    }
-
-    // The delegate iterator is finished, so forget it and continue with
-    // the outer generator.
-    context.delegate = null;
-    return ContinueSentinel;
-  }
-
-  // Define Generator.prototype.{next,throw,return} in terms of the
-  // unified ._invoke helper method.
-  defineIteratorMethods(Gp);
-
-  define(Gp, toStringTagSymbol, "Generator");
-
-  // A Generator should always return itself as the iterator object when the
-  // @@iterator function is called on it. Some browsers' implementations of the
-  // iterator prototype chain incorrectly implement this, causing the Generator
-  // object to not be returned from this call. This ensures that doesn't happen.
-  // See https://github.com/facebook/regenerator/issues/274 for more details.
-  Gp[iteratorSymbol] = function() {
-    return this;
-  };
-
-  Gp.toString = function() {
-    return "[object Generator]";
-  };
-
-  function pushTryEntry(locs) {
-    var entry = { tryLoc: locs[0] };
-
-    if (1 in locs) {
-      entry.catchLoc = locs[1];
-    }
-
-    if (2 in locs) {
-      entry.finallyLoc = locs[2];
-      entry.afterLoc = locs[3];
-    }
-
-    this.tryEntries.push(entry);
-  }
-
-  function resetTryEntry(entry) {
-    var record = entry.completion || {};
-    record.type = "normal";
-    delete record.arg;
-    entry.completion = record;
-  }
-
-  function Context(tryLocsList) {
-    // The root entry object (effectively a try statement without a catch
-    // or a finally block) gives us a place to store values thrown from
-    // locations where there is no enclosing try statement.
-    this.tryEntries = [{ tryLoc: "root" }];
-    tryLocsList.forEach(pushTryEntry, this);
-    this.reset(true);
-  }
-
-  exports.keys = function(object) {
-    var keys = [];
-    for (var key in object) {
-      keys.push(key);
-    }
-    keys.reverse();
-
-    // Rather than returning an object with a next method, we keep
-    // things simple and return the next function itself.
-    return function next() {
-      while (keys.length) {
-        var key = keys.pop();
-        if (key in object) {
-          next.value = key;
-          next.done = false;
-          return next;
-        }
-      }
-
-      // To avoid creating an additional object, we just hang the .value
-      // and .done properties off the next function object itself. This
-      // also ensures that the minifier will not anonymize the function.
-      next.done = true;
-      return next;
-    };
-  };
-
-  function values(iterable) {
-    if (iterable) {
-      var iteratorMethod = iterable[iteratorSymbol];
-      if (iteratorMethod) {
-        return iteratorMethod.call(iterable);
-      }
-
-      if (typeof iterable.next === "function") {
-        return iterable;
-      }
-
-      if (!isNaN(iterable.length)) {
-        var i = -1, next = function next() {
-          while (++i < iterable.length) {
-            if (hasOwn.call(iterable, i)) {
-              next.value = iterable[i];
-              next.done = false;
-              return next;
-            }
-          }
-
-          next.value = undefined;
-          next.done = true;
-
-          return next;
-        };
-
-        return next.next = next;
-      }
-    }
-
-    // Return an iterator with no values.
-    return { next: doneResult };
-  }
-  exports.values = values;
-
-  function doneResult() {
-    return { value: undefined, done: true };
-  }
-
-  Context.prototype = {
-    constructor: Context,
-
-    reset: function(skipTempReset) {
-      this.prev = 0;
-      this.next = 0;
-      // Resetting context._sent for legacy support of Babel's
-      // function.sent implementation.
-      this.sent = this._sent = undefined;
-      this.done = false;
-      this.delegate = null;
-
-      this.method = "next";
-      this.arg = undefined;
-
-      this.tryEntries.forEach(resetTryEntry);
-
-      if (!skipTempReset) {
-        for (var name in this) {
-          // Not sure about the optimal order of these conditions:
-          if (name.charAt(0) === "t" &&
-              hasOwn.call(this, name) &&
-              !isNaN(+name.slice(1))) {
-            this[name] = undefined;
-          }
-        }
-      }
-    },
-
-    stop: function() {
-      this.done = true;
-
-      var rootEntry = this.tryEntries[0];
-      var rootRecord = rootEntry.completion;
-      if (rootRecord.type === "throw") {
-        throw rootRecord.arg;
-      }
-
-      return this.rval;
-    },
-
-    dispatchException: function(exception) {
-      if (this.done) {
-        throw exception;
-      }
-
-      var context = this;
-      function handle(loc, caught) {
-        record.type = "throw";
-        record.arg = exception;
-        context.next = loc;
-
-        if (caught) {
-          // If the dispatched exception was caught by a catch block,
-          // then let that catch block handle the exception normally.
-          context.method = "next";
-          context.arg = undefined;
-        }
-
-        return !! caught;
-      }
-
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        var record = entry.completion;
-
-        if (entry.tryLoc === "root") {
-          // Exception thrown outside of any try block that could handle
-          // it, so set the completion value of the entire function to
-          // throw the exception.
-          return handle("end");
-        }
-
-        if (entry.tryLoc <= this.prev) {
-          var hasCatch = hasOwn.call(entry, "catchLoc");
-          var hasFinally = hasOwn.call(entry, "finallyLoc");
-
-          if (hasCatch && hasFinally) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            } else if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else if (hasCatch) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            }
-
-          } else if (hasFinally) {
-            if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else {
-            throw new Error("try statement without catch or finally");
-          }
-        }
-      }
-    },
-
-    abrupt: function(type, arg) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc <= this.prev &&
-            hasOwn.call(entry, "finallyLoc") &&
-            this.prev < entry.finallyLoc) {
-          var finallyEntry = entry;
-          break;
-        }
-      }
-
-      if (finallyEntry &&
-          (type === "break" ||
-           type === "continue") &&
-          finallyEntry.tryLoc <= arg &&
-          arg <= finallyEntry.finallyLoc) {
-        // Ignore the finally entry if control is not jumping to a
-        // location outside the try/catch block.
-        finallyEntry = null;
-      }
-
-      var record = finallyEntry ? finallyEntry.completion : {};
-      record.type = type;
-      record.arg = arg;
-
-      if (finallyEntry) {
-        this.method = "next";
-        this.next = finallyEntry.finallyLoc;
-        return ContinueSentinel;
-      }
-
-      return this.complete(record);
-    },
-
-    complete: function(record, afterLoc) {
-      if (record.type === "throw") {
-        throw record.arg;
-      }
-
-      if (record.type === "break" ||
-          record.type === "continue") {
-        this.next = record.arg;
-      } else if (record.type === "return") {
-        this.rval = this.arg = record.arg;
-        this.method = "return";
-        this.next = "end";
-      } else if (record.type === "normal" && afterLoc) {
-        this.next = afterLoc;
-      }
-
-      return ContinueSentinel;
-    },
-
-    finish: function(finallyLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.finallyLoc === finallyLoc) {
-          this.complete(entry.completion, entry.afterLoc);
-          resetTryEntry(entry);
-          return ContinueSentinel;
-        }
-      }
-    },
-
-    "catch": function(tryLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc === tryLoc) {
-          var record = entry.completion;
-          if (record.type === "throw") {
-            var thrown = record.arg;
-            resetTryEntry(entry);
-          }
-          return thrown;
-        }
-      }
-
-      // The context.catch method must only be called with a location
-      // argument that corresponds to a known catch block.
-      throw new Error("illegal catch attempt");
-    },
-
-    delegateYield: function(iterable, resultName, nextLoc) {
-      this.delegate = {
-        iterator: values(iterable),
-        resultName: resultName,
-        nextLoc: nextLoc
-      };
-
-      if (this.method === "next") {
-        // Deliberately forget the last sent value so that we don't
-        // accidentally pass it on to the delegate.
-        this.arg = undefined;
-      }
-
-      return ContinueSentinel;
-    }
-  };
-
-  // Regardless of whether this script is executing as a CommonJS module
-  // or not, return the runtime object so that we can declare the variable
-  // regeneratorRuntime in the outer scope, which allows this module to be
-  // injected easily by `bin/regenerator --include-runtime script.js`.
-  return exports;
-
-}(
-  // If this script is executing as a CommonJS module, use module.exports
-  // as the regeneratorRuntime namespace. Otherwise create a new empty
-  // object. Either way, the resulting object will be used to initialize
-  // the regeneratorRuntime variable at the top of this file.
-   true ? module.exports : undefined
-));
-
-try {
-  regeneratorRuntime = runtime;
-} catch (accidentalStrictMode) {
-  // This module should not be running in strict mode, so the above
-  // assignment should always work unless something is misconfigured. Just
-  // in case runtime.js accidentally runs in strict mode, we can escape
-  // strict mode using a global Function call. This could conceivably fail
-  // if a Content Security Policy forbids using Function, but in that case
-  // the proper solution is to fix the accidental strict mode problem. If
-  // you've misconfigured your bundler to force strict mode and applied a
-  // CSP to forbid Function, and you're not willing to fix either of those
-  // problems, please detail your unique predicament in a GitHub issue.
-  Function("r", "regeneratorRuntime = r")(runtime);
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/setimmediate/setImmediate.js":
 /*!***************************************************!*\
   !*** ./node_modules/setimmediate/setImmediate.js ***!
@@ -39067,7 +38427,7 @@ var render = function() {
             _vm._v(_vm._s(_vm.profileStore.username))
           ]),
           _vm._v(" "),
-          _c("h4", { staticClass: "py-3 m-0 align-middle userId" }, [
+          _c("h4", { staticClass: "py-3 m-0 align-middle userId mt-3" }, [
             _vm._v("ID #" + _vm._s(_vm.profileStore.user_id))
           ])
         ]
@@ -39076,59 +38436,6 @@ var render = function() {
   )
 }
 var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Headertrade.vue?vue&type=template&id=c5cf7348&":
-/*!**************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Headertrade.vue?vue&type=template&id=c5cf7348& ***!
-  \**************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("input", {
-      directives: [
-        { name: "model", rawName: "v-model", value: _vm.q, expression: "q" }
-      ],
-      attrs: { type: "text" },
-      domProps: { value: _vm.q },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
-          }
-          _vm.q = $event.target.value
-        }
-      }
-    }),
-    _vm._v(" "),
-    _c("div", { staticClass: "sep" }, [_vm._v(" ")])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "text-center py-3 m-0 bg-blur" }, [
-      _c("a", [_vm._v("Users")])
-    ])
-  }
-]
 render._withStripped = true
 
 
@@ -39657,70 +38964,295 @@ var render = function() {
     "div",
     { staticClass: "d-flex flex-column  justify-content-between h-100" },
     [
-      _c("div", [
-        _c("h3", { staticClass: "text-center py-3 m-0 bg-blur" }, [
-          _c("a", [_vm._v("Users")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.query,
-                expression: "query"
-              }
-            ],
-            staticClass: "searchbar",
-            attrs: { type: "text", placeholder: "Search" },
-            domProps: { value: _vm.query },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.query = $event.target.value
-              }
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "bg-blur text-center" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.query,
+              expression: "query"
             }
-          })
-        ])
+          ],
+          staticClass: "searchbar px-2 mb-2",
+          attrs: { type: "text", placeholder: "Search" },
+          domProps: { value: _vm.query },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.query = $event.target.value
+            }
+          }
+        })
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "sep" }, [_vm._v(" ")]),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "content bg-blur h-100 overflow-auto" },
+        { staticClass: "content bg-blur h-100 overflow-auto bg-white" },
         _vm._l(_vm.filteredusers, function(user, index) {
-          return _c("div", { key: index }, [
+          return _c(
+            "div",
+            { key: index },
+            [
+              _c(
+                "router-link",
+                {
+                  attrs: {
+                    to: { name: "tradein", params: { idt: user.user_id } }
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "d-flex justify-content-between align-items-center pt-2 mx-2"
+                    },
+                    [
+                      _c("div", { staticClass: "circle-sm" }, [
+                        _c("img", {
+                          staticClass: "pok-trade",
+                          attrs: { src: _vm.getUserAvatar(user) }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("h2", { staticClass: "d-flex" }, [
+                        _vm._v(" " + _vm._s(user.username))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "pok-id align-items-end" }, [
+                        _vm._v("ID " + _vm._s(_vm.getUserId(user)))
+                      ])
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _vm._l(_vm.getPoksTeam(user.team), function(pok, index) {
+                return _c(
+                  "div",
+                  { key: index },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        attrs: {
+                          to: { name: "pokemon", params: { id: pok.id } }
+                        }
+                      },
+                      [
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "d-flex flex-row flex-nowrap justify-content-between my-2 mx-4"
+                          },
+                          [
+                            _c("img", {
+                              staticClass: "pok-sm",
+                              attrs: { src: _vm.pokImage(pok), alt: pok.name }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "flex-grow-1 text-left ml-3" },
+                              [
+                                _c("h5", [_vm._v(_vm._s(pok.name))]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "pok-id" }, [
+                                  _vm._v(_vm._s(_vm.getPokId(pok.id)))
+                                ])
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", [
+                              _c("img", {
+                                staticClass: "pok-type",
+                                attrs: {
+                                  src: _vm.typeImage(pok.types.type1),
+                                  alt: pok.types.type1
+                                }
+                              }),
+                              _vm._v(" "),
+                              pok.types.type2
+                                ? _c("img", {
+                                    staticClass: "pok-type",
+                                    attrs: {
+                                      src: _vm.typeImage(pok.types.type2),
+                                      alt: pok.types.type2
+                                    }
+                                  })
+                                : _vm._e()
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("hr", { staticClass: "mx-3" })
+                      ]
+                    )
+                  ],
+                  1
+                )
+              })
+            ],
+            2
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("Footer")
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "text-center py-3 m-0 bg-blur" }, [
+      _c("a", [_vm._v("Pokemons")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TradeIn.vue?vue&type=template&id=3b535e8e&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TradeIn.vue?vue&type=template&id=3b535e8e& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "d-flex flex-column  justify-content-between h-100" },
+    [
+      _c("HeaderUser"),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "content bg-blur h-100 overflow-auto border-top" },
+        [
+          _c(
+            "div",
+            {
+              staticClass:
+                "d-flex flex-row flex-nowrap py-2 px-1  bg-white border-bottom"
+            },
+            _vm._l(_vm.myProfileStore.team, function(pok, idx) {
+              return _c("div", { key: idx }, [
+                _c("img", {
+                  staticClass: "pok-sm m-1",
+                  attrs: { src: _vm.pokImage(pok), alt: pok.name },
+                  on: {
+                    click: function($event) {
+                      return _vm.selectPok(pok)
+                    }
+                  }
+                })
+              ])
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c("div", [
             _c(
               "div",
               {
                 staticClass:
-                  "d-flex justify-content-between align-items-center p-3"
+                  "d-flex justify-content-around bg-white py-3 border-bottom"
               },
               [
-                _c("img", {
-                  staticClass: "pok-trade",
-                  attrs: { src: _vm.getUserAvatar(user) }
-                }),
+                _vm._m(0),
                 _vm._v(" "),
-                _c("h2", { staticClass: "d-flex" }, [
-                  _vm._v(" " + _vm._s(user.username))
-                ]),
+                _vm._m(1),
                 _vm._v(" "),
-                _c("div", { staticClass: "pok-id align-items-end" }, [
-                  _vm._v("ID " + _vm._s(_vm.getUserId(user)))
+                _c("div", { staticClass: "pt-1" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary rounded-pill",
+                      on: { click: _vm.sendToTrader }
+                    },
+                    [_c("strong", [_vm._v("SEND")])]
+                  )
                 ])
               ]
-            )
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "circle" }, [
+              _c("img", {
+                staticClass: "profilePix",
+                attrs: { src: _vm.traderImage(), alt: "trader" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "d-flex justify-content-center" }, [
+              _c("h2", { staticClass: "mt-3 ml-4" }, [
+                _vm._v(_vm._s(_vm.traderName()))
+              ]),
+              _vm._v(" "),
+              _c(
+                "h4",
+                { staticClass: "py-3 m-0 align-middle userId mt-1 ml-3" },
+                [_vm._v("ID #" + _vm._s(_vm.$route.params.idt))]
+              )
+            ])
           ])
-        }),
-        0
-      )
-    ]
+        ]
+      ),
+      _vm._v(" "),
+      _c("Footer")
+    ],
+    1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "pt-1" }, [
+      _c("button", { staticClass: "btn btn-danger rounded-pill" }, [
+        _c("strong", [_vm._v("CANCEL")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("img", {
+        staticClass: "sending-icon",
+        attrs: { src: "/img/sending-icon.png", alt: "send" }
+      }),
+      _c("i", { staticClass: "ml-2 fa fa-long-arrow-down" })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -54901,21 +54433,6 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js":
-/*!*************************************************************************!*\
-  !*** ./node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js ***!
-  \*************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var r=function(r){return function(r){return!!r&&"object"==typeof r}(r)&&!function(r){var t=Object.prototype.toString.call(r);return"[object RegExp]"===t||"[object Date]"===t||function(r){return r.$$typeof===e}(r)}(r)},e="function"==typeof Symbol&&Symbol.for?Symbol.for("react.element"):60103;function t(r,e){return!1!==e.clone&&e.isMergeableObject(r)?c(Array.isArray(r)?[]:{},r,e):r}function n(r,e,n){return r.concat(e).map(function(r){return t(r,n)})}function o(r){return Object.keys(r).concat(function(r){return Object.getOwnPropertySymbols?Object.getOwnPropertySymbols(r).filter(function(e){return r.propertyIsEnumerable(e)}):[]}(r))}function u(r,e){try{return e in r}catch(r){return!1}}function c(e,i,a){(a=a||{}).arrayMerge=a.arrayMerge||n,a.isMergeableObject=a.isMergeableObject||r,a.cloneUnlessOtherwiseSpecified=t;var f=Array.isArray(i);return f===Array.isArray(e)?f?a.arrayMerge(e,i,a):function(r,e,n){var i={};return n.isMergeableObject(r)&&o(r).forEach(function(e){i[e]=t(r[e],n)}),o(e).forEach(function(o){(function(r,e){return u(r,e)&&!(Object.hasOwnProperty.call(r,e)&&Object.propertyIsEnumerable.call(r,e))})(r,o)||(i[o]=u(r,o)&&n.isMergeableObject(e[o])?function(r,e){if(!e.customMerge)return c;var t=e.customMerge(r);return"function"==typeof t?t:c}(o,n)(r[o],e[o],n):t(e[o],n))}),i}(e,i,a):t(i,a)}c.all=function(r,e){if(!Array.isArray(r))throw new Error("first argument should be an array");return r.reduce(function(r,t){return c(r,t,e)},{})};var i=c;/* harmony default export */ __webpack_exports__["default"] = (function(r){var e=(r=r||{}).storage||window&&window.localStorage,t=r.key||"vuex";(r.assertStorage||function(){e.setItem("@@",1),e.removeItem("@@")})(e);var n,o=function(){return(r.getState||function(r,e){var t;try{return(t=e.getItem(r))&&void 0!==t?JSON.parse(t):void 0}catch(r){}})(t,e)};return r.fetchBeforeUse&&(n=o()),function(u){r.fetchBeforeUse||(n=o()),"object"==typeof n&&null!==n&&(u.replaceState(r.overwrite?n:i(u.state,n,{arrayMerge:r.arrayMerger||function(r,e){return e},clone:!1})),(r.rehydrated||function(){})(u)),(r.subscriber||function(r){return function(e){return r.subscribe(e)}})(u)(function(n,o){(r.filter||function(){return!0})(n)&&(r.setState||function(r,e,t){return t.setItem(r,JSON.stringify(e))})(t,(r.reducer||function(r,e){return Array.isArray(e)?e.reduce(function(e,t){return function(r,e,t,n){return(e=e.split?e.split("."):e).slice(0,-1).reduce(function(r,e){return r[e]=r[e]||{}},r)[e.pop()]=t,r}(e,t,function(r,e,t){return void 0===(r=(e.split?e.split("."):e).reduce(function(r,e){return r&&r[e]},r))?void 0:r}(r,t))},{}):r})(o,r.paths),e)})}});
-//# sourceMappingURL=vuex-persistedstate.es.js.map
-
-
-/***/ }),
-
 /***/ "./node_modules/vuex/dist/vuex.esm.js":
 /*!********************************************!*\
   !*** ./node_modules/vuex/dist/vuex.esm.js ***!
@@ -56256,13 +55773,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Pokedex_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Pokedex.vue */ "./resources/js/components/Pokedex.vue");
 /* harmony import */ var _components_Team_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Team.vue */ "./resources/js/components/Team.vue");
 /* harmony import */ var _components_Trade_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Trade.vue */ "./resources/js/components/Trade.vue");
-/* harmony import */ var _components_Pokemon_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Pokemon.vue */ "./resources/js/components/Pokemon.vue");
-/* harmony import */ var _components_Stats_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Stats.vue */ "./resources/js/components/Stats.vue");
-/* harmony import */ var _components_Weak_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Weak.vue */ "./resources/js/components/Weak.vue");
-/* harmony import */ var _components_Evol_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Evol.vue */ "./resources/js/components/Evol.vue");
+/* harmony import */ var _components_TradeIn_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/TradeIn.vue */ "./resources/js/components/TradeIn.vue");
+/* harmony import */ var _components_Pokemon_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Pokemon.vue */ "./resources/js/components/Pokemon.vue");
+/* harmony import */ var _components_Stats_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Stats.vue */ "./resources/js/components/Stats.vue");
+/* harmony import */ var _components_Weak_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Weak.vue */ "./resources/js/components/Weak.vue");
+/* harmony import */ var _components_Evol_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/Evol.vue */ "./resources/js/components/Evol.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
 
 
 
@@ -56296,24 +55815,28 @@ var routes = [{
   path: '/trade',
   component: _components_Trade_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
+  name: 'tradein',
+  path: '/tradein/:idt',
+  component: _components_TradeIn_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+}, {
   path: '/pokemon/:id',
-  component: _components_Pokemon_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+  component: _components_Pokemon_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
   children: [{
     name: "pokemon",
     path: '',
-    component: _components_Stats_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _components_Stats_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
   }, {
     name: "stats",
     path: 'stats',
-    component: _components_Stats_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _components_Stats_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
   }, {
     name: "weak",
     path: 'weak',
-    component: _components_Weak_vue__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _components_Weak_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
   }, {
     name: "evol",
     path: 'evol',
-    component: _components_Evol_vue__WEBPACK_IMPORTED_MODULE_9__["default"]
+    component: _components_Evol_vue__WEBPACK_IMPORTED_MODULE_10__["default"]
   }]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
@@ -56612,59 +56135,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HeaderUser_vue_vue_type_template_id_5303b6ba___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HeaderUser_vue_vue_type_template_id_5303b6ba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/Headertrade.vue":
-/*!*************************************************!*\
-  !*** ./resources/js/components/Headertrade.vue ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Headertrade_vue_vue_type_template_id_c5cf7348___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Headertrade.vue?vue&type=template&id=c5cf7348& */ "./resources/js/components/Headertrade.vue?vue&type=template&id=c5cf7348&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-var script = {}
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
-  _Headertrade_vue_vue_type_template_id_c5cf7348___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Headertrade_vue_vue_type_template_id_c5cf7348___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/Headertrade.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/Headertrade.vue?vue&type=template&id=c5cf7348&":
-/*!********************************************************************************!*\
-  !*** ./resources/js/components/Headertrade.vue?vue&type=template&id=c5cf7348& ***!
-  \********************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Headertrade_vue_vue_type_template_id_c5cf7348___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Headertrade.vue?vue&type=template&id=c5cf7348& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Headertrade.vue?vue&type=template&id=c5cf7348&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Headertrade_vue_vue_type_template_id_c5cf7348___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Headertrade_vue_vue_type_template_id_c5cf7348___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -57084,6 +56554,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/TradeIn.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/TradeIn.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TradeIn_vue_vue_type_template_id_3b535e8e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TradeIn.vue?vue&type=template&id=3b535e8e& */ "./resources/js/components/TradeIn.vue?vue&type=template&id=3b535e8e&");
+/* harmony import */ var _TradeIn_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TradeIn.vue?vue&type=script&lang=js& */ "./resources/js/components/TradeIn.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TradeIn_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TradeIn_vue_vue_type_template_id_3b535e8e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TradeIn_vue_vue_type_template_id_3b535e8e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/TradeIn.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/TradeIn.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/TradeIn.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TradeIn_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TradeIn.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TradeIn.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TradeIn_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/TradeIn.vue?vue&type=template&id=3b535e8e&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/TradeIn.vue?vue&type=template&id=3b535e8e& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TradeIn_vue_vue_type_template_id_3b535e8e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./TradeIn.vue?vue&type=template&id=3b535e8e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TradeIn.vue?vue&type=template&id=3b535e8e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TradeIn_vue_vue_type_template_id_3b535e8e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TradeIn_vue_vue_type_template_id_3b535e8e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Weak.vue":
 /*!******************************************!*\
   !*** ./resources/js/components/Weak.vue ***!
@@ -57158,428 +56697,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./resources/js/store/index.js ***!
   \*************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex_persistedstate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex-persistedstate */ "./node_modules/vuex-persistedstate/dist/vuex-persistedstate.es.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-
-
-var url = "http://localhost:8000/api/";
-var headers = new Headers();
-headers.append("Content-Type", "application/json");
-
-var status = function status(response) {
-  return response.status >= 200 && response.status < 300 ? Promise.resolve(response) : Promise.reject(response.statusText);
-};
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  state: {
-    poks: [],
-    pok: {},
-    evolPok: {},
-    evolPok2: {},
-    users: [],
-    teams: [],
-    myProfile: [],
-    //Nico
-    myUserProfile: {},
-    //Nico
-    myTeam: [],
-    //Nico
-    apiToken: ''
-  },
-  mutations: {
-    setPoks: function setPoks(state, poks) {
-      state.poks = poks;
-    },
-    setPok: function setPok(state, pok) {
-      state.pok = pok;
-    },
-    setEvolPok: function setEvolPok(state, evolPok) {
-      state.evolPok = evolPok;
-    },
-    setEvolPok2: function setEvolPok2(state, evolPok2) {
-      state.evolPok2 = evolPok2;
-    },
-    setUsers: function setUsers(state, users) {
-      state.users = users;
-    },
-    setUsersTeams: function setUsersTeams(state, payload) {
-      var user = payload.user;
-      user.team = payload.team.team;
-      state.users.push(user);
-    },
-    setMyProfile: function setMyProfile(state, myProfile) {
-      //Nico
-      state.myProfile = myProfile;
-    },
-    setMyTeam: function setMyTeam(state, myTeamPoks) {
-      //Nico
-      var team = [];
-      myTeamPoks.forEach(function (element) {
-        var teamPok = state.poks.find(function (pok) {
-          return pok.id == element.pokemon_id;
-        });
-        team.push(teamPok);
-      });
-      state.myUserProfile = state.myProfile;
-      state.myUserProfile.team = team;
-    },
-    setApiToken: function setApiToken(state, apiToken) {
-      state.apiToken = apiToken;
-    }
-  },
-  actions: {
-    getPoks: function getPoks(state) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var poksRaw, validPoks, poks;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return fetch(url + "pokemons", {
-                  headers: {
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 2:
-                poksRaw = _context.sent;
-                _context.next = 5;
-                return status(poksRaw);
-
-              case 5:
-                validPoks = _context.sent;
-                _context.next = 8;
-                return validPoks.json();
-
-              case 8:
-                poks = _context.sent;
-                state.commit("setPoks", poks.data);
-
-              case 10:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    getPok: function getPok(state, id) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        var pokRaw, validPok, pok;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return fetch(url + "pokemons/" + id, {
-                  headers: {
-                    Accept: "application/json",
-                    "access-token": ""
-                  }
-                });
-
-              case 2:
-                pokRaw = _context2.sent;
-                _context2.next = 5;
-                return status(pokRaw);
-
-              case 5:
-                validPok = _context2.sent;
-                _context2.next = 8;
-                return validPok.json();
-
-              case 8:
-                pok = _context2.sent;
-                state.commit("setPok", pok.data[0].Pokemon);
-                if (pok.data[0].Pokemon.evolutions.evolution_id) state.dispatch("getEvolPok", pok.data[0].Pokemon.evolutions.evolution_id);
-
-              case 11:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
-    getEvolPok: function getEvolPok(state, id) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
-        var pokEvolRaw, validEvolPok, evolPok;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.next = 2;
-                return fetch(url + "pokemons/" + id, {
-                  headers: {
-                    Accept: "application/json"
-                  }
-                });
-
-              case 2:
-                pokEvolRaw = _context3.sent;
-                _context3.next = 5;
-                return status(pokEvolRaw);
-
-              case 5:
-                validEvolPok = _context3.sent;
-                _context3.next = 8;
-                return validEvolPok.json();
-
-              case 8:
-                evolPok = _context3.sent;
-                state.commit("setEvolPok", evolPok.data[0].Pokemon);
-                if (evolPok.data[0].Pokemon.evolutions.evolution_id) state.dispatch("getEvolPok2", evolPok.data[0].Pokemon.evolutions.evolution_id);
-
-              case 11:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
-    },
-    getEvolPok2: function getEvolPok2(state, id) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
-        var pokEvolRaw2, validEvolPok2, evolPok2;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                _context4.next = 2;
-                return fetch(url + "pokemons/" + id, {
-                  headers: {
-                    "Content-Type": "application/json"
-                  }
-                });
-
-              case 2:
-                pokEvolRaw2 = _context4.sent;
-                _context4.next = 5;
-                return status(pokEvolRaw2);
-
-              case 5:
-                validEvolPok2 = _context4.sent;
-                _context4.next = 8;
-                return validEvolPok2.json();
-
-              case 8:
-                evolPok2 = _context4.sent;
-                state.commit("setEvolPok2", evolPok2.data[0].Pokemon);
-
-              case 10:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4);
-      }))();
-    },
-    getUsers: function getUsers(state) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
-        var usersRaw, validUsers, users;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                _context5.next = 2;
-                return fetch(url + "users", {
-                  headers: {
-                    Accept: "application/json",
-                    Authorization: "Bearer " + state.getters.getApiToken
-                  }
-                });
-
-              case 2:
-                usersRaw = _context5.sent;
-                _context5.next = 5;
-                return status(usersRaw);
-
-              case 5:
-                validUsers = _context5.sent;
-                _context5.next = 8;
-                return validUsers.json();
-
-              case 8:
-                users = _context5.sent;
-                state.commit("setUsers", []);
-                users.users.forEach(function (user) {
-                  state.dispatch("getTeams", user);
-                });
-
-              case 11:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5);
-      }))();
-    },
-    getTeams: function getTeams(state, user) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6() {
-        var teamRaw, validTeam, team;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
-          while (1) {
-            switch (_context6.prev = _context6.next) {
-              case 0:
-                _context6.next = 2;
-                return fetch(url + "users/" + user.user_id + "/team", {
-                  headers: {
-                    Accept: "application/json",
-                    Authorization: "Bearer " + state.getters.getApiToken
-                  }
-                });
-
-              case 2:
-                teamRaw = _context6.sent;
-                _context6.next = 5;
-                return status(teamRaw);
-
-              case 5:
-                validTeam = _context6.sent;
-                _context6.next = 8;
-                return validTeam.json();
-
-              case 8:
-                team = _context6.sent;
-                state.commit("setUsersTeams", {
-                  user: user,
-                  team: team
-                });
-
-              case 10:
-              case "end":
-                return _context6.stop();
-            }
-          }
-        }, _callee6);
-      }))();
-    },
-    myProfile: function myProfile(state) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7() {
-        var myProfileRaw, validMyProfile, myProfile;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
-          while (1) {
-            switch (_context7.prev = _context7.next) {
-              case 0:
-                _context7.next = 2;
-                return fetch(url + "users/me", {
-                  method: 'GET',
-                  headers: {
-                    Authorization: "Bearer " + state.getters.getApiToken,
-                    Accept: "application/json"
-                  }
-                });
-
-              case 2:
-                myProfileRaw = _context7.sent;
-                _context7.next = 5;
-                return status(myProfileRaw);
-
-              case 5:
-                validMyProfile = _context7.sent;
-                _context7.next = 8;
-                return validMyProfile.json();
-
-              case 8:
-                myProfile = _context7.sent;
-                state.commit('setMyProfile', myProfile.user[0]);
-
-              case 10:
-              case "end":
-                return _context7.stop();
-            }
-          }
-        }, _callee7);
-      }))();
-    },
-    myTeam: function myTeam(state) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8() {
-        var myTeamRaw, validMyTeam, myTeam;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
-          while (1) {
-            switch (_context8.prev = _context8.next) {
-              case 0:
-                _context8.next = 2;
-                return fetch(url + "users/me/team", {
-                  method: 'GET',
-                  headers: {
-                    Authorization: "Bearer " + state.getters.getApiToken,
-                    Accept: "application/json"
-                  }
-                });
-
-              case 2:
-                myTeamRaw = _context8.sent;
-                _context8.next = 5;
-                return status(myTeamRaw);
-
-              case 5:
-                validMyTeam = _context8.sent;
-                _context8.next = 8;
-                return validMyTeam.json();
-
-              case 8:
-                myTeam = _context8.sent;
-                state.commit("setMyTeam", myTeam.team);
-
-              case 10:
-              case "end":
-                return _context8.stop();
-            }
-          }
-        }, _callee8);
-      }))();
-    }
-  },
-  modules: {},
-  getters: {
-    getPoks: function getPoks(state) {
-      return state.poks;
-    },
-    getPok: function getPok(state) {
-      return state.pok;
-    },
-    getEvolPok: function getEvolPok(state) {
-      return state.evolPok;
-    },
-    getEvolPok2: function getEvolPok2(state) {
-      return state.evolPok2;
-    },
-    getUsers: function getUsers(state) {
-      return state.users;
-    },
-    getMyProfile: function getMyProfile(state) {
-      // Nico
-      return state.myProfile;
-    },
-    getMyUserProfile: function getMyUserProfile(state) {
-      // Nico
-      return state.myUserProfile;
-    },
-    getMyTeam: function getMyTeam(state) {
-      // Nico
-      return state.myTeam;
-    },
-    getApiToken: function getApiToken(state) {
-      return state.apiToken;
-    }
-  },
-  plugins: [Object(vuex_persistedstate__WEBPACK_IMPORTED_MODULE_1__["default"])()]
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/nico/Desktop/Projects/MVVM_Pokedex/resources/js/store/index.js: Unexpected token (92:0)\n\n\u001b[0m \u001b[90m 90 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 91 | \u001b[39m      \u001b[36mconst\u001b[39m pokRaw \u001b[33m=\u001b[39m await fetch(url\u001b[33m+\u001b[39m\u001b[32m\"pokemons/\"\u001b[39m\u001b[33m+\u001b[39mid\u001b[33m,\u001b[39m { headers\u001b[33m:\u001b[39m { \u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 92 | \u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<<\u001b[39m\u001b[33m<\u001b[39m \u001b[33mHEAD\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 93 | \u001b[39m        \u001b[33mAccept\u001b[39m\u001b[33m:\u001b[39m \u001b[32m\"application/json\"\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 94 | \u001b[39m        \u001b[32m\"access-token\"\u001b[39m\u001b[33m:\u001b[39m \u001b[32m\"\"\u001b[39m\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 95 | \u001b[39m\u001b[33m===\u001b[39m\u001b[33m===\u001b[39m\u001b[33m=\u001b[39m\u001b[0m\n    at Parser._raise (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:757:17)\n    at Parser.raiseWithData (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:750:17)\n    at Parser.raise (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:744:17)\n    at Parser.unexpected (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:8834:16)\n    at Parser.parseIdentifierName (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:10877:18)\n    at Parser.parseIdentifier (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:10854:23)\n    at Parser.parseMaybePrivateName (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:10203:19)\n    at Parser.parsePropertyName (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:10674:126)\n    at Parser.parseObjectMember (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:10575:10)\n    at Parser.parseObj (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:10494:25)\n    at Parser.parseExprAtom (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:10090:28)\n    at Parser.parseExprSubscripts (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9688:23)\n    at Parser.parseMaybeUnary (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9668:21)\n    at Parser.parseExprOps (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9538:23)\n    at Parser.parseMaybeConditional (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9511:23)\n    at Parser.parseMaybeAssign (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9466:21)\n    at Parser.parseObjectProperty (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:10636:101)\n    at Parser.parseObjPropValue (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:10661:101)\n    at Parser.parseObjectMember (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:10585:10)\n    at Parser.parseObj (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:10494:25)\n    at Parser.parseExprAtom (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:10090:28)\n    at Parser.parseExprSubscripts (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9688:23)\n    at Parser.parseMaybeUnary (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9668:21)\n    at Parser.parseExprOps (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9538:23)\n    at Parser.parseMaybeConditional (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9511:23)\n    at Parser.parseMaybeAssign (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9466:21)\n    at Parser.parseExprListItem (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:10846:18)\n    at Parser.parseCallExpressionArguments (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9885:22)\n    at Parser.parseSubscript (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9785:31)\n    at Parser.parseSubscripts (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9711:19)\n    at Parser.parseExprSubscripts (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9694:17)\n    at Parser.parseMaybeUnary (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9668:21)\n    at Parser.parseAwait (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:10962:28)\n    at Parser.parseMaybeUnary (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9636:19)\n    at Parser.parseExprOps (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9538:23)\n    at Parser.parseMaybeConditional (/home/nico/Desktop/Projects/MVVM_Pokedex/node_modules/@babel/parser/lib/index.js:9511:23)");
 
 /***/ }),
 

@@ -1998,6 +1998,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HeaderUser',
   mounted: function mounted() {
@@ -2172,10 +2174,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Footer_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Footer.vue */ "./resources/js/components/Footer.vue");
-//
-//
-//
-//
 //
 //
 //
@@ -38875,7 +38873,7 @@ var render = function() {
                   attrs: { src: _vm.evolPokImage, alt: _vm.pokEvolStore.name }
                 }),
                 _vm._v(" "),
-                _c("div", [_vm._v(_vm._s(_vm.pokStore.name))])
+                _c("div", [_vm._v(_vm._s(_vm.pokEvolStore.name))])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "w-25" }, [
@@ -39024,11 +39022,13 @@ var render = function() {
     "div",
     { staticClass: "container-fluid justify-content-center p-0 bg-head" },
     [
-      _c("div", { staticClass: "circle" }, [
-        _c("img", {
-          staticClass: "profilePix",
-          attrs: { src: _vm.profilePix, alt: "" }
-        })
+      _c("a", { attrs: { href: "/home" } }, [
+        _c("div", { staticClass: "circle" }, [
+          _c("img", {
+            staticClass: "profilePix",
+            attrs: { src: _vm.profilePix, alt: "" }
+          })
+        ])
       ]),
       _vm._v(" "),
       _c(
@@ -39351,91 +39351,89 @@ var render = function() {
       _c("div", { staticClass: "h-100 overflow-auto" }, [
         _c("div", { staticClass: "text-left m-4 text-white" }, [_vm._v("V")]),
         _vm._v(" "),
-        _c("div", { staticClass: "d-inline-block" }, [
-          _c(
-            "div",
-            { staticClass: "pok-content pb-2" },
-            [
-              _c("img", {
-                staticClass: "pok-top",
-                attrs: { src: _vm.pokImage, alt: _vm.pokStore.name }
+        _c(
+          "div",
+          { staticClass: "pok-content pb-2 w-100" },
+          [
+            _c("img", {
+              staticClass: "pok-top",
+              attrs: { src: _vm.pokImage, alt: _vm.pokStore.name }
+            }),
+            _vm._v(" "),
+            _c("h2", { staticClass: "pt-3 text-center" }, [
+              _vm._v(_vm._s(_vm.pokStore.name))
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "pok-types my-2" },
+              _vm._l(_vm.pokStore.types, function(type) {
+                return _c("div", { key: type, staticClass: "d-inline" }, [
+                  _c("img", {
+                    attrs: { src: _vm.getTypeImage(type), alt: type }
+                  })
+                ])
               }),
-              _vm._v(" "),
-              _c("h2", { staticClass: "pt-3 text-center" }, [
-                _vm._v(_vm._s(_vm.pokStore.name))
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "pok-types my-2" },
-                _vm._l(_vm.pokStore.types, function(type) {
-                  return _c("div", { key: type, staticClass: "d-inline" }, [
-                    _c("img", {
-                      attrs: { src: _vm.getTypeImage(type), alt: type }
-                    })
-                  ])
-                }),
-                0
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "mx-2 p-2" }, [
-                _vm._v(_vm._s(_vm.pokStore.description))
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "d-inline pok-chars" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      class: _vm.pokStore.types.type1,
-                      attrs: { to: { name: "pokemon" } },
-                      on: {
-                        click: function($event) {
-                          return _vm.setActive(0)
-                        }
+              0
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "mx-2 p-2" }, [
+              _vm._v(_vm._s(_vm.pokStore.description))
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "d-inline pok-chars" },
+              [
+                _c(
+                  "router-link",
+                  {
+                    class: _vm.pokStore.types.type1,
+                    attrs: { to: { name: "pokemon" } },
+                    on: {
+                      click: function($event) {
+                        return _vm.setActive(0)
                       }
-                    },
-                    [_vm._v("Stats")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      class: _vm.pokStore.types.type1,
-                      attrs: { to: { name: "weak" } },
-                      on: {
-                        click: function($event) {
-                          return _vm.setActive(1)
-                        }
+                    }
+                  },
+                  [_vm._v("Stats")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    class: _vm.pokStore.types.type1,
+                    attrs: { to: { name: "weak" } },
+                    on: {
+                      click: function($event) {
+                        return _vm.setActive(1)
                       }
-                    },
-                    [_vm._v("Weaknesses")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      class: _vm.pokStore.types.type1,
-                      attrs: { to: { name: "evol" } },
-                      on: {
-                        click: function($event) {
-                          return _vm.setActive(2)
-                        }
+                    }
+                  },
+                  [_vm._v("Weaknesses")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    class: _vm.pokStore.types.type1,
+                    attrs: { to: { name: "evol" } },
+                    on: {
+                      click: function($event) {
+                        return _vm.setActive(2)
                       }
-                    },
-                    [_vm._v("Evolutions")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("router-view")
-            ],
-            1
-          )
-        ])
+                    }
+                  },
+                  [_vm._v("Evolutions")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("router-view")
+          ],
+          1
+        )
       ]),
       _vm._v(" "),
       _c("pok-footer")
@@ -57574,8 +57572,8 @@ var status = function status(response) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/nico/Desktop/Projects/MVVM_Pokedex/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/nico/Desktop/Projects/MVVM_Pokedex/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/fannabi/Rendu/MVVM_Pokedex/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/fannabi/Rendu/MVVM_Pokedex/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

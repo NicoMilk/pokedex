@@ -1,7 +1,10 @@
 <template>
-    <div class="container p-0">
+     <div class="d-flex flex-column  justify-content-between h-100">
         <HeaderUser/>
-        <PokList/>
+        <div class="sep">&nbsp;</div> 
+        <div class="content bg-blur h-100 overflow-auto" >
+            <PokList/>
+        </div>
         <Footer/>
     </div>
 </template>
@@ -30,9 +33,9 @@ import PokList from './PokList.vue';
             myProfileStore() {
                 return this.$store.getters.getMyProfile;
             },
-            myTeamStore() {
-                return this.$store.getters.getMyTeam;
-            },
+            // myTeamStore() {
+            //     return this.$store.getters.getMyTeam;
+            // },
 
         }
 

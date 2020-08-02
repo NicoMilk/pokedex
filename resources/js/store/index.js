@@ -17,9 +17,11 @@ export default {
     poks : [],
     pok : {},
     evolPok : {},
+    evolPok2 : {},
     users :[],
     teams: [],
     myProfile : [],  //Nico
+    myUserProfile : {},  //Nico
     myTeam : [], //Nico
     apiToken : ''
   },
@@ -33,6 +35,9 @@ export default {
     },
     setEvolPok(state, evolPok) {
       state.evolPok = evolPok;
+    },
+    setEvolPok2(state, evolPok2) {
+      state.evolPok2 = evolPok2;
     },
     setUsers(state, users){
       state.users=users;
@@ -48,14 +53,16 @@ export default {
     },
 
     setMyTeam(state, myTeamPoks) {  //Nico
-      state.myTeam = [];
-      let teamPok = {};
+      let team = [];
 
       myTeamPoks.forEach(element => {
-        teamPok = state.poks.find(pok => pok.id == element.pokemon_id)
+        let teamPok = state.poks.find(pok => pok.id == element.pokemon_id)
+        team.push(teamPok);
       });
-      state.myTeam.push(teamPok);
+      state.myUserProfile = state.myProfile;
+      state.myUserProfile.team = team;
     },
+
     setApiToken(state, apiToken) {
       state.apiToken = apiToken;
     }
@@ -108,6 +115,23 @@ export default {
       const evolPok = await validEvolPok.json();
 
       state.commit("setEvolPok", evolPok.data[0].Pokemon );
+
+      if (evolPok.data[0].Pokemon.evolutions.evolution_id) state.dispatch("getEvolPok2", evolPok.data[0].Pokemon.evolutions.evolution_id)
+      
+    },
+
+    async getEvolPok2(state, id) {
+
+      const pokEvolRaw2 = await fetch(url+"pokemons/"+id, { headers: { 
+          "Content-Type": "application/json"
+        }  
+      });
+
+      const validEvolPok2 = await status(pokEvolRaw2)
+
+      const evolPok2 = await validEvolPok2.json();
+
+      state.commit("setEvolPok2", evolPok2.data[0].Pokemon );
       
     },
     async getUsers(state) {
@@ -134,7 +158,7 @@ export default {
     },
       async getTeams(state, user ){
 
-        const teamRaw = await fetch(url+"users/"+user.id+"/team" ,{ headers: { 
+        const teamRaw = await fetch(url+"users/"+user.user_id+"/team" ,{ headers: { 
           Accept: "application/json",
           Authorization: "Bearer "+ state.getters.getApiToken,
         }});
@@ -167,7 +191,7 @@ export default {
       {
         method: 'GET',  
         headers: {
-          Authorization: "Bearer "+ state.getters.getApiToken, // /!\ ACCESS TOKEN MISSING
+          Authorization: "Bearer "+ state.getters.getApiToken,
           Accept: "application/json"}
       });
 
@@ -195,19 +219,26 @@ export default {
     getEvolPok(state) {
       return state.evolPok;
     },
+    getEvolPok2(state) {
+      return state.evolPok2;
+    },
 
     getUsers(state) {
       return state.users;
     },
 
-
     getMyProfile(state) { // Nico
       return state.myProfile;
+    },
+
+    getMyUserProfile(state) { // Nico
+      return state.myUserProfile;
     },
 
     getMyTeam(state) { // Nico
       return state.myTeam;
     },
+
     getApiToken(state) {
       return state.apiToken;
     }

@@ -2535,7 +2535,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      selectedPok: null
+      selectedPok: null,
+      currentTeam: []
     };
   },
   methods: {
@@ -2543,7 +2544,6 @@ __webpack_require__.r(__webpack_exports__);
       this.selectedPok = pok;
     },
     sendToTrader: function sendToTrader() {
-      console.log(this.selectedPok);
       if (this.selectedPok) this.$store.dispatch("sendToTrader", {
         pok_id: this.selectedPok.id,
         trader_id: this.$route.params.idt
@@ -2571,7 +2571,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     myProfileStore: function myProfileStore() {
-      return this.$store.getters.getMyUserProfile;
+      return this.$store.getters.getMyUserProfile.team;
     }
   }
 });
@@ -39932,7 +39932,7 @@ var render = function() {
               staticClass:
                 "d-flex flex-row flex-nowrap py-2 px-1  bg-white border-bottom"
             },
-            _vm._l(_vm.myProfileStore.team, function(pok, idx) {
+            _vm._l(_vm.myProfileStore, function(pok, idx) {
               return _c("div", { key: idx }, [
                 _c("img", {
                   staticClass: "pok-sm m-1",
@@ -57901,8 +57901,9 @@ var status = function status(response) {
 
               case 8:
                 trade = _context9.sent;
+                state.dispatch("myTeam");
 
-              case 9:
+              case 10:
               case "end":
                 return _context9.stop();
             }

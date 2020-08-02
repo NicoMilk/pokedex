@@ -5,7 +5,7 @@
         <div class="content bg-blur h-100 overflow-auto border-top" >
             
             <div class="d-flex flex-row flex-nowrap py-2 px-1  bg-white border-bottom">
-                <div v-for="(pok,idx) in myProfileStore.team" :key="idx" >
+                <div v-for="(pok,idx) in myProfileStore" :key="idx" >
                      <img v-bind:src="pokImage(pok)" :alt="pok.name" class="pok-sm m-1" @click="selectPok(pok)"/>
                 </div>
             </div>
@@ -53,15 +53,14 @@ import PokList from './PokList.vue';
             this.$store.dispatch("myTeam");
         },
         data : () =>({
-            selectedPok : null
+            selectedPok : null,
+            currentTeam :[]
         }),
         methods : {
             selectPok(pok) {
                 this.selectedPok = pok;
             },
             sendToTrader () {
-                console.log(this.selectedPok)
-
                 if (this.selectedPok) this.$store.dispatch("sendToTrader", { pok_id : this.selectedPok.id, trader_id: this.$route.params.idt}  )
             },
 
@@ -70,7 +69,6 @@ import PokList from './PokList.vue';
             },
 
             traderImage() {
-
                 let userTrade = this.$store.getters.getUsers.find( item => item.user_id ==  this.$route.params.idt );                
                 return "/img/profile/"+userTrade.profile_icon_id+".png"
             },
@@ -81,7 +79,7 @@ import PokList from './PokList.vue';
         },        
         computed : {
             myProfileStore() {
-                return this.$store.getters.getMyUserProfile;
+                return this.$store.getters.getMyUserProfile.team;
             }
          }
     }

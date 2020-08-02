@@ -57399,7 +57399,7 @@ var status = function status(response) {
                 return fetch(url + "users", {
                   headers: {
                     Accept: "application/json",
-                    Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5"
+                    Authorization: "Bearer " + state.getters.getApiToken
                   }
                 });
 
@@ -57439,7 +57439,7 @@ var status = function status(response) {
                 return fetch(url + "users/" + user.user_id + "/team", {
                   headers: {
                     Accept: "application/json",
-                    Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5"
+                    Authorization: "Bearer " + state.getters.getApiToken
                   }
                 });
 
@@ -57479,7 +57479,7 @@ var status = function status(response) {
                 return fetch(url + "users/me", {
                   method: 'GET',
                   headers: {
-                    Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5",
+                    Authorization: "Bearer " + state.getters.getApiToken,
                     Accept: "application/json"
                   }
                 });
@@ -57601,8 +57601,8 @@ var status = function status(response) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/ln/MVVM_Pokedex/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/ln/MVVM_Pokedex/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/nico/Desktop/Projects/MVVM_Pokedex/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/nico/Desktop/Projects/MVVM_Pokedex/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

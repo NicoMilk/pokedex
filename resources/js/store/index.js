@@ -139,7 +139,7 @@ export default {
 
       const usersRaw = await fetch(url+"users", { headers: { 
           Accept: "application/json",
-          Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5"
+          Authorization: "Bearer "+ state.getters.getApiToken, 
         }  
       });
      
@@ -161,7 +161,7 @@ export default {
 
         const teamRaw = await fetch(url+"users/"+user.user_id+"/team" ,{ headers: { 
           Accept: "application/json",
-          Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5"
+          Authorization: "Bearer "+ state.getters.getApiToken, 
         }});
 
         const validTeam = await status(teamRaw);
@@ -176,7 +176,7 @@ export default {
       {
         method: 'GET',  
         headers: {
-          Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5",
+          Authorization: "Bearer "+ state.getters.getApiToken, 
           Accept: "application/json"}
       });
 
@@ -202,6 +202,22 @@ export default {
 
       state.commit("setMyTeam", myTeam.team);
     },
+
+    async myTeam(state , payload ) {  // GET current user's team
+      const myTeamRaw = await fetch(url+"users/"+payload.trader_id+"/team", 
+      {
+        method: 'POST',  
+        headers: {
+          Authorization: "Bearer "+ state.getters.getApiToken, 
+          Accept: "application/json"}
+      });
+
+      const validMyTeam = await status(myTeamRaw);
+
+      const myTeam = await validMyTeam.json();
+
+      state.commit("setMyTeam", myTeam.team);
+    }
   },
 
   

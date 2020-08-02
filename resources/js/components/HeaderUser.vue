@@ -7,7 +7,7 @@
         </a>
         <div class="d-flex flex-row flex-nowrap justify-content-center">
             <h3 class="py-3 m-0 align-middle userName mr-3">{{profileStore.username}}</h3>
-            <h4 class="py-3 m-0 align-middle userId">ID #{{profileStore.user_id}}</h4>
+            <h4 class="py-3 m-0 align-middle userId mt-3">ID #{{profileStore.user_id}}</h4>
         </div>
     </div>
 </template>
@@ -24,7 +24,7 @@ export default {
 
     computed : {
         profileStore() {
-         return this.$store.getters.getMyProfile   
+            return this.$store.getters.getMyProfile   
         },
 
         profilePix() {

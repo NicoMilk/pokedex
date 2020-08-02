@@ -2381,8 +2381,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2398,7 +2396,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.$store.dispatch("getUsers");
+    this.$store.dispatch("getUsers"); //this.$store.dispatch("getTeams");
   },
   computed: {
     usersStore: function usersStore() {
@@ -2413,6 +2411,36 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.getters.getUsers.filter(function (users) {
         return users.username.match(_this.query);
       });
+    }
+  },
+  methods: {
+    getUserId: function getUserId(user) {
+      return "#" + ("00" + user.user_id).substr(-3);
+    },
+    getUserAvatar: function getUserAvatar(user) {
+      return "/img/profile/" + user.profile_icon_id + ".png"; //console.log(user.profile_icon_id);
+
+      /* switch(user.profile_icon_id){
+          case '1':
+              return "/img/profile/bulbausaur.png";
+              break;
+           case '2':
+              return "/img/profile/charmander.png";
+              break;
+           case '3':
+              return "/img/profile/jigglypuff.png";
+              break;
+           case '4':
+              return "/img/profile/pikachu.png";
+              break;
+           case '5':
+              return "/img/profile/pokeball.png";
+              break;
+           case '6':
+              return "/img/profile/squirtle.png";
+              break;
+          default:
+              return "/img/profile/pikachu.png"; */
     }
   }
 });
@@ -39625,73 +39653,74 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.query,
-            expression: "query"
-          }
-        ],
-        staticClass: "searchbar",
-        attrs: { type: "text", placeholder: "Search" },
-        domProps: { value: _vm.query },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+  return _c(
+    "div",
+    { staticClass: "d-flex flex-column  justify-content-between h-100" },
+    [
+      _c("div", [
+        _c("h3", { staticClass: "text-center py-3 m-0 bg-blur" }, [
+          _c("a", [_vm._v("Users")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.query,
+                expression: "query"
+              }
+            ],
+            staticClass: "searchbar",
+            attrs: { type: "text", placeholder: "Search" },
+            domProps: { value: _vm.query },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.query = $event.target.value
+              }
             }
-            _vm.query = $event.target.value
-          }
-        }
-      })
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "sep" }, [_vm._v(" ")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "d-flex flex-column  justify-content-between h-100" },
-      [
-        _c(
-          "div",
-          { staticClass: "content bg-blur h-100 overflow-auto" },
-          _vm._l(_vm.filteredusers, function(user, index) {
-            return _c("div", { key: index }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(user.user_id) +
-                  "\n                " +
-                  _vm._s(user.username) +
-                  "\n                " +
-                  _vm._s(user.profile_icon_id) +
-                  "\n                " +
-                  _vm._s(user.team.length) +
-                  "\n            "
-              )
-            ])
-          }),
-          0
-        )
-      ]
-    )
-  ])
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "sep" }, [_vm._v(" ")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "content bg-blur h-100 overflow-auto" },
+        _vm._l(_vm.filteredusers, function(user, index) {
+          return _c("div", { key: index }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "d-flex justify-content-between align-items-center p-3"
+              },
+              [
+                _c("img", {
+                  staticClass: "pok-trade",
+                  attrs: { src: _vm.getUserAvatar(user) }
+                }),
+                _vm._v(" "),
+                _c("h2", { staticClass: "d-flex" }, [
+                  _vm._v(" " + _vm._s(user.username))
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "pok-id align-items-end" }, [
+                  _vm._v("ID " + _vm._s(_vm.getUserId(user)))
+                ])
+              ]
+            )
+          ])
+        }),
+        0
+      )
+    ]
+  )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "text-center py-3 m-0 bg-blur" }, [
-      _c("a", [_vm._v("Users")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -57371,7 +57400,7 @@ var status = function status(response) {
                 return fetch(url + "users", {
                   headers: {
                     Accept: "application/json",
-                    Authorization: "Bearer " + state.getters.getApiToken
+                    Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5"
                   }
                 });
 
@@ -57411,7 +57440,7 @@ var status = function status(response) {
                 return fetch(url + "users/" + user.user_id + "/team", {
                   headers: {
                     Accept: "application/json",
-                    Authorization: "Bearer " + state.getters.getApiToken
+                    Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5"
                   }
                 });
 
@@ -57451,7 +57480,7 @@ var status = function status(response) {
                 return fetch(url + "users/me", {
                   method: 'GET',
                   headers: {
-                    Authorization: "Bearer " + state.getters.getApiToken,
+                    Authorization: "Bearer WKpCqucPOWQI6DrKp75yto9J1BOELeDSEJ6ySHrF6kPLRDyTQoSxp4FOkwEXMG3cb9DG0NSnnoUkBk5EW26wjcBwYhA417dE8Ym5",
                     Accept: "application/json"
                   }
                 });

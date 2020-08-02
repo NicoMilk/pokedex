@@ -13,13 +13,13 @@
                 <div v-for="(pok, index) in filteredpoks" :key="index">
                     <router-link class="" :to="{ name: 'pokemon', params: { id: pok.id }}">
                           
-                        <div class="d-flex flex-row flex-nowrap justify-content-between my-3">
+                        <div class="d-flex flex-row flex-nowrap justify-content-between mt-3 mb-0">
                             <img v-bind:src="pokImage(pok)" :alt="pok.name" class="pok-sm"/>
                             <div class="flex-grow-1 text-left ml-3" >
                                 <h5>{{ pok.name }}</h5>                
                                 <div class="pok-id">{{ getPokId(pok.id) }}</div>
                             </div>
-                            <div>
+                            <div class="pt-2">
                                 <img v-bind:src="typeImage(pok.types.type1)" :alt="pok.types.type1" class="pok-type"/>
                                 <img v-if="pok.types.type2" v-bind:src="typeImage(pok.types.type2)" :alt="pok.types.type2" class="pok-type"/>
                             </div>

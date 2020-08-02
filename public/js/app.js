@@ -39203,7 +39203,7 @@ var render = function() {
                     "div",
                     {
                       staticClass:
-                        "d-flex flex-row flex-nowrap justify-content-between my-3"
+                        "d-flex flex-row flex-nowrap justify-content-between mt-3 mb-0"
                     },
                     [
                       _c("img", {
@@ -39219,7 +39219,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", [
+                      _c("div", { staticClass: "pt-2" }, [
                         _c("img", {
                           staticClass: "pok-type",
                           attrs: {

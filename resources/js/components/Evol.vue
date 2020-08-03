@@ -13,8 +13,8 @@
                 <div>{{ pokEvolStore.name }}</div>
             </div>
         </div> 
-        <div v-if="pokEvolStore.evolutions.evolution_id" class="px-5"><hr/></div>
-        <div v-if="pokEvolStore.evolutions.evolution_id" class="d-flex flex-row flex-nowrap justify-content-center">
+        <div v-if="pokEvolStore.evolutions.evolution_id && pokStore.evolutions.evolution_id" class="px-5"><hr/></div>
+        <div v-if="pokEvolStore.evolutions.evolution_id && pokStore.evolutions.evolution_id" class="d-flex flex-row flex-nowrap justify-content-center">
             <div><img v-bind:src="evolPokImage" :alt="pokEvolStore.name" class="pok-evol"/>
                   <div>{{ pokEvolStore.name }}</div>
             </div>

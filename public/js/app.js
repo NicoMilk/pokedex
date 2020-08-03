@@ -39015,11 +39015,13 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm.pokEvolStore.evolutions.evolution_id
+      _vm.pokEvolStore.evolutions.evolution_id &&
+      _vm.pokStore.evolutions.evolution_id
         ? _c("div", { staticClass: "px-5" }, [_c("hr")])
         : _vm._e(),
       _vm._v(" "),
-      _vm.pokEvolStore.evolutions.evolution_id
+      _vm.pokEvolStore.evolutions.evolution_id &&
+      _vm.pokStore.evolutions.evolution_id
         ? _c(
             "div",
             {

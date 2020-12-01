@@ -21,7 +21,7 @@ class Teams extends Migration
         });
         Schema::table('teams', function($table) {
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('id_pok')->references('id_pok')->on('Pokedex');
+            $table->foreign('id_pok')->references('id_pok')->on('pokedex');
         });
     }
 

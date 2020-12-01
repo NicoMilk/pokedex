@@ -10,8 +10,10 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-package-lock.json
-composer.lock
+
+# Added by Nico :
+
 /00_docs
 database/seeds/UserSeeder.php
 database/seeds/TeamSeeder.php
+.DS_Store

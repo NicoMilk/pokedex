@@ -57501,8 +57501,10 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
+ // const url = "https://localhost:8000/api/";
+// const url = env(APP_URL) + "/api/";
 
-var url = "http://localhost:8000/api/";
+var url = "https://pokedex-nc.herokuapp.com/api/";
 var headers = new Headers();
 headers.append("Content-Type", "application/json");
 
@@ -57524,7 +57526,7 @@ var status = function status(response) {
     //Nico
     myTeam: [],
     //Nico
-    apiToken: ''
+    apiToken: ""
   },
   mutations: {
     setPoks: function setPoks(state, poks) {
@@ -57804,7 +57806,7 @@ var status = function status(response) {
               case 0:
                 _context7.next = 2;
                 return fetch(url + "users/me", {
-                  method: 'GET',
+                  method: "GET",
                   headers: {
                     Authorization: "Bearer " + state.getters.getApiToken,
                     Accept: "application/json"
@@ -57823,7 +57825,7 @@ var status = function status(response) {
 
               case 8:
                 myProfile = _context7.sent;
-                state.commit('setMyProfile', myProfile.user[0]);
+                state.commit("setMyProfile", myProfile.user[0]);
 
               case 10:
               case "end":
@@ -57842,7 +57844,7 @@ var status = function status(response) {
               case 0:
                 _context8.next = 2;
                 return fetch(url + "users/me/team", {
-                  method: 'GET',
+                  method: "GET",
                   headers: {
                     Authorization: "Bearer " + state.getters.getApiToken,
                     Accept: "application/json"
@@ -57880,7 +57882,7 @@ var status = function status(response) {
               case 0:
                 _context9.next = 2;
                 return fetch(url + "users/" + payload.trader_id + "/team", {
-                  method: 'POST',
+                  method: "POST",
                   body: JSON.stringify({
                     pokemon_id: payload.pok_id.toString()
                   }),
@@ -57970,8 +57972,8 @@ var status = function status(response) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/nico/Desktop/Projects/MVVM_Pokedex/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/nico/Desktop/Projects/MVVM_Pokedex/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/Nico/Desktop/Dev/Pokedex/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/Nico/Desktop/Dev/Pokedex/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -2,8 +2,8 @@ import createPersistedState from "vuex-persistedstate";
 import { forEach } from "lodash";
 
 // const url = "https://localhost:8000/api/";
-// const url = env(APP_URL) + "/api/";
-const url = "https://pokedex-nc.herokuapp.com/api/";
+// const url = "https://pokedex-nc.herokuapp.com/api/";
+const url = process.env.MIX_APP_URL + "/api/";
 
 var headers = new Headers();
 headers.append("Content-Type", "application/json");

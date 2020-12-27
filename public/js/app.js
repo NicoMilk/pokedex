@@ -57504,7 +57504,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  // const url = "https://localhost:8000/api/";
 // const url = "https://pokedex-nc.herokuapp.com/api/";
 
-var url = "http://localhost:8000" + "/api/";
+var url = "PLOP" + "/api/";
 var headers = new Headers();
 headers.append("Content-Type", "application/json");
 

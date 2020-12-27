@@ -51,7 +51,8 @@ return [
     |
     */
 
-    "url" => env("MIX_APP_URL", "http://localhost"),
+    // "url" => env("MIX_APP_URL", "http://localhost"),
+    "url" => env("MIX_APP_URL"),
 
     "asset_url" => env("ASSET_URL", null),
 
